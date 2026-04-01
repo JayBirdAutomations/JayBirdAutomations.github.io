@@ -629,6 +629,33 @@
     }
     .footer-seo-keywords { font-size: 11px; color: transparent; position: absolute; }
 
+    /* ===================== BLOG ===================== */
+    .blog-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 24px;
+    }
+    .blog-card {
+      background: var(--bg-dark); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: all 0.3s;
+    }
+    .blog-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(108,99,255,0.12); }
+    .blog-tag {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px;
+      background: rgba(108,99,255,0.1); color: var(--accent);
+      border: 1px solid rgba(108,99,255,0.2); width: fit-content;
+    }
+    .blog-title { font-size: 1.05rem; font-weight: 700; line-height: 1.4; }
+    .blog-excerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; flex: 1; }
+    .blog-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text-muted); }
+    .blog-cta {
+      font-size: 13px; font-weight: 700; color: var(--accent);
+      transition: color 0.2s; margin-top: 4px;
+    }
+    .blog-cta:hover { color: var(--accent2); }
+
     /* ===================== FLOATING CTA ===================== */
     .floating-cta {
       position: fixed; bottom: 28px; right: 28px; z-index: 999;
@@ -680,6 +707,7 @@
           <a href="#commercials">AI Commercials</a>
           <a href="#process">Process</a>
           <a href="#pricing">Pricing</a>
+          <a href="#blog">Resources</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </div>
@@ -1243,6 +1271,53 @@
     </div>
   </section>
 
+  <!-- ======================== BLOG / RESOURCES ======================== -->
+  <section id="blog" class="section" style="background:var(--bg-card);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">Resources</div>
+        <h2 class="section-title">AI Insights for <span>Business Leaders</span></h2>
+        <p class="section-sub">Learn how AI automation, AI agents, and AI commercials are transforming businesses in Las Vegas and across the country.</p>
+      </div>
+      <div class="blog-grid">
+
+        <article class="blog-card" itemscope itemtype="https://schema.org/Article">
+          <div class="blog-tag">AI Agents</div>
+          <h3 class="blog-title" itemprop="headline">What Are AI Agents? The Complete Guide for Business Owners</h3>
+          <p class="blog-excerpt" itemprop="description">AI agents are autonomous systems that can plan, decide, and take actions on your behalf — 24/7, without human supervision. Here's how they work and why every modern business needs them.</p>
+          <div class="blog-meta">
+            <span>🕐 5 min read</span>
+            <span>AI Automation · Las Vegas</span>
+          </div>
+          <a href="#contact" class="blog-cta">Learn More → Book a Call</a>
+        </article>
+
+        <article class="blog-card" itemscope itemtype="https://schema.org/Article">
+          <div class="blog-tag" style="background:rgba(255,215,0,0.1);color:var(--gold);border-color:rgba(255,215,0,0.3);">AI Commercials</div>
+          <h3 class="blog-title" itemprop="headline">AI Commercials vs. Traditional Video Production: What Las Vegas Businesses Need to Know</h3>
+          <p class="blog-excerpt" itemprop="description">Traditional commercial production costs $10,000–$100,000+. AI commercial production delivers the same broadcast-quality result in days at a fraction of the cost. We break down the differences.</p>
+          <div class="blog-meta">
+            <span>🕐 4 min read</span>
+            <span>AI Video · Nevada</span>
+          </div>
+          <a href="#commercials" class="blog-cta">Explore AI Commercials →</a>
+        </article>
+
+        <article class="blog-card" itemscope itemtype="https://schema.org/Article">
+          <div class="blog-tag" style="background:rgba(0,212,255,0.1);color:var(--accent2);border-color:rgba(0,212,255,0.3);">Workflows</div>
+          <h3 class="blog-title" itemprop="headline">How AI Workflows Can Save Your Business 20+ Hours Per Week</h3>
+          <p class="blog-excerpt" itemprop="description">An AI-powered workflow automates your most time-consuming business processes — from lead follow-up to invoicing to social media — so your team can focus on what matters most.</p>
+          <div class="blog-meta">
+            <span>🕐 6 min read</span>
+            <span>Automation · Business</span>
+          </div>
+          <a href="#contact" class="blog-cta">Automate Your Business →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ======================== FOOTER ======================== -->
   <footer>
     <div class="container">
@@ -1268,6 +1343,7 @@
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="#blog">Resources</a></li>
             <li><a href="#contact">Book a Call</a></li>
           </ul>
         </div>

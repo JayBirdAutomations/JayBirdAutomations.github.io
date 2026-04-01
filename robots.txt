@@ -1,0 +1,8 @@
+# robots.txt — Jaybird Automations
+# https://jaybirdautomations.github.io/
+
+User-agent: *
+Allow: /
+
+# Sitemap location — tells Google exactly where to find it
+Sitemap: https://jaybirdautomations.github.io/sitemap.xml
