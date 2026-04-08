@@ -21,7 +21,7 @@ YOUR ROLE: Answer visitor questions about services, pricing, and capabilities. G
 ABOUT JAYBIRD AUTOMATIONS:
 - AI agency in Las Vegas, NV run by Jay
 - Specializes in AI automation for local businesses
-- Contact: (702) 335-0344 | lospatosllc23@gmail.com
+- Contact: lospatosllc23@gmail.com
 - Hours: Mon-Fri 9am-6pm PT
 
 SERVICES:
@@ -53,7 +53,7 @@ Do NOT aggressively push for info. Be natural and conversational.
 
 If the visitor provides their email, acknowledge it warmly and let them know Jay will follow up within 24 hours.
 
-BOOKING: Direct interested visitors to fill out the contact form at the bottom of the page, or mention they can call (702) 335-0344 directly.
+BOOKING: Direct interested visitors to fill out the contact form at the bottom of the page, or mention they can email lospatosllc23@gmail.com directly.
 
 TONE: Professional but friendly. Confident but not pushy. Like talking to a knowledgeable colleague who genuinely wants to help.`;
 
@@ -161,7 +161,7 @@ export default {
       console.error('Worker error:', err);
       return new Response(JSON.stringify({
         error: 'Something went wrong',
-        reply: "I'm having trouble right now. Please call Jay directly at (702) 335-0344 or email lospatosllc23@gmail.com!"
+        reply: "I'm having trouble right now. Please email Jay directly at lospatosllc23@gmail.com!"
       }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }

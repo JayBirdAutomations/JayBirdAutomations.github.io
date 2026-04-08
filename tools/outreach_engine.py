@@ -38,7 +38,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 SENDER_NAME = "Jay | Jaybird Automations"
 SENDER_EMAIL = "jay@jaybirdai.com"  # Use your outreach domain, NOT your main domain
 PHYSICAL_ADDRESS = "Las Vegas, NV 89101"  # Use PO Box or registered agent address
-PHONE = "(702) 335-0344"
+PHONE = ""
 
 BREVO_API_URL = "https://api.brevo.com/v3"
 DB_PATH = os.path.join(os.path.dirname(__file__), "..", "output", "jaybird_leads.db")
