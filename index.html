@@ -62,6 +62,16 @@
   }
   </script>
 
+  <!-- Google Analytics 4 — Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+  <!-- Get yours free at: https://analytics.google.com → Create Property → Get Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -695,7 +705,9 @@
   </div>
 </footer>
 
-<a href="#contact" class="floating-cta">🚀 Book a Free Call</a>
+<!-- The floating CTA is replaced by the AI chatbot widget -->
+<!-- Jaybird AI Chat Widget -->
+<script src="chatbot/chat-widget.js"></script>
 
 <script>
   window.addEventListener('scroll', () => {

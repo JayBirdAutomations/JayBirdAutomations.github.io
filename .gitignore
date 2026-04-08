@@ -1,0 +1,12 @@
+# Database files — keep local only
+output/
+*.db
+*.sqlite
+
+# Environment files
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
