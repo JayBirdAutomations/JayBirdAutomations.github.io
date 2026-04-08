@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python tools/lead_prospector.py --all-categories --city \"Las Vegas\" --state \"NV\")"
+    ]
+  }
+}

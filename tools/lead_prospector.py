@@ -27,7 +27,7 @@ import pandas as pd
 from datetime import datetime
 
 # ─── CONFIG ───────────────────────────────────────────────────────────
-API_KEY = os.environ.get('GOOGLE_PLACES_API_KEY', 'YOUR_API_KEY_HERE')
+API_KEY = os.environ.get('GOOGLE_PLACES_API_KEY', 'AIzaSyBWLlYTLCXYNCROJdUcSyjMXYSIh4PQImA')
 
 # Default target categories for AI services prospecting
 DEFAULT_CATEGORIES = [
@@ -209,7 +209,7 @@ def score_lead(lead):
     return max(1, min(10, score))
 
 
-def save_results(leads, city, state):
+def save_results(leads, city, state, categories=None):
     """Save leads to Excel file."""
     if not leads:
         print("\nNo leads found!")
@@ -239,9 +239,18 @@ def save_results(leads, city, state):
     columns = [c for c in columns if c in df.columns]
     df = df[columns]
 
-    # Save
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"leads_{city.lower().replace(' ', '_')}_{state.lower()}_{timestamp}.xlsx"
+    # Save — build a human-readable filename
+    city_clean = city.replace(' ', '_')
+    if not categories or len(categories) >= len(DEFAULT_CATEGORIES):
+        category_label = "All_Businesses"
+    elif len(categories) == 1:
+        category_label = categories[0].replace(' ', '_').title()
+    else:
+        category_label = "_and_".join(c.replace(' ', '_').title() for c in categories[:2])
+        if len(categories) > 2:
+            category_label += f"_and_{len(categories)-2}_more"
+
+    filename = f"{category_label}_Leads_{city_clean}_{state.upper()}.xlsx"
     filepath = os.path.join(output_dir, filename)
 
     df.to_excel(filepath, index=False, sheet_name="Leads")
@@ -283,7 +292,7 @@ def main():
         sys.exit(1)
 
     leads = prospect(categories, args.city, args.state, args.radius)
-    save_results(leads, args.city, args.state)
+    save_results(leads, args.city, args.state, categories)
 
 
 if __name__ == "__main__":

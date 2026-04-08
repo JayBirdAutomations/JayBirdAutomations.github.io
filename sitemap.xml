@@ -3,56 +3,56 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://jaybirdautomations.github.io/</loc>
-    <lastmod>2026-03-31</lastmod>
+    <loc>https://jaybirdautomations.com/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Services anchor -->
   <url>
-    <loc>https://jaybirdautomations.github.io/#services</loc>
-    <lastmod>2026-03-31</lastmod>
+    <loc>https://jaybirdautomations.com/#services</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- AI Commercials anchor -->
   <url>
-    <loc>https://jaybirdautomations.github.io/#commercials</loc>
-    <lastmod>2026-03-31</lastmod>
+    <loc>https://jaybirdautomations.com/#commercials</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Process anchor -->
   <url>
-    <loc>https://jaybirdautomations.github.io/#process</loc>
-    <lastmod>2026-03-31</lastmod>
+    <loc>https://jaybirdautomations.com/#process</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Pricing anchor -->
   <url>
-    <loc>https://jaybirdautomations.github.io/#pricing</loc>
-    <lastmod>2026-03-31</lastmod>
+    <loc>https://jaybirdautomations.com/#pricing</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- FAQ anchor -->
   <url>
-    <loc>https://jaybirdautomations.github.io/#faq</loc>
-    <lastmod>2026-03-31</lastmod>
+    <loc>https://jaybirdautomations.com/#faq</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Contact anchor -->
   <url>
-    <loc>https://jaybirdautomations.github.io/#contact</loc>
-    <lastmod>2026-03-31</lastmod>
+    <loc>https://jaybirdautomations.com/#contact</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

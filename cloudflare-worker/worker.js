@@ -9,7 +9,7 @@
  *    - ANTHROPIC_API_KEY: your-anthropic-api-key
  *    - SUPABASE_URL: your-supabase-project-url
  *    - SUPABASE_KEY: your-supabase-secret-key
- *    - ALLOWED_ORIGIN: https://jaybirdautomations.github.io
+ *    - ALLOWED_ORIGIN: https://jaybirdautomations.com
  * 4. Deploy and note the worker URL (e.g., https://jaybird-chat.xxx.workers.dev)
  * 5. Update WORKER_URL in chatbot/chat-widget.js with that URL
  */
