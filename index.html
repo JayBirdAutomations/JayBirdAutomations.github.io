@@ -243,7 +243,7 @@
     @media(max-width:820px) { .rc-stage { grid-template-columns:1fr; gap:32px; } }
 
     /* PRICING */
-    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:22px; }
     .p-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:36px 32px; position:relative; transition:all .3s; }
     .p-card.popular { border-color:var(--accent); background:linear-gradient(135deg,rgba(108,99,255,.07),var(--bg-card)); }
     .p-card:hover { transform:translateY(-3px); }
@@ -521,32 +521,47 @@
     <div class="pricing-grid">
 
       <div class="p-card">
-        <div class="p-name">Starter</div>
+        <div class="p-name">Quick Launch</div>
         <div class="p-price">$1,499 <small>/ project</small></div>
-        <p class="p-desc">One focused AI project — pick any service. Perfect for testing AI in your business before going all-in.</p>
+        <p class="p-desc">Fast, focused deliverables for businesses ready to dip their toes into AI.</p>
         <ul class="p-features">
-          <li class="p-feat">1 project (any service)</li>
+          <li class="p-feat">N8N Workflow Creation</li>
+          <li class="p-feat">AI Commercial Production</li>
           <li class="p-feat">30-min strategy call</li>
           <li class="p-feat">48-hour first draft</li>
           <li class="p-feat">2 revision rounds</li>
-          <li class="p-feat">30-day post-launch support</li>
+          <li class="p-feat">30-day support</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">Get Started</a>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Business Build</div>
+        <div class="p-price">$3,999 <small>/ project</small></div>
+        <p class="p-desc">Full system builds that change how your business finds, captures, and converts customers.</p>
+        <ul class="p-features">
+          <li class="p-feat">Website Enhancement & AI Upgrade</li>
+          <li class="p-feat">Lead Generation Systems</li>
+          <li class="p-feat">Business Automation & CRM</li>
+          <li class="p-feat">Discovery & requirements session</li>
+          <li class="p-feat">Unlimited revisions</li>
+          <li class="p-feat">60-day support</li>
         </ul>
         <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">Get Started</a>
       </div>
 
       <div class="p-card popular">
         <div class="pop-tag">Most Popular</div>
-        <div class="p-name">Growth</div>
+        <div class="p-name">Growth Retainer</div>
         <div class="p-price">$4,999 <small>/ month</small></div>
-        <p class="p-desc">Ongoing AI partnership — we build, automate, and optimize continuously so your business keeps accelerating.</p>
+        <p class="p-desc">Your ongoing AI partner — we keep building, automating, and optimizing every month.</p>
         <ul class="p-features">
-          <li class="p-feat">3 projects/month (any mix)</li>
-          <li class="p-feat">Website + lead gen + automation</li>
+          <li class="p-feat">3 projects/month (any service mix)</li>
           <li class="p-feat">Dedicated AI strategist</li>
           <li class="p-feat">Priority 24-hour turnaround</li>
           <li class="p-feat">Unlimited revisions</li>
           <li class="p-feat">Monthly strategy calls</li>
-          <li class="p-feat">Analytics & reporting dashboard</li>
+          <li class="p-feat">Analytics & reporting</li>
         </ul>
         <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Book a Call</a>
       </div>
@@ -554,11 +569,11 @@
       <div class="p-card">
         <div class="p-name">Enterprise</div>
         <div class="p-price">Custom</div>
-        <p class="p-desc">Full AI transformation — custom software, autonomous agents, and a dedicated team rebuilding how your business operates.</p>
+        <p class="p-desc">Complex, custom-built AI systems that require a dedicated team and full development cycle.</p>
         <ul class="p-features">
+          <li class="p-feat">Custom AI Software Development</li>
+          <li class="p-feat">AI Agents & Digital Workers</li>
           <li class="p-feat">Unlimited projects</li>
-          <li class="p-feat">Custom AI software development</li>
-          <li class="p-feat">AI agents built to your workflow</li>
           <li class="p-feat">Dedicated AI team</li>
           <li class="p-feat">On-site Las Vegas meetings</li>
           <li class="p-feat">SLA guarantee</li>
