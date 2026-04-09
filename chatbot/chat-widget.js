@@ -15,6 +15,10 @@
   let isOpen = false;
   let isWaiting = false;
   let leadCaptured = false;
+  let greetingShown = false;
+  let greetingTimer = null;
+  let pendingGreeting = null;
+  let contextGreetingFired = false;
 
   // Try to restore state from sessionStorage
   try {
@@ -83,6 +87,128 @@
     if (conversationHistory.length > 0) {
       restoreMessages();
     }
+
+    // Proactive greeting + context triggers
+    scheduleGreeting();
+    attachContextTriggers();
+  }
+
+  // ─── PROACTIVE GREETING ───────────────────────────────────────────
+  function scheduleGreeting() {
+    try {
+      if (sessionStorage.getItem('jb-greeted')) return;
+    } catch (e) {}
+    if (conversationHistory.length > 0) return;
+
+    setTimeout(() => {
+      if (isOpen || greetingShown) return;
+      showGreetingBubble("👋 Hey! Any questions about our services?");
+    }, 6000);
+  }
+
+  function showGreetingBubble(text) {
+    if (isOpen || greetingShown) return;
+    greetingShown = true;
+    try { sessionStorage.setItem('jb-greeted', '1'); } catch (e) {}
+
+    // Remove any existing bubble
+    const existing = document.getElementById('jb-greeting');
+    if (existing) existing.remove();
+
+    const bubble = document.createElement('div');
+    bubble.id = 'jb-greeting';
+    bubble.innerHTML = `
+      <button class="jb-greeting-close" aria-label="Dismiss">&times;</button>
+      <div class="jb-greeting-text"></div>`;
+    bubble.querySelector('.jb-greeting-text').textContent = text;
+
+    // Click bubble (anywhere except close) opens chat with greeting seeded
+    bubble.addEventListener('click', function (e) {
+      if (e.target.classList.contains('jb-greeting-close')) return;
+      hideGreetingBubble();
+      toggleChat();
+      // Seed the greeting as the bot's first message
+      if (conversationHistory.length === 0) {
+        addMessage('bot', text);
+        conversationHistory.push({ role: 'assistant', content: text });
+        saveState();
+      }
+    });
+
+    bubble.querySelector('.jb-greeting-close').addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideGreetingBubble();
+    });
+
+    document.body.appendChild(bubble);
+    // Trigger fade-in on next frame
+    requestAnimationFrame(() => bubble.classList.add('visible'));
+
+    // Pulse the toggle button for attention
+    const toggle = document.getElementById('jb-chat-toggle');
+    if (toggle) toggle.classList.add('jb-attention');
+
+    // Auto-hide after 20 seconds
+    greetingTimer = setTimeout(hideGreetingBubble, 20000);
+  }
+
+  function hideGreetingBubble() {
+    const bubble = document.getElementById('jb-greeting');
+    if (bubble) {
+      bubble.classList.remove('visible');
+      setTimeout(() => bubble.remove(), 350);
+    }
+    const toggle = document.getElementById('jb-chat-toggle');
+    if (toggle) toggle.classList.remove('jb-attention');
+    if (greetingTimer) { clearTimeout(greetingTimer); greetingTimer = null; }
+  }
+
+  function attachContextTriggers() {
+    const triggers = [
+      {
+        selector: '.p-card, #pricing',
+        greeting: "Curious which plan fits your business? I can help you pick."
+      },
+      {
+        selector: '#results, .results-carousel',
+        greeting: "Like what you see? I can walk you through how we'd build something similar for you."
+      },
+      {
+        selector: '#commercials, .comm-layout',
+        greeting: "Thinking about an AI commercial? I can explain our process in 30 seconds."
+      },
+      {
+        selector: '.svc-card',
+        greeting: null // computed from card title
+      },
+      {
+        selector: '#contact, .contact-layout',
+        greeting: "Before you fill out the form — got any quick questions I can answer?"
+      }
+    ];
+
+    triggers.forEach(trig => {
+      document.querySelectorAll(trig.selector).forEach(el => {
+        el.addEventListener('click', function () {
+          if (isOpen || contextGreetingFired) return;
+          try { if (sessionStorage.getItem('jb-greeted')) return; } catch (e) {}
+
+          let msg = trig.greeting;
+          if (!msg && el.classList.contains('svc-card')) {
+            const titleEl = el.querySelector('.svc-title');
+            const name = titleEl ? titleEl.textContent.trim() : 'that';
+            msg = `Want to see how ${name} could work for your business? Ask me anything.`;
+          }
+          if (!msg) return;
+
+          contextGreetingFired = true;
+          pendingGreeting = msg;
+          setTimeout(() => {
+            if (!isOpen && !greetingShown) showGreetingBubble(msg);
+          }, 1500);
+        }, { passive: true });
+      });
+    });
   }
 
   // ─── TOGGLE ────────────────────────────────────────────────────────
@@ -92,8 +218,12 @@
     const toggle = document.getElementById('jb-chat-toggle');
 
     if (isOpen) {
+      // Dismiss greeting bubble if it's showing
+      hideGreetingBubble();
+      try { sessionStorage.setItem('jb-greeted', '1'); } catch (e) {}
       win.classList.add('visible');
       toggle.classList.add('open');
+      toggle.classList.remove('jb-attention');
       // Send welcome message on first open
       if (conversationHistory.length === 0) {
         showWelcome();

@@ -380,4 +380,95 @@
     width: 54px;
     height: 54px;
   }
+
+  #jb-greeting {
+    right: 16px;
+    bottom: 82px;
+    max-width: calc(100vw - 32px);
+  }
+}
+
+/* Proactive greeting bubble */
+#jb-greeting {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  z-index: 9999;
+  max-width: 270px;
+  background: #1a1a22;
+  border: 1px solid rgba(108, 99, 255, 0.35);
+  border-radius: 16px;
+  padding: 14px 38px 14px 16px;
+  color: #e8e8f0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(108, 99, 255, 0.15);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  animation: jb-greeting-float 3.5s ease-in-out infinite;
+}
+
+#jb-greeting.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+#jb-greeting::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 28px;
+  width: 14px;
+  height: 14px;
+  background: #1a1a22;
+  border-right: 1px solid rgba(108, 99, 255, 0.35);
+  border-bottom: 1px solid rgba(108, 99, 255, 0.35);
+  transform: rotate(45deg);
+}
+
+#jb-greeting .jb-greeting-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: #888899;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+#jb-greeting .jb-greeting-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e8e8f0;
+}
+
+#jb-greeting:hover {
+  border-color: rgba(108, 99, 255, 0.6);
+  transform: translateY(-2px) scale(1);
+}
+
+@keyframes jb-greeting-float {
+  0%, 100% { box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(108, 99, 255, 0.15); }
+  50%      { box-shadow: 0 12px 48px rgba(108, 99, 255, 0.3), 0 0 0 1px rgba(108, 99, 255, 0.35); }
+}
+
+#jb-chat-toggle.jb-attention {
+  animation: jb-attention-pulse 2s ease-in-out infinite, jb-slideUp 0.5s ease 2s both;
+}
+
+@keyframes jb-attention-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 6px 28px rgba(108, 99, 255, 0.5); }
+  50%      { transform: scale(1.08); box-shadow: 0 8px 40px rgba(108, 99, 255, 0.85); }
 }

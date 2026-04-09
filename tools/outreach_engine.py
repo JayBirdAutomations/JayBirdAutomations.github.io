@@ -31,12 +31,12 @@ import requests
 from datetime import datetime, timedelta
 
 # ─── CONFIG ───────────────────────────────────────────────────────────
-BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
+BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")  # Set via: set BREVO_API_KEY=your-key
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
 # Your sender info — UPDATE THESE
 SENDER_NAME = "Jay | Jaybird Automations"
-SENDER_EMAIL = "jay@jaybirdai.com"  # Use your outreach domain, NOT your main domain
+SENDER_EMAIL = "jay@jaybirdautomations.com"
 PHYSICAL_ADDRESS = "Las Vegas, NV 89101"  # Use PO Box or registered agent address
 PHONE = ""
 
@@ -52,135 +52,162 @@ FOLLOWUP_SCHEDULE = [3, 7, 14]
 TEMPLATES = {
     "initial": {
         "law firm": {
-            "subject": "Quick question about {business_name}'s client intake",
-            "body": """Hi there,
+            "subject": "Question about {business_name}",
+            "body": """Hi,
 
-I was looking at {business_name} online and {personalization_line}
+I was looking up law firms in Las Vegas and came across {business_name}. {personalization_line}
 
-I run Jaybird Automations here in Las Vegas — we build AI tools specifically for professional services firms:
+Most firms I talk to are dealing with the same problem — too many hours spent on things that aren't billable. Intake calls, follow-up emails, scheduling, chasing paperwork. It adds up fast.
 
-- AI chatbots that qualify leads and book consultations 24/7
-- Automated client intake workflows that never miss a lead
-- AI-produced commercials (broadcast quality, fraction of the cost)
+I work with a few local businesses here in Las Vegas helping them cut that overhead so they can focus on the work that actually brings in revenue. Usually takes a couple weeks to set up and pays for itself quickly.
 
-Would you be open to a quick 15-minute call to see if any of this could work for {business_name}?
+Not sure if it's a fit for your firm, but would it be worth a 15-minute call to find out?
 
-Best,
 Jay
-Jaybird Automations
-{phone}
+Jaybird Automations | Las Vegas, NV
+jay@jaybirdautomations.com
+jaybirdautomations.com
 
----
-You're receiving this because {business_name} is publicly listed in Las Vegas.
-To stop receiving emails: {unsubscribe_link}
-{physical_address}"""
+Feel free to reply directly to this email — I read and respond to every message personally.
+
+To opt out: {unsubscribe_link} | {physical_address}"""
         },
 
         "restaurant": {
-            "subject": "{business_name} — quick idea to bring in more diners",
-            "body": """Hi there,
+            "subject": "Question for {business_name}",
+            "body": """Hi,
 
-I came across {business_name} and {personalization_line}
+I found {business_name} while looking at restaurants in Las Vegas. {personalization_line}
 
-I'm Jay from Jaybird Automations in Las Vegas. We help restaurants use AI to attract more customers:
+One thing I see a lot with local restaurants — they're putting out great food but struggling to get consistent new customers through the door. Most of the marketing they try is either too expensive or just doesn't convert.
 
-- AI-powered commercials for social media (Instagram, TikTok, YouTube) at a fraction of video production costs
-- Chatbots that handle reservations and answer menu questions 24/7
-- Automated review response and social media management
+I help local businesses here in Vegas fix that. The approach is different for every business, but the goal is always the same — more revenue without just throwing money at ads.
 
-We just helped a local restaurant create an AI commercial that got 50K+ views on Instagram.
+Would it make sense to jump on a quick 15-minute call? No pitch, just want to understand what's working and what isn't for {business_name} right now.
 
-Worth a quick chat? I can show you what an AI commercial for {business_name} could look like.
-
-Best,
 Jay
-Jaybird Automations
-{phone}
+Jaybird Automations | Las Vegas, NV
+jay@jaybirdautomations.com
+jaybirdautomations.com
 
----
-You're receiving this because {business_name} is publicly listed in Las Vegas.
-To stop receiving emails: {unsubscribe_link}
-{physical_address}"""
+Feel free to reply directly to this email — I read and respond to every message personally.
+
+To opt out: {unsubscribe_link} | {physical_address}"""
+        },
+
+        "dental office": {
+            "subject": "Quick question for {business_name}",
+            "body": """Hi,
+
+I came across {business_name} while researching dental practices in Las Vegas. {personalization_line}
+
+A lot of practices I talk to have the same bottleneck — the front desk is overwhelmed, appointment no-shows are eating into revenue, and follow-up with patients falls through the cracks. It's hard to grow when the admin side is holding you back.
+
+I help local businesses streamline those exact problems. It's not a one-size-fits-all thing — I look at what's actually costing the most time and money and fix that first.
+
+Would a 15-minute call be worth it to see if I could help {business_name}?
+
+Jay
+Jaybird Automations | Las Vegas, NV
+jay@jaybirdautomations.com
+jaybirdautomations.com
+
+Feel free to reply directly to this email — I read and respond to every message personally.
+
+To opt out: {unsubscribe_link} | {physical_address}"""
+        },
+
+        "contractor": {
+            "subject": "Question for {business_name}",
+            "body": """Hi,
+
+I found {business_name} while looking at contractors in Las Vegas. {personalization_line}
+
+Most contractors I speak with are great at the work but losing jobs because of slow follow-up on estimates or leads that go cold over the weekend. By the time Monday comes around, the customer already called someone else.
+
+I help local businesses fix that kind of leak — so more of the leads you're already getting actually turn into paying jobs.
+
+Worth a quick 15-minute call to see if there's something there for {business_name}?
+
+Jay
+Jaybird Automations | Las Vegas, NV
+jay@jaybirdautomations.com
+jaybirdautomations.com
+
+Feel free to reply directly to this email — I read and respond to every message personally.
+
+To opt out: {unsubscribe_link} | {physical_address}"""
         },
 
         "default": {
-            "subject": "AI tools for {business_name} — quick question",
-            "body": """Hi there,
+            "subject": "Quick question for {business_name}",
+            "body": """Hi,
 
-I found {business_name} while researching businesses in Las Vegas and {personalization_line}
+I came across {business_name} while researching businesses in Las Vegas. {personalization_line}
 
-I'm Jay from Jaybird Automations — we're a local AI agency that helps businesses like yours:
+I work with local businesses here in Vegas helping them find and fix the biggest bottleneck holding back their growth — whether that's losing leads after hours, spending too much time on admin, or struggling to get consistent new customers.
 
-- AI chatbots that capture leads and answer customer questions 24/7
-- Business process automation to eliminate repetitive tasks
-- AI-produced commercials (broadcast quality for a fraction of the cost)
-- Marketing automation (social media, email campaigns, content)
+Every business is different, so I don't lead with a solution until I understand the problem. That's why I'd rather start with a quick conversation than pitch you something you don't need.
 
-Would you be open to a quick 15-minute discovery call? No pressure — just want to show you what's possible with AI for {business_name}.
+Would 15 minutes be worth it to see if I could help {business_name}?
 
-Best,
 Jay
-Jaybird Automations
-{phone}
+Jaybird Automations | Las Vegas, NV
+jay@jaybirdautomations.com
+jaybirdautomations.com
 
----
-You're receiving this because {business_name} is publicly listed in Las Vegas.
-To stop receiving emails: {unsubscribe_link}
-{physical_address}"""
+Feel free to reply directly to this email — I read and respond to every message personally.
+
+To opt out: {unsubscribe_link} | {physical_address}"""
         }
     },
 
     "followup_1": {
         "subject": "Re: {original_subject}",
-        "body": """Hi again,
+        "body": """Hi,
 
-Just following up on my last email about AI tools for {business_name}.
+Just following up in case my last email got buried.
 
-I actually put together a quick analysis of your online presence — happy to share it with you free of charge. No strings attached.
+I did a quick look at {business_name}'s online presence and found a few things worth sharing — no cost, no obligation. Just thought it might be useful.
 
-It covers things like how your website performs on mobile, whether you're capturing after-hours leads, and a few quick wins that could help.
-
-Want me to send it over?
+Happy to send it over if you're curious.
 
 Jay
-Jaybird Automations
-{phone}"""
+Jaybird Automations | Las Vegas, NV"""
     },
 
     "followup_2": {
         "subject": "Re: {original_subject}",
         "body": """Hi,
 
-Last one from me on this — I recently built an AI chatbot for a Las Vegas business that handles their after-hours inquiries automatically. They went from losing 40% of evening leads to capturing every single one.
+I'll keep this short — I recently helped a Las Vegas business fix a growth problem they'd been stuck on for over a year. Took about three weeks to implement. They're still seeing the results.
 
-If you ever want to explore something like that for {business_name}, I'm happy to chat. No cost for the initial conversation.
+If the timing ever makes sense for {business_name}, I'm easy to reach.
 
 Jay
-Jaybird Automations
-{phone}
+Jaybird Automations | Las Vegas, NV
 
----
-To stop receiving emails: {unsubscribe_link}
-{physical_address}"""
+Feel free to reply directly to this email — I read and respond to every message personally.
+
+To opt out: {unsubscribe_link} | {physical_address}"""
     },
 
     "followup_3": {
         "subject": "Re: {original_subject}",
         "body": """Hi,
 
-I'll assume the timing isn't right — totally understand.
+I won't keep following up after this — I know your inbox is busy.
 
-If {business_name} ever wants to explore AI automation, chatbots, or AI commercials, my door's always open.
+If things change and {business_name} ever wants a fresh set of eyes on a growth problem, feel free to reach out anytime.
 
-Wishing you continued success!
+Good luck with everything.
 
 Jay
-Jaybird Automations
-{phone}
+Jaybird Automations | Las Vegas, NV
 
----
-To stop receiving emails: {unsubscribe_link}
-{physical_address}"""
+Feel free to reply directly to this email — I read and respond to every message personally.
+
+To opt out: {unsubscribe_link} | {physical_address}"""
     }
 }
 
@@ -257,7 +284,7 @@ def build_email(lead, template_type="initial", followup_num=0):
         personalization = ""
 
     # Build unsubscribe link (Brevo handles this, but we add a placeholder)
-    unsubscribe_link = "{{unsubscribe}}"  # Brevo replaces this automatically
+    unsubscribe_link = "click here to unsubscribe: {{unsubscribe}}"  # Brevo replaces {{unsubscribe}} with the actual URL
 
     subject = template["subject"].format(
         business_name=lead["business_name"],
@@ -426,37 +453,26 @@ def preview_email(lead_id):
 
 
 def send_test(test_email):
-    """Send a test email to yourself."""
-    subject = "Jaybird Outreach Test — This is what leads will receive"
+    """Send a test email to yourself using the real default template."""
+    # Use a fake lead so the test shows the actual current template
+    fake_lead = {
+        "business_name": "Sample Business Co.",
+        "industry": "default",
+        "website": "",
+        "google_rating": 3.8,
+        "review_count": 12,
+        "has_chatbot": False,
+        "website_score": 4,
+    }
+    subject, sample_body = build_email(fake_lead, "initial")
+    subject = f"[TEST] {subject}"
     body = f"""This is a TEST email from the Jaybird Outreach Engine.
-
-If you received this, your email setup is working correctly!
-
 Sender: {SENDER_NAME} <{SENDER_EMAIL}>
 Sent at: {datetime.now().isoformat()}
 
---- SAMPLE LEAD EMAIL BELOW ---
+--- ACTUAL EMAIL YOUR LEADS WILL RECEIVE ---
 
-Hi there,
-
-I was looking at Your Business online and I noticed you don't have an AI chatbot — that means you're missing leads after business hours.
-
-I'm Jay from Jaybird Automations in Las Vegas. We help businesses like yours:
-
-- AI chatbots that capture leads 24/7
-- Business process automation
-- AI-produced commercials (broadcast quality, fraction of the cost)
-
-Would you be open to a quick 15-minute call?
-
-Best,
-Jay
-Jaybird Automations
-{PHONE}
-
----
-To stop receiving emails: [unsubscribe link]
-{PHYSICAL_ADDRESS}"""
+{sample_body}"""
 
     print(f"Sending test email to: {test_email}")
     if send_email(test_email, "Test Recipient", subject, body):

@@ -137,7 +137,7 @@
 
     /* SERVICES */
     #services { background:var(--bg-card); }
-    .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; }
+    .services-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
     .svc-card { background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:28px; transition:all .3s; position:relative; }
     .svc-card:hover { border-color:var(--accent); transform:translateY(-3px); box-shadow:0 10px 32px rgba(108,99,255,.12); }
     .svc-card.featured { border-color:rgba(255,215,0,.4); background:linear-gradient(135deg,rgba(255,215,0,.03),var(--bg)); }
@@ -148,6 +148,8 @@
     .svc-icon.gold   { background:rgba(255,215,0,.1); }
     .svc-icon.cyan   { background:rgba(0,212,255,.1); }
     .svc-icon.pink   { background:rgba(255,107,157,.1); }
+    .svc-icon.teal   { background:rgba(0,255,176,.1); }
+    .svc-icon.blue   { background:rgba(59,130,246,.1); }
     .svc-title { font-size:1.05rem; font-weight:700; margin-bottom:10px; }
     .svc-desc  { font-size:.88rem; color:var(--muted); }
 
@@ -213,6 +215,32 @@
     .sample-desc { font-size:.82rem; color:var(--muted); }
     .samples-cta { text-align:center; margin-top:40px; }
     .samples-cta p { color:var(--muted); font-size:.9rem; margin-bottom:16px; }
+
+    /* RESULTS CAROUSEL */
+    #results { background:var(--bg); }
+    .results-carousel { max-width:1080px; margin:0 auto; position:relative; }
+    .rc-stage { display:grid; grid-template-columns:1.2fr 1fr; gap:44px; align-items:center; }
+    .rc-tablet { position:relative; width:100%; aspect-ratio:16/10; background:#1a1a22; border-radius:20px; padding:14px; border:1px solid rgba(108,99,255,.25); box-shadow:0 20px 60px rgba(0,0,0,.5), inset 0 0 0 2px rgba(255,255,255,.03); }
+    .rc-tablet::before { content:''; position:absolute; top:50%; right:-10px; width:5px; height:34px; background:#252532; border-radius:2px; transform:translateY(-50%); }
+    .rc-tablet::after { content:''; position:absolute; top:50%; left:10px; width:6px; height:6px; background:#252532; border-radius:50%; transform:translateY(-50%); }
+    .rc-screen { position:relative; width:100%; height:100%; border-radius:8px; overflow:hidden; background:linear-gradient(135deg,#0d0d1a,#1a1030); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; transition:opacity .4s ease; }
+    .rc-screen .rc-icon { font-size:64px; margin-bottom:14px; filter:drop-shadow(0 4px 20px rgba(108,99,255,.5)); }
+    .rc-screen .rc-screen-title { font-size:1.25rem; font-weight:800; color:#fff; margin-bottom:6px; }
+    .rc-screen .rc-screen-sub { font-size:.78rem; color:rgba(255,255,255,.55); letter-spacing:1px; text-transform:uppercase; }
+    .rc-details .rc-tag { display:inline-block; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent); background:rgba(108,99,255,.1); border:1px solid var(--border); padding:5px 12px; border-radius:100px; margin-bottom:16px; }
+    .rc-details .rc-title { font-size:1.6rem; font-weight:800; margin-bottom:12px; line-height:1.2; }
+    .rc-details .rc-desc { font-size:.92rem; color:var(--muted); margin-bottom:24px; line-height:1.7; }
+    .rc-stats { list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .rc-stats li { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 10px; text-align:center; }
+    .rc-stats strong { display:block; font-size:1.35rem; font-weight:900; color:var(--gold); }
+    .rc-stats span { display:block; font-size:10px; color:var(--muted); margin-top:2px; letter-spacing:.5px; }
+    .rc-controls { display:flex; align-items:center; justify-content:center; gap:16px; margin-top:36px; }
+    .rc-nav { width:44px; height:44px; border-radius:50%; background:transparent; border:1px solid var(--border); color:var(--text); font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+    .rc-nav:hover { border-color:var(--accent); color:var(--accent); background:rgba(108,99,255,.08); }
+    .rc-dots { display:flex; gap:8px; }
+    .rc-dot { width:9px; height:9px; border-radius:50%; background:rgba(108,99,255,.2); border:none; cursor:pointer; transition:all .25s; padding:0; }
+    .rc-dot.active { background:var(--accent); transform:scale(1.3); }
+    @media(max-width:820px) { .rc-stage { grid-template-columns:1fr; gap:32px; } }
 
     /* PRICING */
     .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
@@ -303,11 +331,10 @@
       <a href="#" class="nav-logo">⚡ Jaybird Automations</a>
       <div class="nav-links" id="navLinks">
         <a href="#services">Services</a>
-        <a href="#commercials">AI Commercials</a>
-        <a href="#samples">Samples</a>
+        <a href="#results">Results</a>
         <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
+        <a href="#faq">FAQ</a>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
         <a href="#contact" class="btn btn-primary" style="padding:9px 20px;font-size:13px;">Book a Call</a>
@@ -329,12 +356,12 @@
         <span class="line2">Business Runs on AI</span>
       </h1>
       <p class="hero-desc">
-        Jaybird Automations delivers enterprise-grade AI automation, intelligent workflows, and
-        <strong>AI-powered commercials</strong> that transform how your company operates and markets itself.
+        Jaybird Automations helps local businesses <strong>grow with AI</strong> — smarter websites,
+        automated lead generation, custom AI tools, and CRM systems that work while you sleep.
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">🚀 Start Your AI Project</a>
-        <a href="#commercials" class="btn btn-outline">🎬 AI Commercials</a>
+        <a href="#results" class="btn btn-outline">See Our Work →</a>
       </div>
       <div class="hero-stats">
         <div><div class="stat-num gradient-text">10x</div><div class="stat-label">Faster workflows</div></div>
@@ -352,33 +379,44 @@
     <div class="section-header">
       <div class="badge">What We Build</div>
       <h2 class="section-title">Complete <span>AI Solutions</span> for Modern Business</h2>
-      <p class="section-sub">From automating your operations to producing cinematic AI commercials — we handle every layer of your AI strategy.</p>
+      <p class="section-sub">From upgrading your website to building custom AI software — we handle every layer of your business growth.</p>
     </div>
     <div class="services-grid">
 
-      <div class="svc-card featured">
-        <div class="feat-badge">⭐ NEW</div>
+      <div class="svc-card">
+        <div class="svc-icon purple">🌐</div>
+        <h3 class="svc-title">Website Enhancement & AI Upgrade</h3>
+        <p class="svc-desc">We take your existing website and upgrade it with the AI features customers now expect — smart chat, instant quotes, and lead capture that actually works.</p>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon cyan">🎯</div>
+        <h3 class="svc-title">Lead Generation & Business Automation</h3>
+        <p class="svc-desc">We build AI systems to find qualified customers AND automate the follow-up — from first touch to closed deal, all on autopilot.</p>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon blue">💻</div>
+        <h3 class="svc-title">Custom AI Software Development</h3>
+        <p class="svc-desc">Need a tool that doesn't exist yet? We build custom AI-powered apps, dashboards, and software tailored to exactly how your business works.</p>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon teal">🤖</div>
+        <h3 class="svc-title">AI Agents & Digital Workers</h3>
+        <p class="svc-desc">Autonomous AI agents that independently research, communicate, and complete multi-step tasks — like a personal assistant that never sleeps and never calls in sick.</p>
+      </div>
+
+      <div class="svc-card">
         <div class="svc-icon gold">🎬</div>
         <h3 class="svc-title">AI Commercial Production</h3>
-        <p class="svc-desc">Broadcast-quality commercials produced with AI — cinematic visuals, professional voiceovers, and full editing at a fraction of traditional production costs.</p>
+        <p class="svc-desc">Broadcast-quality commercials made with AI. Cinematic visuals and pro voiceover, delivered in days — not the six weeks a traditional shoot takes.</p>
       </div>
 
       <div class="svc-card">
-        <div class="svc-icon purple">🤖</div>
-        <h3 class="svc-title">Business Process Automation</h3>
-        <p class="svc-desc">Eliminate repetitive tasks and reduce overhead by automating your core business processes with intelligent AI workflows built for scale.</p>
-      </div>
-
-      <div class="svc-card">
-        <div class="svc-icon cyan">💬</div>
-        <h3 class="svc-title">AI Chatbots & Agents</h3>
-        <p class="svc-desc">Deploy custom-trained AI assistants and agents that handle customer service, qualify leads, and drive sales — 24/7, without human intervention.</p>
-      </div>
-
-      <div class="svc-card">
-        <div class="svc-icon pink">📣</div>
-        <h3 class="svc-title">AI Marketing Automation</h3>
-        <p class="svc-desc">Automate your entire marketing funnel — AI-generated content, social media, personalized email campaigns, and targeted ad management.</p>
+        <div class="svc-icon pink">⚡</div>
+        <h3 class="svc-title">N8N Workflow Creation</h3>
+        <p class="svc-desc">We build powerful n8n automation workflows that connect your apps and put repetitive tasks on autopilot — YouTube content pipelines, CRM triggers, social media scheduling, and more.</p>
       </div>
 
     </div>
@@ -425,99 +463,49 @@
         </ul>
         <div style="display:flex;gap:14px;flex-wrap:wrap;">
           <a href="#contact" class="btn btn-gold">🎬 Get Your AI Commercial</a>
-          <a href="#samples" class="btn btn-outline">See Samples →</a>
+          <a href="#contact" class="btn btn-outline">Request a Quote →</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SAMPLES -->
-<section id="samples" class="section">
+
+<!-- RESULTS -->
+<section id="results" class="section">
   <div class="container">
-    <div class="samples-intro">
-      <div class="badge">Sample Work</div>
-      <h2 class="section-title">AI Commercials Built for <span>Your Industry</span></h2>
-      <p class="section-sub" style="margin:0 auto;">See how Jaybird Automations creates professional AI commercials tailored to law firms, corporations, and beyond.</p>
+    <div class="section-header">
+      <div class="badge">Real Results</div>
+      <h2 class="section-title">Work We're <span>Proud Of</span></h2>
+      <p class="section-sub">Every project below was built, shipped, and is running in production right now — starting with the very systems powering this website.</p>
     </div>
 
-    <div class="samples-grid">
-
-      <!-- Law Firm Sample -->
-      <div class="sample-card">
-        <div class="sample-screen sample-law">
-          <div class="law-header">
-            <div>
-              <div class="law-logo">STERLING & ASSOCIATES</div>
-              <div class="law-tagline">Attorneys at Law · Est. 1994</div>
-            </div>
-            <div style="width:36px;height:36px;border-radius:50%;background:rgba(200,168,75,.1);border:1px solid rgba(200,168,75,.3);display:flex;align-items:center;justify-content:center;font-size:16px;">⚖️</div>
-          </div>
-          <div class="law-body">
-            <div class="law-text-block">
-              <div class="law-headline">Justice Is<br><span>Our Standard.</span></div>
-              <div class="law-sub">PERSONAL INJURY · CORPORATE LAW · CIVIL LITIGATION</div>
-              <div class="law-badge">Free Consultation</div>
-            </div>
-            <div class="law-seal">⚖️</div>
-          </div>
-          <div class="law-footer">
-            <span class="law-footer-text">STERLING & ASSOCIATES · LAS VEGAS, NV · (702) 000-0000</span>
-            <span class="law-cta">Call Now →</span>
+    <div class="results-carousel">
+      <div class="rc-stage">
+        <div class="rc-tablet">
+          <div class="rc-screen" id="rcScreen">
+            <div class="rc-icon">💬</div>
+            <div class="rc-screen-title">Jaybird AI Chatbot</div>
+            <div class="rc-screen-sub">Live · This Site</div>
           </div>
         </div>
-        <div class="sample-info">
-          <div class="sample-industry">⚖️ Law Firm</div>
-          <div class="sample-title">Sterling & Associates — Brand Commercial</div>
-          <div class="sample-desc">A premium, authoritative commercial designed to build trust and drive consultation bookings for personal injury and corporate law firms.</div>
+        <div class="rc-details">
+          <div class="rc-tag" id="rcTag">AI Chatbot</div>
+          <h3 class="rc-title" id="rcTitle">Jaybird AI Assistant</h3>
+          <p class="rc-desc" id="rcDesc">The chatbot you see on this page. Answers service questions, handles pricing conversations, and captures qualified leads around the clock.</p>
+          <ul class="rc-stats" id="rcStats">
+            <li><strong>24/7</strong><span>Uptime</span></li>
+            <li><strong>&lt;2s</strong><span>Response</span></li>
+            <li><strong>$0</strong><span>Extra Staff</span></li>
+          </ul>
         </div>
       </div>
 
-      <!-- Corporate Sample -->
-      <div class="sample-card">
-        <div class="sample-screen sample-corp" style="display:flex;flex-direction:column;">
-          <div class="corp-header">
-            <div class="corp-logo">
-              <div class="corp-logo-icon">⚡</div>
-              <span class="corp-logo-name">NEXCORE SOLUTIONS</span>
-            </div>
-            <div class="corp-pill">ENTERPRISE AI</div>
-          </div>
-          <div class="corp-body" style="flex:1;">
-            <div class="corp-headline">Scale Smarter.<br><span>Grow Faster.</span></div>
-            <div class="corp-stats">
-              <div class="corp-stat">
-                <div class="corp-stat-num">10x</div>
-                <div class="corp-stat-label">Efficiency</div>
-              </div>
-              <div class="corp-stat">
-                <div class="corp-stat-num">70%</div>
-                <div class="corp-stat-label">Cost Cut</div>
-              </div>
-              <div class="corp-stat">
-                <div class="corp-stat-num">48h</div>
-                <div class="corp-stat-label">Launch</div>
-              </div>
-            </div>
-          </div>
-          <div class="corp-footer">
-            <span style="font-size:9px;color:var(--muted);">AI TRANSFORMATION</span>
-            <div class="corp-progress"><div class="corp-progress-bar"></div></div>
-            <span class="corp-progress-label">72% Complete</span>
-          </div>
-        </div>
-        <div class="sample-info">
-          <div class="sample-industry" style="color:var(--accent2);">🏢 Corporation</div>
-          <div class="sample-title">Nexcore Solutions — Product Launch Campaign</div>
-          <div class="sample-desc">A data-driven, high-energy commercial for B2B corporations showcasing ROI, efficiency gains, and competitive advantage.</div>
-        </div>
+      <div class="rc-controls">
+        <button class="rc-nav rc-prev" aria-label="Previous project">‹</button>
+        <div class="rc-dots" id="rcDots"></div>
+        <button class="rc-nav rc-next" aria-label="Next project">›</button>
       </div>
-
-    </div>
-
-    <div class="samples-cta">
-      <p>These are storyboard previews. Your commercial is custom-built for your brand, audience, and message.</p>
-      <a href="#contact" class="btn btn-primary">🎬 Request Your Custom Commercial</a>
     </div>
   </div>
 </section>
@@ -535,13 +523,13 @@
       <div class="p-card">
         <div class="p-name">Starter</div>
         <div class="p-price">$1,499 <small>/ project</small></div>
-        <p class="p-desc">Perfect for businesses ready to automate one key process or produce their first AI commercial.</p>
+        <p class="p-desc">One focused AI project — pick any service. Perfect for testing AI in your business before going all-in.</p>
         <ul class="p-features">
-          <li class="p-feat">1 Automation or AI Commercial</li>
-          <li class="p-feat">30-min discovery call</li>
+          <li class="p-feat">1 project (any service)</li>
+          <li class="p-feat">30-min strategy call</li>
           <li class="p-feat">48-hour first draft</li>
           <li class="p-feat">2 revision rounds</li>
-          <li class="p-feat">30-day support</li>
+          <li class="p-feat">30-day post-launch support</li>
         </ul>
         <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">Get Started</a>
       </div>
@@ -550,14 +538,15 @@
         <div class="pop-tag">Most Popular</div>
         <div class="p-name">Growth</div>
         <div class="p-price">$4,999 <small>/ month</small></div>
-        <p class="p-desc">For growing companies that need ongoing AI automation, marketing, and commercial production.</p>
+        <p class="p-desc">Ongoing AI partnership — we build, automate, and optimize continuously so your business keeps accelerating.</p>
         <ul class="p-features">
-          <li class="p-feat">3 Automations or Commercials/mo</li>
+          <li class="p-feat">3 projects/month (any mix)</li>
+          <li class="p-feat">Website + lead gen + automation</li>
           <li class="p-feat">Dedicated AI strategist</li>
           <li class="p-feat">Priority 24-hour turnaround</li>
           <li class="p-feat">Unlimited revisions</li>
           <li class="p-feat">Monthly strategy calls</li>
-          <li class="p-feat">Analytics & reporting</li>
+          <li class="p-feat">Analytics & reporting dashboard</li>
         </ul>
         <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Book a Call</a>
       </div>
@@ -565,11 +554,12 @@
       <div class="p-card">
         <div class="p-name">Enterprise</div>
         <div class="p-price">Custom</div>
-        <p class="p-desc">Full-scale AI transformation for enterprises and law firms with complex requirements.</p>
+        <p class="p-desc">Full AI transformation — custom software, autonomous agents, and a dedicated team rebuilding how your business operates.</p>
         <ul class="p-features">
           <li class="p-feat">Unlimited projects</li>
+          <li class="p-feat">Custom AI software development</li>
+          <li class="p-feat">AI agents built to your workflow</li>
           <li class="p-feat">Dedicated AI team</li>
-          <li class="p-feat">Custom AI model development</li>
           <li class="p-feat">On-site Las Vegas meetings</li>
           <li class="p-feat">SLA guarantee</li>
           <li class="p-feat">Executive reporting</li>
@@ -577,6 +567,65 @@
         <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">Contact Us</a>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section" style="background:linear-gradient(180deg,var(--bg) 0%,rgba(108,99,255,.04) 50%,var(--bg) 100%);">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="contact-info">
+        <div class="badge">Let's Talk</div>
+        <h2>Start Your AI<br><span class="gradient-text">Project Today</span></h2>
+        <p>Ready to automate your business or produce an AI commercial? Fill out the form and we'll be in touch within 24 hours to schedule your free discovery call.</p>
+        <div class="c-detail"><div class="c-icon">📍</div><div class="c-text"><small>Location</small><strong>Las Vegas, Nevada</strong></div></div>
+        <div class="c-detail"><div class="c-icon">📧</div><div class="c-text"><small>Email</small><strong>lospatosllc23@gmail.com</strong></div></div>
+
+        <div class="c-detail"><div class="c-icon">⚡</div><div class="c-text"><small>Response Time</small><strong>Within 24 hours</strong></div></div>
+      </div>
+      <div class="c-form">
+        <h3>Book a Free Discovery Call</h3>
+        <form id="contactForm" action="https://formspree.io/f/xnjovlyr" method="POST" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" name="firstName" placeholder="John" required /></div>
+            <div class="form-group"><label>Last Name</label><input type="text" name="lastName" placeholder="Smith" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="john@company.com" required /></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(702) 000-0000" /></div>
+          </div>
+          <div class="form-group"><label>Company Name</label><input type="text" name="company" placeholder="Your Company, LLC" /></div>
+          <div class="form-group">
+            <label>Service Interested In</label>
+            <select name="service" required>
+              <option value="">Select a service...</option>
+              <option value="website">🌐 Website Enhancement & AI Upgrade</option>
+              <option value="leadgen-automation">🎯 Lead Generation & Business Automation</option>
+              <option value="ai-software">💻 Custom AI Software Development</option>
+              <option value="ai-agents">🤖 AI Agents & Digital Workers</option>
+              <option value="ai-commercial">🎬 AI Commercial Production</option>
+              <option value="n8n-workflow">⚡ n8n Workflow Creation</option>
+              <option value="multiple">🚀 Multiple Services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell Us About Your Project</label>
+            <textarea name="message" placeholder="Describe your project, goals, or questions..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Budget Range</label>
+            <select name="budget">
+              <option value="">Select a budget...</option>
+              <option value="starter">$1,499 Starter Project</option>
+              <option value="growth">$4,999/mo Growth Plan</option>
+              <option value="enterprise">Enterprise / Custom</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:15px;">🚀 Submit & Book My Call</button>
+          <div class="form-success" id="formSuccess">✅ Thank you! We'll be in touch within 24 hours to schedule your discovery call.</div>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -614,63 +663,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section" style="background:linear-gradient(180deg,var(--bg) 0%,rgba(108,99,255,.04) 50%,var(--bg) 100%);">
-  <div class="container">
-    <div class="contact-layout">
-      <div class="contact-info">
-        <div class="badge">Let's Talk</div>
-        <h2>Start Your AI<br><span class="gradient-text">Project Today</span></h2>
-        <p>Ready to automate your business or produce an AI commercial? Fill out the form and we'll be in touch within 24 hours to schedule your free discovery call.</p>
-        <div class="c-detail"><div class="c-icon">📍</div><div class="c-text"><small>Location</small><strong>Las Vegas, Nevada</strong></div></div>
-        <div class="c-detail"><div class="c-icon">📧</div><div class="c-text"><small>Email</small><strong>lospatosllc23@gmail.com</strong></div></div>
-
-        <div class="c-detail"><div class="c-icon">⚡</div><div class="c-text"><small>Response Time</small><strong>Within 24 hours</strong></div></div>
-      </div>
-      <div class="c-form">
-        <h3>Book a Free Discovery Call</h3>
-        <form id="contactForm" action="https://formspree.io/f/xnjovlyr" method="POST" onsubmit="handleSubmit(event)">
-          <div class="form-row">
-            <div class="form-group"><label>First Name</label><input type="text" name="firstName" placeholder="John" required /></div>
-            <div class="form-group"><label>Last Name</label><input type="text" name="lastName" placeholder="Smith" required /></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="john@company.com" required /></div>
-            <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(702) 000-0000" /></div>
-          </div>
-          <div class="form-group"><label>Company Name</label><input type="text" name="company" placeholder="Your Company, LLC" /></div>
-          <div class="form-group">
-            <label>Service Interested In</label>
-            <select name="service" required>
-              <option value="">Select a service...</option>
-              <option value="ai-commercial">🎬 AI Commercial Production</option>
-              <option value="automation">🤖 Business Process Automation</option>
-              <option value="chatbot">💬 AI Chatbot / Agent</option>
-              <option value="marketing">📣 AI Marketing Automation</option>
-              <option value="multiple">🚀 Multiple Services</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Tell Us About Your Project</label>
-            <textarea name="message" placeholder="Describe your project, goals, or questions..." required></textarea>
-          </div>
-          <div class="form-group">
-            <label>Budget Range</label>
-            <select name="budget">
-              <option value="">Select a budget...</option>
-              <option value="starter">$1,499 Starter Project</option>
-              <option value="growth">$4,999/mo Growth Plan</option>
-              <option value="enterprise">Enterprise / Custom</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:15px;">🚀 Submit & Book My Call</button>
-          <div class="form-success" id="formSuccess">✅ Thank you! We'll be in touch within 24 hours to schedule your discovery call.</div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -682,19 +674,21 @@
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
+          <li><a href="#services">Website Enhancement</a></li>
+          <li><a href="#services">Lead Generation & Automation</a></li>
+          <li><a href="#services">Custom AI Software</a></li>
+          <li><a href="#services">AI Agents & Digital Workers</a></li>
+          <li><a href="#services">n8n Workflow Creation</a></li>
           <li><a href="#commercials">AI Commercials</a></li>
-          <li><a href="#services">Process Automation</a></li>
-          <li><a href="#services">AI Chatbots & Agents</a></li>
-          <li><a href="#services">AI Marketing</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="#samples">Sample Work</a></li>
+          <li><a href="#results">Results</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Book a Call</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
     </div>
@@ -733,7 +727,104 @@
     } catch { btn.textContent='⚠️ Network error. Try again.'; btn.disabled=false; }
   }
   const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';} }), {threshold:.1});
-  document.querySelectorAll('.svc-card,.p-card,.faq-item,.sample-card').forEach(el => { el.style.opacity='0'; el.style.transform='translateY(16px)'; el.style.transition='opacity .5s ease,transform .5s ease'; obs.observe(el); });
+  document.querySelectorAll('.svc-card,.p-card,.faq-item,.sample-card,.results-carousel').forEach(el => { el.style.opacity='0'; el.style.transform='translateY(16px)'; el.style.transition='opacity .5s ease,transform .5s ease'; obs.observe(el); });
+
+  // RESULTS CAROUSEL
+  const rcSlides = [
+    {
+      icon: '💬',
+      screenTitle: 'Jaybird AI Chatbot',
+      screenSub: 'Live · This Site',
+      tag: 'AI Chatbot',
+      title: 'Jaybird AI Assistant',
+      desc: 'The chatbot you see on this page. Answers service questions, handles pricing conversations, and captures qualified leads around the clock.',
+      stats: [['24/7','Uptime'],['<2s','Response'],['$0','Extra Staff']],
+      bg: 'linear-gradient(135deg,#0d0d1a,#1a1030)'
+    },
+    {
+      icon: '🎯',
+      screenTitle: 'LV Lead-Gen Engine',
+      screenSub: '650+ Businesses Found',
+      tag: 'Lead Generation',
+      title: 'Las Vegas Lead-Gen Engine',
+      desc: 'Custom Python + Google Places system that finds qualified local businesses and scores them on AI-readiness. One run pulled 650+ leads across 10 targeted industries.',
+      stats: [['650+','Leads'],['10','Industries'],['365','Sites Scored']],
+      bg: 'linear-gradient(135deg,#0a1a2a,#0d2838)'
+    },
+    {
+      icon: '📧',
+      screenTitle: 'AI Outreach Pipeline',
+      screenSub: 'DKIM · DMARC · SPF',
+      tag: 'Email Automation',
+      title: 'Personalized Outreach at Scale',
+      desc: 'Industry-specific email templates with AI-generated personalization, automatic follow-up sequences, and full CAN-SPAM compliance — deployed on a dedicated sending domain.',
+      stats: [['5','Industries'],['3-Step','Follow-Up'],['100%','Compliant']],
+      bg: 'linear-gradient(135deg,#1a0d2a,#2a1040)'
+    },
+    {
+      icon: '🤖',
+      screenTitle: 'AI Agent — Live Demo',
+      screenSub: 'Research · Outreach · Reporting',
+      tag: 'AI Agents',
+      title: 'AI Agents & Digital Workers',
+      desc: 'Autonomous agents built for Jaybird that handle lead research, personalized outreach, and daily reporting — no human in the loop, running 24/7.',
+      stats: [['24/7','Running'],['0','Downtime'],['100%','Automated']],
+      bg: 'linear-gradient(135deg,#051a14,#0a2820)'
+    }
+  ];
+
+  let rcIndex = 0;
+  let rcTimer = null;
+  const rcScreen = document.getElementById('rcScreen');
+  const rcTag = document.getElementById('rcTag');
+  const rcTitle = document.getElementById('rcTitle');
+  const rcDesc = document.getElementById('rcDesc');
+  const rcStats = document.getElementById('rcStats');
+  const rcDots = document.getElementById('rcDots');
+
+  function renderSlide(i) {
+    const s = rcSlides[i];
+    rcScreen.style.opacity = '0';
+    setTimeout(() => {
+      rcScreen.style.background = s.bg;
+      rcScreen.innerHTML = `<div class="rc-icon">${s.icon}</div><div class="rc-screen-title">${s.screenTitle}</div><div class="rc-screen-sub">${s.screenSub}</div>`;
+      rcTag.textContent = s.tag;
+      rcTitle.textContent = s.title;
+      rcDesc.textContent = s.desc;
+      rcStats.innerHTML = s.stats.map(st => `<li><strong>${st[0]}</strong><span>${st[1]}</span></li>`).join('');
+      rcScreen.style.opacity = '1';
+    }, 200);
+    document.querySelectorAll('.rc-dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+
+  function rcGo(delta) {
+    rcIndex = (rcIndex + delta + rcSlides.length) % rcSlides.length;
+    renderSlide(rcIndex);
+    resetRcTimer();
+  }
+
+  function resetRcTimer() {
+    if (rcTimer) clearInterval(rcTimer);
+    rcTimer = setInterval(() => rcGo(1), 6000);
+  }
+
+  // Build dots
+  rcSlides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'rc-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    d.addEventListener('click', () => { rcIndex = i; renderSlide(i); resetRcTimer(); });
+    rcDots.appendChild(d);
+  });
+
+  document.querySelector('.rc-prev').addEventListener('click', () => rcGo(-1));
+  document.querySelector('.rc-next').addEventListener('click', () => rcGo(1));
+
+  // Pause auto-advance on hover
+  const rcEl = document.querySelector('.results-carousel');
+  rcEl.addEventListener('mouseenter', () => { if (rcTimer) { clearInterval(rcTimer); rcTimer = null; } });
+  rcEl.addEventListener('mouseleave', resetRcTimer);
+  resetRcTimer();
 </script>
 </body>
 </html>
