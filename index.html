@@ -35,18 +35,92 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "ProfessionalService"],
     "name": "Jaybird Automations",
-    "description": "AI automation agency in Las Vegas, Nevada offering business process automation, AI-powered commercials, chatbots, and custom AI solutions.",
+    "alternateName": "Jaybird AI Agency",
+    "description": "AI agency in Las Vegas, NV specializing in N8N workflow automation, AI chatbots, lead generation systems, custom AI software development, AI agents, and AI commercial production for local businesses.",
     "url": "https://jaybirdautomations.com/",
-    "telephone": "+17023350344",
-    "email": "lospatosllc23@gmail.com",
-    "address": { "@type": "PostalAddress", "addressLocality": "Las Vegas", "addressRegion": "NV", "addressCountry": "US" },
+    "email": "jay@jaybirdautomations.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Las Vegas",
+      "addressRegion": "NV",
+      "postalCode": "89101",
+      "addressCountry": "US"
+    },
     "geo": { "@type": "GeoCoordinates", "latitude": 36.1699, "longitude": -115.1398 },
-    "areaServed": [{ "@type": "City", "name": "Las Vegas" }, { "@type": "State", "name": "Nevada" }],
-    "priceRange": "$$",
+    "areaServed": [
+      { "@type": "City", "name": "Las Vegas", "sameAs": "https://www.wikidata.org/wiki/Q40435" },
+      { "@type": "State", "name": "Nevada" }
+    ],
+    "priceRange": "$$-$$$$",
     "openingHours": "Mo-Fr 09:00-18:00",
-    "serviceType": ["AI Business Automation","AI Commercial Video Production","Chatbot Development","Workflow Automation","Custom AI Solutions"]
+    "knowsAbout": [
+      "Artificial Intelligence", "Business Automation", "N8N Workflows",
+      "AI Chatbots", "Lead Generation", "Custom AI Software",
+      "AI Agents", "AI Video Production", "CRM Automation",
+      "Google Places API", "Cloudflare Workers", "Python Automation"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "AI Services for Local Businesses",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Website Enhancement & AI Upgrade",
+            "description": "Upgrade an existing website with AI chat, lead capture, instant quotes, and 24/7 automation."
+          },
+          "priceSpecification": { "@type": "PriceSpecification", "price": "3999", "priceCurrency": "USD" }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lead Generation & Business Automation",
+            "description": "AI-powered lead generation systems that find qualified local businesses and automate the entire outreach and follow-up process."
+          },
+          "priceSpecification": { "@type": "PriceSpecification", "price": "3999", "priceCurrency": "USD" }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom AI Software Development",
+            "description": "Custom AI-powered apps, dashboards, and internal tools built from scratch to match exactly how a business operates."
+          },
+          "priceSpecification": { "@type": "PriceSpecification", "price": "0", "priceCurrency": "USD", "description": "Custom pricing" }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI Agents & Digital Workers",
+            "description": "Autonomous AI agents that independently handle research, outreach, scheduling, and reporting — working 24/7 without human intervention."
+          },
+          "priceSpecification": { "@type": "PriceSpecification", "price": "0", "priceCurrency": "USD", "description": "Custom pricing" }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "N8N Workflow Creation",
+            "description": "N8N automation workflows connecting apps and APIs — YouTube content pipelines, CRM triggers, email automation, social media scheduling."
+          },
+          "priceSpecification": { "@type": "PriceSpecification", "price": "1499", "priceCurrency": "USD" }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI Commercial Production",
+            "description": "Broadcast-quality AI-generated video commercials with cinematic visuals and professional voiceover. Delivered in days."
+          },
+          "priceSpecification": { "@type": "PriceSpecification", "price": "1499", "priceCurrency": "USD" }
+        }
+      ]
+    }
   }
   </script>
 

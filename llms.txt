@@ -1,0 +1,80 @@
+# Jaybird Automations
+
+> AI agency based in Las Vegas, NV. We build AI-powered systems that help local businesses grow — from automated workflows and intelligent chatbots to custom AI software and lead generation engines.
+
+## About
+
+Jaybird Automations is a solo AI agency owned and operated by Jay in Las Vegas, Nevada. We specialize in building practical, revenue-generating AI systems for small and mid-sized businesses. Every tool we offer has been built and battle-tested on our own business first — if it doesn't work for us, we don't sell it.
+
+Website: https://jaybirdautomations.com
+Email: jay@jaybirdautomations.com
+Location: Las Vegas, NV 89101
+Founded: 2024
+
+## Services
+
+### Website Enhancement & AI Upgrade
+We take an existing website and upgrade it with AI features — smart chat widgets, AI-powered lead capture forms, instant quote tools, and automated follow-up. Most businesses have a website that does nothing. We make it work 24/7.
+
+### Lead Generation & Business Automation
+We build AI-powered lead generation systems that identify and score qualified local businesses, then automate the entire outreach and follow-up process. Our own system scraped and scored 650+ Las Vegas leads across 10 industries in a single run.
+
+### Custom AI Software Development
+We build AI-powered apps, dashboards, and internal tools from scratch — tailored to exactly how a business operates. This includes custom APIs, data pipelines, scoring systems, and AI-assisted reporting tools.
+
+### AI Agents & Digital Workers
+Autonomous AI agents that independently handle research, outreach, scheduling, data entry, and reporting. Think of it as hiring a tireless digital employee who works 24/7 without breaks, sick days, or payroll taxes.
+
+### N8N Workflow Creation
+We design and build automation workflows using N8N — connecting apps, APIs, and data sources to eliminate repetitive manual tasks. Examples include YouTube content pipelines, CRM triggers, email automation, social media scheduling, and more.
+
+### AI Commercial Production
+Broadcast-quality video commercials produced with AI — cinematic visuals, professional voiceovers, and full post-production delivered in days instead of the 4-6 weeks a traditional shoot requires.
+
+## Pricing
+
+- **Quick Launch** — $1,499/project: N8N workflows and AI commercial production
+- **Business Build** — $3,999/project: Website enhancement, lead generation systems, business automation & CRM
+- **Growth Retainer** — $4,999/month: 3 projects/month across any service, dedicated AI strategist, priority turnaround
+- **Enterprise** — Custom pricing: Custom AI software development, AI agents & digital workers, unlimited scope
+
+## Proof Points
+
+- 650+ Las Vegas businesses scraped and scored using our proprietary Google Places + AI scoring engine
+- 10 industries targeted: law firms, dental offices, contractors, auto repair, accounting firms, hair salons, gyms, insurance agencies, electricians, restaurants
+- Live AI chatbot deployed on jaybirdautomations.com — handles lead capture, service questions, and booking 24/7
+- Automated email outreach engine live with CAN-SPAM compliance, DKIM/DMARC/SPF authentication via Brevo
+- All tools built in-house using Python, N8N, Cloudflare Workers, Supabase, and Claude AI
+
+## Target Clients
+
+Local Las Vegas businesses ready to grow with AI:
+- Law firms (personal injury, corporate, family law)
+- Dental offices and medical practices
+- General contractors and roofing companies
+- Auto repair shops
+- Accounting and CPA firms
+- Hair salons and beauty studios
+- Gyms and fitness centers
+- Insurance agencies
+- Electricians and tradespeople
+- Restaurants and hospitality businesses
+
+## Technology Stack
+
+Python, N8N, Cloudflare Workers, Claude AI (Anthropic), Supabase, Google Places API, Brevo, GitHub Pages, Namecheap DNS
+
+## Contact & Booking
+
+Website: https://jaybirdautomations.com
+Email: jay@jaybirdautomations.com
+Book a free discovery call: https://jaybirdautomations.com/#contact
+Location: Las Vegas, NV
+
+## Links
+
+- [Home](https://jaybirdautomations.com)
+- [Services](https://jaybirdautomations.com/#services)
+- [Pricing](https://jaybirdautomations.com/#pricing)
+- [Results](https://jaybirdautomations.com/#results)
+- [Contact](https://jaybirdautomations.com/#contact)

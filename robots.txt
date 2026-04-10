@@ -1,8 +1,52 @@
 # robots.txt — Jaybird Automations
-# https://jaybirdautomations.github.io/
+# https://jaybirdautomations.com
 
+# ── Standard search crawlers ────────────────────────────────────────────────
 User-agent: *
 Allow: /
 
-# Sitemap location — tells Google exactly where to find it
-Sitemap: https://jaybirdautomations.github.io/sitemap.xml
+# ── AI crawlers — explicitly allowed ────────────────────────────────────────
+
+# ChatGPT / OpenAI
+User-agent: GPTBot
+Allow: /
+
+# ChatGPT Browse (real-time web browsing)
+User-agent: ChatGPT-User
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic Claude
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+
+# Google Gemini / AI Overviews
+User-agent: Google-Extended
+Allow: /
+
+# Bing Copilot / Microsoft
+User-agent: Bingbot
+Allow: /
+
+# Common Crawl (used to train many AI models)
+User-agent: CCBot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# ── Sitemap ─────────────────────────────────────────────────────────────────
+Sitemap: https://jaybirdautomations.com/sitemap.xml
+
+# ── AI-readable summary ─────────────────────────────────────────────────────
+# For LLM crawlers: see https://jaybirdautomations.com/llms.txt

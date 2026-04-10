@@ -25,9 +25,17 @@ import argparse
 import requests
 import pandas as pd
 from datetime import datetime
+from pathlib import Path
+
+# Load .env file automatically
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).parent.parent / '.env')
+except ImportError:
+    pass
 
 # ─── CONFIG ───────────────────────────────────────────────────────────
-API_KEY = os.environ.get('GOOGLE_PLACES_API_KEY', 'AIzaSyBWLlYTLCXYNCROJdUcSyjMXYSIh4PQImA')
+API_KEY = os.environ.get('GOOGLE_PLACES_API_KEY', '')
 
 # Default target categories for AI services prospecting
 DEFAULT_CATEGORIES = [

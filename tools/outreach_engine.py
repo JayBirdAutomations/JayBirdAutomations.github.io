@@ -29,9 +29,17 @@ import sqlite3
 import argparse
 import requests
 from datetime import datetime, timedelta
+from pathlib import Path
+
+# Load .env file automatically (keys stay off the command line and out of chat)
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).parent.parent / '.env')
+except ImportError:
+    pass
 
 # ─── CONFIG ───────────────────────────────────────────────────────────
-BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")  # Set via: set BREVO_API_KEY=your-key
+BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
 # Your sender info — UPDATE THESE
