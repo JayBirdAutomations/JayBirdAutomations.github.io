@@ -1,3 +1,17 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "title": "Why Your Website Needs an AI Layer in 2026",
+      "slug": "website-ai-layer-2026",
+      "excerpt": "Your website is no longer just a brochure. In 2026, it needs an intelligence layer that learns from visitor behavior, answers questions instantly, and converts browsers into buyers without you lifting a finger.",
+      "tags": [
+        "ai-strategy",
+        "web-development",
+        "automation",
+        "customer-experience",
+        "2026-trends"
+      ],
+      "date": "2026-04-11T17:07:03.276Z"
+    }
+  ]
 }
