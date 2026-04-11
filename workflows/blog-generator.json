@@ -1,0 +1,237 @@
+{
+  "name": "Jaybird Blog Generator",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 200]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1"
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Weekly Schedule (Mon 9am)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Topic queue — edit this list anytime. Pick a random unused topic.\nconst topics = [\n  'How Las Vegas Law Firms Use AI to Qualify Leads 24/7',\n  'Why Every Dental Office in Vegas Needs an AI Receptionist',\n  'AI Workflows That Save Contractors 10 Hours a Week',\n  'How Auto Repair Shops Use AI to Follow Up With Customers',\n  'The 5 N8N Workflows Every Small Business Should Run',\n  'AI Chatbots vs Hiring: What Vegas Businesses Should Know',\n  'How to Automate Google Reviews With N8N',\n  'Lead Scoring With AI: A Practical Guide for Local Businesses',\n  'Why Your Website Needs an AI Layer in 2026',\n  'The Real Cost of NOT Automating Your Small Business',\n  \"Cold Email Automation That Doesn't Feel Like Spam\",\n  'How Restaurants in Las Vegas Use AI for Reservations',\n  'AI Commercial Production: Broadcast Quality in Days, Not Weeks',\n  'Custom AI Dashboards: What They Are and Why They Win',\n  'How to Hire a Digital Employee (AI Agents Explained)'\n];\n\nconst topic = topics[Math.floor(Math.random() * topics.length)];\nreturn [{ json: { topic } }];"
+      },
+      "id": "pick-topic",
+      "name": "Pick Topic",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "x-api-key", "value": "={{ $env.ANTHROPIC_API_KEY }}" },
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"claude-haiku-4-5-20251001\",\n  \"max_tokens\": 4000,\n  \"system\": \"You are a content writer for Jaybird Automations, an AI agency in Las Vegas, NV. You write practical, specific blog posts for small business owners — no hype, no fluff, no buzzwords like 'revolutionary' or 'game-changing'. Professional but conversational tone, like a smart friend explaining something. You ALWAYS return valid JSON only — no markdown fences, no preamble.\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Write a blog post about: {{ $json.topic }}\\n\\nRequirements:\\n- 800-1200 words\\n- Reference Las Vegas local context where it fits naturally\\n- Use <h2> for main sections, <h3> for subsections\\n- Include at least 1 numbered list (<ol>) and 1 bulleted list (<ul>)\\n- End the body with a paragraph CTA linking to /#contact\\n- Mention real tools when relevant (N8N, Claude, Supabase, Cloudflare, etc.)\\n\\nReturn ONLY a valid JSON object matching this exact schema (no markdown, no code fences):\\n{\\n  \\\"title\\\": \\\"60-70 char SEO title\\\",\\n  \\\"slug\\\": \\\"kebab-case-slug-max-60-chars\\\",\\n  \\\"meta_description\\\": \\\"150-160 char SEO meta description\\\",\\n  \\\"excerpt\\\": \\\"2-sentence teaser for the blog index\\\",\\n  \\\"body_html\\\": \\\"<h2>...</h2><p>...</p>... (no <html>, <head>, or <body> tags, just the inner content)\\\",\\n  \\\"tags\\\": [\\\"ai\\\", \\\"las-vegas\\\", \\\"automation\\\"]\\n}\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "claude-api",
+      "name": "Claude API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Claude response, build HTML file, prepare GitHub payloads\nconst response = $input.first().json;\nconst raw = response.content[0].text.trim();\n\n// Strip markdown fences if Claude added them anyway\nlet jsonStr = raw;\nif (jsonStr.startsWith('```')) {\n  jsonStr = jsonStr.replace(/^```(?:json)?\\s*/i, '').replace(/\\s*```$/, '');\n}\n\nconst post = JSON.parse(jsonStr);\n\n// Sanitize slug just in case\npost.slug = post.slug.toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);\n\nconst now = new Date();\nconst dateIso = now.toISOString();\nconst dateDisplay = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });\nconst dateLastmod = dateIso.slice(0, 10);\n\nconst primaryTag = (post.tags && post.tags[0]) ? post.tags[0] : 'AI';\nconst tagsCsv = (post.tags || []).join(', ');\n\n// Escape for JSON-LD and meta tags\nconst esc = (s) => String(s).replace(/\\\\/g, '\\\\\\\\').replace(/\"/g, '\\\\\"');\nconst escHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\"/g, '&quot;');\n\nconst template = `<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n<title>${escHtml(post.title)} | Jaybird Automations Blog</title>\n<meta name=\"description\" content=\"${escHtml(post.meta_description)}\" />\n<meta name=\"author\" content=\"Jaybird Automations\" />\n<meta name=\"robots\" content=\"index, follow\" />\n<meta name=\"theme-color\" content=\"#0a0a0f\" />\n<meta name=\"keywords\" content=\"${escHtml(tagsCsv)}\" />\n<link rel=\"canonical\" href=\"https://jaybirdautomations.com/blog/posts/${post.slug}.html\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:url\" content=\"https://jaybirdautomations.com/blog/posts/${post.slug}.html\" />\n<meta property=\"og:title\" content=\"${escHtml(post.title)}\" />\n<meta property=\"og:description\" content=\"${escHtml(post.meta_description)}\" />\n<meta property=\"og:image\" content=\"https://jaybirdautomations.com/og-image.png\" />\n<meta property=\"og:site_name\" content=\"Jaybird Automations\" />\n<meta property=\"article:published_time\" content=\"${dateIso}\" />\n<meta property=\"article:author\" content=\"Jaybird Automations\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:title\" content=\"${escHtml(post.title)}\" />\n<meta name=\"twitter:description\" content=\"${escHtml(post.meta_description)}\" />\n<meta name=\"twitter:image\" content=\"https://jaybirdautomations.com/og-image.png\" />\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Article\",\n  \"headline\": \"${esc(post.title)}\",\n  \"description\": \"${esc(post.meta_description)}\",\n  \"image\": \"https://jaybirdautomations.com/og-image.png\",\n  \"datePublished\": \"${dateIso}\",\n  \"dateModified\": \"${dateIso}\",\n  \"author\": { \"@type\": \"Organization\", \"name\": \"Jaybird Automations\", \"url\": \"https://jaybirdautomations.com/\" },\n  \"publisher\": { \"@type\": \"Organization\", \"name\": \"Jaybird Automations\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://jaybirdautomations.com/og-image.png\" } },\n  \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://jaybirdautomations.com/blog/posts/${post.slug}.html\" }\n}\n</script>\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    { \"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://jaybirdautomations.com/\" },\n    { \"@type\": \"ListItem\", \"position\": 2, \"name\": \"Blog\", \"item\": \"https://jaybirdautomations.com/blog/\" },\n    { \"@type\": \"ListItem\", \"position\": 3, \"name\": \"${esc(post.title)}\" }\n  ]\n}\n</script>\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-2PLT037V1Q\"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-2PLT037V1Q');</script>\n<style>\n*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}\n:root{--bg:#0a0a0f;--bg-card:#11111a;--accent:#6c63ff;--accent2:#00d4ff;--text:#e8e8f0;--muted:#888899;--border:rgba(108,99,255,0.2);--radius:14px;--max-w:760px}\nhtml{scroll-behavior:smooth}\nbody{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden}\na{color:var(--accent2);text-decoration:none}\na:hover{text-decoration:underline}\n.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}\n.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:all .25s;text-decoration:none}\n.btn-primary{background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;box-shadow:0 0 24px rgba(108,99,255,.35)}\n.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(108,99,255,.6)}\n.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}\n.btn-outline:hover{border-color:var(--accent);color:var(--accent)}\n#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 0;background:rgba(10,10,15,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}\n.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1160px;margin:0 auto;padding:0 24px}\n.nav-logo{font-size:1.3rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}\n.nav-links{display:flex;align-items:center;gap:28px}\n.nav-links a{font-size:13px;font-weight:500;color:var(--muted);transition:color .2s}\n.nav-links a:hover{color:var(--text)}\n.article-wrap{padding:140px 0 80px}\n.breadcrumbs{font-size:13px;color:var(--muted);margin-bottom:24px}\n.breadcrumbs a{color:var(--muted)}\n.breadcrumbs a:hover{color:var(--accent);text-decoration:none}\n.breadcrumbs span{margin:0 8px}\narticle h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.2;margin-bottom:18px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}\n.article-meta{color:var(--muted);font-size:14px;margin-bottom:40px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}\n.article-meta .dot{width:4px;height:4px;background:var(--muted);border-radius:50%}\n.tag{display:inline-block;background:rgba(108,99,255,0.1);border:1px solid var(--border);color:var(--accent);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px}\narticle .body h2{font-size:1.6rem;font-weight:700;color:var(--text);margin:40px 0 16px;line-height:1.3}\narticle .body h3{font-size:1.25rem;font-weight:700;color:var(--text);margin:32px 0 12px}\narticle .body p{color:#c8c8d4;margin-bottom:18px;font-size:17px}\narticle .body ul,article .body ol{margin:18px 0 18px 24px;color:#c8c8d4}\narticle .body li{margin-bottom:10px;font-size:17px}\narticle .body a{color:var(--accent2)}\narticle .body strong{color:var(--text)}\n.cta-box{margin-top:56px;padding:40px 32px;background:linear-gradient(135deg,rgba(108,99,255,0.12),rgba(0,212,255,0.06));border:1px solid var(--border);border-radius:var(--radius);text-align:center}\n.cta-box h3{font-size:1.4rem;margin-bottom:10px;color:var(--text)}\n.cta-box p{color:var(--muted);margin-bottom:22px}\n.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}\nfooter{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--muted);font-size:13px;margin-top:60px}\n@media(max-width:640px){.nav-links a:not(.btn){display:none}article h1{font-size:1.7rem}}\n</style>\n</head>\n<body>\n<nav id=\"navbar\">\n<div class=\"nav-inner\">\n<a href=\"/\" class=\"nav-logo\">⚡ Jaybird Automations</a>\n<div class=\"nav-links\">\n<a href=\"/#services\">Services</a>\n<a href=\"/#results\">Results</a>\n<a href=\"/blog/\">Blog</a>\n<a href=\"/#pricing\">Pricing</a>\n<a href=\"/#contact\" class=\"btn btn-primary\" style=\"padding:9px 20px;font-size:13px;\">Book a Call</a>\n</div>\n</div>\n</nav>\n<div class=\"article-wrap\">\n<div class=\"container\">\n<nav class=\"breadcrumbs\" aria-label=\"Breadcrumb\">\n<a href=\"/\">Home</a><span>›</span><a href=\"/blog/\">Blog</a><span>›</span>${escHtml(post.title)}\n</nav>\n<article>\n<h1>${escHtml(post.title)}</h1>\n<div class=\"article-meta\">\n<span>By Jaybird Automations</span>\n<span class=\"dot\"></span>\n<span>${dateDisplay}</span>\n<span class=\"dot\"></span>\n<span class=\"tag\">${escHtml(primaryTag)}</span>\n</div>\n<div class=\"body\">\n${post.body_html}\n</div>\n<div class=\"cta-box\">\n<h3>Want this running for your business?</h3>\n<p>Book a free discovery call — we'll map out exactly how AI can save you time and make you money.</p>\n<div class=\"cta-actions\">\n<a href=\"/#contact\" class=\"btn btn-primary\">🚀 Book a Free Call</a>\n<a href=\"/blog/\" class=\"btn btn-outline\">← More Posts</a>\n</div>\n</div>\n</article>\n</div>\n</div>\n<footer><div class=\"container\">© ${now.getFullYear()} Jaybird Automations · Las Vegas, NV · <a href=\"mailto:jay@jaybirdautomations.com\" style=\"color:var(--muted);\">jay@jaybirdautomations.com</a></div></footer>\n</body>\n</html>`;\n\n// Base64 encode for GitHub API\nconst htmlBase64 = Buffer.from(template, 'utf8').toString('base64');\n\nreturn [{\n  json: {\n    title: post.title,\n    slug: post.slug,\n    excerpt: post.excerpt,\n    meta_description: post.meta_description,\n    tags: post.tags,\n    date: dateIso,\n    dateLastmod,\n    html_base64: htmlBase64,\n    filepath: `blog/posts/${post.slug}.html`,\n    commit_message: `Blog: ${post.title}`\n  }\n}];"
+      },
+      "id": "build-html",
+      "name": "Build HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/JayBirdAutomations/JayBirdAutomations.github.io/contents/{{ $json.filepath }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "=Bearer {{ $env.GITHUB_TOKEN }}" },
+            { "name": "Accept", "value": "application/vnd.github+json" },
+            { "name": "X-GitHub-Api-Version", "value": "2022-11-28" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"{{ $json.commit_message }}\",\n  \"content\": \"{{ $json.html_base64 }}\"\n}",
+        "options": {}
+      },
+      "id": "github-create-post",
+      "name": "GitHub: Create Post File",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.github.com/repos/JayBirdAutomations/JayBirdAutomations.github.io/contents/blog/posts.json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "=Bearer {{ $env.GITHUB_TOKEN }}" },
+            { "name": "Accept", "value": "application/vnd.github+json" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "github-get-postsjson",
+      "name": "GitHub: Get posts.json",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1440, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge new post into posts.json\nconst postsFile = $input.first().json;\nconst postMeta = $('Build HTML').first().json;\n\nconst currentContent = Buffer.from(postsFile.content, 'base64').toString('utf8');\nconst current = JSON.parse(currentContent);\n\nconst newEntry = {\n  title: postMeta.title,\n  slug: postMeta.slug,\n  excerpt: postMeta.excerpt,\n  tags: postMeta.tags,\n  date: postMeta.date\n};\n\ncurrent.posts = current.posts || [];\ncurrent.posts.unshift(newEntry);\n\nconst newContent = JSON.stringify(current, null, 2) + '\\n';\nconst newBase64 = Buffer.from(newContent, 'utf8').toString('base64');\n\nreturn [{\n  json: {\n    sha: postsFile.sha,\n    content_base64: newBase64,\n    commit_message: `Blog manifest: ${postMeta.title}`\n  }\n}];"
+      },
+      "id": "update-postsjson",
+      "name": "Update posts.json",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1680, 300]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "https://api.github.com/repos/JayBirdAutomations/JayBirdAutomations.github.io/contents/blog/posts.json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "=Bearer {{ $env.GITHUB_TOKEN }}" },
+            { "name": "Accept", "value": "application/vnd.github+json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"{{ $json.commit_message }}\",\n  \"content\": \"{{ $json.content_base64 }}\",\n  \"sha\": \"{{ $json.sha }}\"\n}",
+        "options": {}
+      },
+      "id": "github-put-postsjson",
+      "name": "GitHub: Put posts.json",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1920, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.github.com/repos/JayBirdAutomations/JayBirdAutomations.github.io/contents/sitemap.xml",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "=Bearer {{ $env.GITHUB_TOKEN }}" },
+            { "name": "Accept", "value": "application/vnd.github+json" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "github-get-sitemap",
+      "name": "GitHub: Get sitemap.xml",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2160, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Insert new post URL into sitemap.xml\nconst sitemapFile = $input.first().json;\nconst postMeta = $('Build HTML').first().json;\n\nconst current = Buffer.from(sitemapFile.content, 'base64').toString('utf8');\n\nconst newUrl = `  <!-- Blog post: ${postMeta.title} -->\n  <url>\n    <loc>https://jaybirdautomations.com/blog/posts/${postMeta.slug}.html</loc>\n    <lastmod>${postMeta.dateLastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n\n`;\n\n// Insert right before </urlset>\nconst updated = current.replace('</urlset>', newUrl + '</urlset>');\nconst newBase64 = Buffer.from(updated, 'utf8').toString('base64');\n\nreturn [{\n  json: {\n    sha: sitemapFile.sha,\n    content_base64: newBase64,\n    commit_message: `Sitemap: add ${postMeta.slug}`\n  }\n}];"
+      },
+      "id": "update-sitemap",
+      "name": "Update sitemap.xml",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2400, 300]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "https://api.github.com/repos/JayBirdAutomations/JayBirdAutomations.github.io/contents/sitemap.xml",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "=Bearer {{ $env.GITHUB_TOKEN }}" },
+            { "name": "Accept", "value": "application/vnd.github+json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"{{ $json.commit_message }}\",\n  \"content\": \"{{ $json.content_base64 }}\",\n  \"sha\": \"{{ $json.sha }}\"\n}",
+        "options": {}
+      },
+      "id": "github-put-sitemap",
+      "name": "GitHub: Put sitemap.xml",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2640, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{ "node": "Pick Topic", "type": "main", "index": 0 }]]
+    },
+    "Weekly Schedule (Mon 9am)": {
+      "main": [[{ "node": "Pick Topic", "type": "main", "index": 0 }]]
+    },
+    "Pick Topic": {
+      "main": [[{ "node": "Claude API", "type": "main", "index": 0 }]]
+    },
+    "Claude API": {
+      "main": [[{ "node": "Build HTML", "type": "main", "index": 0 }]]
+    },
+    "Build HTML": {
+      "main": [[{ "node": "GitHub: Create Post File", "type": "main", "index": 0 }]]
+    },
+    "GitHub: Create Post File": {
+      "main": [[{ "node": "GitHub: Get posts.json", "type": "main", "index": 0 }]]
+    },
+    "GitHub: Get posts.json": {
+      "main": [[{ "node": "Update posts.json", "type": "main", "index": 0 }]]
+    },
+    "Update posts.json": {
+      "main": [[{ "node": "GitHub: Put posts.json", "type": "main", "index": 0 }]]
+    },
+    "GitHub: Put posts.json": {
+      "main": [[{ "node": "GitHub: Get sitemap.xml", "type": "main", "index": 0 }]]
+    },
+    "GitHub: Get sitemap.xml": {
+      "main": [[{ "node": "Update sitemap.xml", "type": "main", "index": 0 }]]
+    },
+    "Update sitemap.xml": {
+      "main": [[{ "node": "GitHub: Put sitemap.xml", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}

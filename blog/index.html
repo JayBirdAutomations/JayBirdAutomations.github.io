@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Blog | Jaybird Automations — AI Insights for Las Vegas Businesses</title>
+  <meta name="description" content="Practical guides on AI, automation, and N8N workflows for local Las Vegas businesses. Written by Jaybird Automations." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="canonical" href="https://jaybirdautomations.com/blog/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jaybirdautomations.com/blog/" />
+  <meta property="og:title" content="Jaybird Automations Blog" />
+  <meta property="og:description" content="Practical guides on AI, automation, and N8N workflows for local Las Vegas businesses." />
+  <meta property="og:image" content="https://jaybirdautomations.com/og-image.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jaybird Automations Blog" />
+  <meta name="twitter:description" content="Practical guides on AI, automation, and N8N workflows for Las Vegas businesses." />
+  <meta name="twitter:image" content="https://jaybirdautomations.com/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Jaybird Automations Blog",
+    "description": "Practical guides on AI, automation, and N8N workflows for local Las Vegas businesses.",
+    "url": "https://jaybirdautomations.com/blog/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jaybird Automations",
+      "url": "https://jaybirdautomations.com/"
+    }
+  }
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2PLT037V1Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2PLT037V1Q');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #0a0a0f;
+      --bg-card: #11111a;
+      --accent:  #6c63ff;
+      --accent2: #00d4ff;
+      --gold:    #ffd700;
+      --text:    #e8e8f0;
+      --muted:   #888899;
+      --border:  rgba(108,99,255,0.2);
+      --radius:  14px;
+      --max-w:   1160px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:10px; font-size:14px; font-weight:700; cursor:pointer; border:none; transition:all .25s; }
+    .btn-primary { background:linear-gradient(135deg,var(--accent),#8b5cf6); color:#fff; box-shadow:0 0 24px rgba(108,99,255,.35); }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 40px rgba(108,99,255,.6); }
+    .btn-outline { background:transparent; color:var(--text); border:1px solid var(--border); }
+    .btn-outline:hover { border-color:var(--accent); color:var(--accent); }
+
+    /* NAV */
+    #navbar { position:fixed; top:0; left:0; right:0; z-index:1000; padding:14px 0; background:rgba(10,10,15,.96); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo { font-size:1.3rem; font-weight:800; background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .nav-links { display:flex; align-items:center; gap:28px; }
+    .nav-links a { font-size:13px; font-weight:500; color:var(--muted); transition:color .2s; }
+    .nav-links a:hover { color:var(--text); }
+
+    /* HEADER */
+    .blog-header { padding: 160px 0 60px; text-align: center; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(108,99,255,0.1); border: 1px solid var(--border); color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
+    .badge::before { content:''; width:5px; height:5px; background:var(--accent); border-radius:50%; }
+    .blog-header h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 14px; }
+    .blog-header h1 span { background: linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .blog-header p { color: var(--muted); font-size: 1.05rem; max-width: 620px; margin: 0 auto; }
+
+    /* POSTS GRID */
+    .posts-section { padding: 20px 0 100px; }
+    .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+
+    .post-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 26px;
+      transition: all .25s;
+      display: flex;
+      flex-direction: column;
+      min-height: 260px;
+    }
+    .post-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(108,99,255,0.15);
+    }
+    .post-card .tag { display:inline-block; background:rgba(0,212,255,0.08); border:1px solid rgba(0,212,255,0.25); color:var(--accent2); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:100px; margin-bottom:14px; align-self:flex-start; }
+    .post-card h2 { font-size: 1.25rem; font-weight: 700; line-height: 1.3; margin-bottom: 12px; color: var(--text); }
+    .post-card p { color: var(--muted); font-size: 14px; flex-grow: 1; margin-bottom: 18px; }
+    .post-card .meta { font-size: 12px; color: var(--muted); display:flex; align-items:center; gap:10px; }
+    .post-card .meta .dot { width:3px; height:3px; background:var(--muted); border-radius:50%; }
+    .post-card .read-more { margin-top:14px; color: var(--accent); font-size:13px; font-weight:700; }
+
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+    }
+    .empty-state h3 { color: var(--text); margin-bottom: 8px; }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; color: var(--muted); font-size: 13px; }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .nav-links a:not(.btn) { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">⚡ Jaybird Automations</a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/#results">Results</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/#contact" class="btn btn-primary" style="padding:9px 20px;font-size:13px;">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<header class="blog-header">
+  <div class="container">
+    <div class="badge">📝 Jaybird Blog</div>
+    <h1>AI insights for <span>Las Vegas businesses</span></h1>
+    <p>Practical guides on AI, automation, and N8N workflows — written for owners who want results, not hype.</p>
+  </div>
+</header>
+
+<section class="posts-section">
+  <div class="container">
+    <div id="posts-grid" class="posts-grid"></div>
+    <div id="empty-state" class="empty-state" style="display:none;">
+      <h3>Fresh posts coming soon</h3>
+      <p>Our AI writer publishes new posts every Monday. Check back shortly.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © <span id="year"></span> Jaybird Automations · Las Vegas, NV · <a href="mailto:jay@jaybirdautomations.com">jay@jaybirdautomations.com</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  async function loadPosts() {
+    try {
+      const res = await fetch('/blog/posts.json', { cache: 'no-store' });
+      const data = await res.json();
+      const posts = (data.posts || []).sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      const grid = document.getElementById('posts-grid');
+      const empty = document.getElementById('empty-state');
+
+      if (!posts.length) {
+        grid.style.display = 'none';
+        empty.style.display = 'block';
+        return;
+      }
+
+      grid.innerHTML = posts.map(p => `
+        <a href="/blog/posts/${p.slug}.html" class="post-card">
+          <span class="tag">${(p.tags && p.tags[0]) || 'AI'}</span>
+          <h2>${p.title}</h2>
+          <p>${p.excerpt || ''}</p>
+          <div class="meta">
+            <span>${formatDate(p.date)}</span>
+            <span class="dot"></span>
+            <span>Jaybird Automations</span>
+          </div>
+          <div class="read-more">Read post →</div>
+        </a>
+      `).join('');
+    } catch (e) {
+      console.error('Failed to load posts:', e);
+      document.getElementById('posts-grid').style.display = 'none';
+      document.getElementById('empty-state').style.display = 'block';
+    }
+  }
+
+  function formatDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch { return iso; }
+  }
+
+  loadPosts();
+</script>
+
+</body>
+</html>
