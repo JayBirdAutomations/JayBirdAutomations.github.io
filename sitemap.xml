@@ -83,4 +83,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: How to Hire a Digital Employee: AI Agents Explained -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/hire-digital-employee-ai-agents.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
