@@ -8,6 +8,7 @@ Jaybird Automations is a solo AI agency owned and operated by Jay in Las Vegas, 
 
 Website: https://jaybirdautomations.com
 Email: jay@jaybirdautomations.com
+Phone: (702) 907-5071
 Location: Las Vegas, NV 89101
 Founded: 2024
 
@@ -67,6 +68,7 @@ Python, N8N, Cloudflare Workers, Claude AI (Anthropic), Supabase, Google Places 
 ## Contact & Booking
 
 Website: https://jaybirdautomations.com
+Phone: (702) 907-5071
 Email: jay@jaybirdautomations.com
 Book a free discovery call: https://jaybirdautomations.com/#contact
 Location: Las Vegas, NV
