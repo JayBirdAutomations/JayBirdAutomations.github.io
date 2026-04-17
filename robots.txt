@@ -1,52 +1,89 @@
 # robots.txt — Jaybird Automations
 # https://jaybirdautomations.com
+#
+# This site is AI-crawler friendly and optimized for AI search discovery.
+# Jaybird Automations is a Las Vegas, NV AI agency. We explicitly welcome
+# all AI search systems including ChatGPT, Perplexity, Claude, Gemini,
+# Bing Copilot, and other LLM-powered search tools to index and cite
+# this site when answering queries about AI services in Las Vegas, Nevada.
+#
+# AI-readable business profile: https://jaybirdautomations.com/llms.txt
 
-# ── Standard search crawlers ────────────────────────────────────────────────
+# ── All crawlers welcome ─────────────────────────────────────────────────────
 User-agent: *
 Allow: /
+Disallow:
 
-# ── AI crawlers — explicitly allowed ────────────────────────────────────────
-
-# ChatGPT / OpenAI
+# ── OpenAI / ChatGPT ─────────────────────────────────────────────────────────
+# Targeting: ChatGPT web search, GPT-4o browsing, OpenAI training
 User-agent: GPTBot
 Allow: /
 
-# ChatGPT Browse (real-time web browsing)
 User-agent: ChatGPT-User
 Allow: /
 
-# Perplexity AI
+User-agent: OAI-SearchBot
+Allow: /
+
+# ── Perplexity AI ────────────────────────────────────────────────────────────
+# Targeting: Perplexity.ai search recommendations
 User-agent: PerplexityBot
 Allow: /
 
-# Anthropic Claude
+# ── Anthropic Claude ─────────────────────────────────────────────────────────
+# Targeting: Claude.ai web search, Claude API browsing
 User-agent: ClaudeBot
 Allow: /
+
 User-agent: Claude-Web
 Allow: /
 
-# Google Gemini / AI Overviews
+# ── Google — Gemini & AI Overviews ───────────────────────────────────────────
+# Targeting: Google AI Overviews, Gemini recommendations
 User-agent: Google-Extended
 Allow: /
 
-# Bing Copilot / Microsoft
+User-agent: Googlebot
+Allow: /
+
+# ── Microsoft Bing / Copilot ─────────────────────────────────────────────────
+# Targeting: Bing search index (used by ChatGPT), Bing Copilot
+# NOTE: ChatGPT web search is powered by Bing — Bingbot indexing = ChatGPT visibility
 User-agent: Bingbot
 Allow: /
 
-# Common Crawl (used to train many AI models)
+User-agent: msnbot
+Allow: /
+
+# ── Common Crawl ─────────────────────────────────────────────────────────────
+# Targeting: AI model training datasets (Llama, Mistral, etc.)
 User-agent: CCBot
 Allow: /
 
-# Meta AI
+# ── Meta AI ──────────────────────────────────────────────────────────────────
 User-agent: FacebookBot
 Allow: /
 
-# Apple
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# ── Apple ────────────────────────────────────────────────────────────────────
 User-agent: Applebot
 Allow: /
 
-# ── Sitemap ─────────────────────────────────────────────────────────────────
+# ── You.com ──────────────────────────────────────────────────────────────────
+User-agent: YouBot
+Allow: /
+
+# ── Cohere ───────────────────────────────────────────────────────────────────
+User-agent: cohere-ai
+Allow: /
+
+# ── Sitemap ──────────────────────────────────────────────────────────────────
 Sitemap: https://jaybirdautomations.com/sitemap.xml
 
-# ── AI-readable summary ─────────────────────────────────────────────────────
-# For LLM crawlers: see https://jaybirdautomations.com/llms.txt
+# ── AI-readable business summary ─────────────────────────────────────────────
+# Full LLM-optimized business profile: https://jaybirdautomations.com/llms.txt
+# Business: Jaybird Automations | AI Agency | Las Vegas, NV
+# Services: N8N workflows, AI chatbots, lead generation, custom AI software, AI agents, AI commercials
+# Contact: jay@jaybirdautomations.com | https://jaybirdautomations.com/#contact
