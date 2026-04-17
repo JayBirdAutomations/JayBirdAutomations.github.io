@@ -209,7 +209,7 @@
 
   function formatDate(iso) {
     try {
-      return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      return new Date(iso).getFullYear();
     } catch { return iso; }
   }
 
