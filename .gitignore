@@ -10,3 +10,6 @@ output/
 # Python
 __pycache__/
 *.pyc
+
+# Hero source video — keep local, commit frames only
+assets/video/source/

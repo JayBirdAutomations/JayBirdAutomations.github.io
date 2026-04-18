@@ -241,6 +241,22 @@
     background-size: 80px 80px;
     opacity: 0.35;
   }
+  .hero-canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    z-index: 1;
+    background: #05060a center/cover no-repeat;
+  }
+  .hero-vignette {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 45%, transparent 35%, rgba(5,6,10,0.55) 85%),
+      linear-gradient(180deg, rgba(5,6,10,0.25) 0%, transparent 30%, transparent 70%, rgba(5,6,10,0.6) 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
   .hero-skyline {
     position: absolute; left: 0; right: 0; bottom: 0;
     height: 42%;
@@ -1072,8 +1088,9 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <div class="hero-bg-video" id="bgLayer"></div>
-    <div class="hero-skyline">
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero-vignette"></div>
+    <div class="hero-skyline" style="display:none">
       <svg viewBox="0 0 1600 400" preserveAspectRatio="none">
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
@@ -1628,17 +1645,101 @@
 <!-- Jaybird AI Chat Widget -->
 <script src="chatbot/chat-widget.js"></script>
 
+<!-- GSAP for scroll-scrubbed hero -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
 <script>
-  // --- Scroll parallax on hero ---
-  const bgLayer = document.getElementById('bgLayer');
-  const skyline = document.querySelector('.hero-skyline');
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (y < window.innerHeight * 1.5) {
-      if (bgLayer) bgLayer.style.transform = `translateY(${y * 0.3}px)`;
-      if (skyline) skyline.style.transform = `translateY(${y * 0.15}px)`;
+  // --- Scroll-scrubbed hero canvas (frame sequence) ---
+  (function initHeroScrub() {
+    const canvas = document.getElementById('heroCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const FRAME_COUNT = 106;
+    const FRAME_PATH  = (i) => `assets/img/hero-frames/f_${String(i).padStart(3, '0')}.webp`;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const images = new Array(FRAME_COUNT);
+    const state = { frame: 0 };
+    let naturalW = 0, naturalH = 0;
+
+    function sizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      const dpr  = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width  = Math.floor(rect.width  * dpr);
+      canvas.height = Math.floor(rect.height * dpr);
     }
-  }, { passive: true });
+
+    function render() {
+      const idx = Math.min(FRAME_COUNT - 1, Math.max(0, Math.round(state.frame)));
+      const img = images[idx];
+      if (!img || !img.complete || !img.naturalWidth) return;
+      const cw = canvas.width, ch = canvas.height;
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      const scale = Math.max(cw / iw, ch / ih);
+      const dw = iw * scale, dh = ih * scale;
+      const dx = (cw - dw) / 2, dy = (ch - dh) / 2;
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.drawImage(img, dx, dy, dw, dh);
+    }
+
+    function loadFrame(i, priority) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.decoding = 'async';
+        if (priority) img.fetchPriority = 'high';
+        img.onload = () => { images[i] = img; resolve(img); };
+        img.onerror = () => resolve(null);
+        img.src = FRAME_PATH(i + 1);
+      });
+    }
+
+    async function boot() {
+      sizeCanvas();
+      // Load first frame immediately so hero paints right away
+      await loadFrame(0, true);
+      render();
+      // Preload remaining frames in background (parallel batches)
+      const queue = [];
+      for (let i = 1; i < FRAME_COUNT; i++) queue.push(i);
+      const BATCH = 8;
+      let cursor = 0;
+      async function worker() {
+        while (cursor < queue.length) {
+          const i = queue[cursor++];
+          await loadFrame(i);
+          if (i <= 12) render(); // refresh while early frames stream in
+        }
+      }
+      const workers = Array.from({ length: BATCH }, worker);
+      await Promise.all(workers);
+    }
+
+    boot();
+    window.addEventListener('resize', () => { sizeCanvas(); render(); }, { passive: true });
+
+    if (reduced || !window.gsap || !window.ScrollTrigger) {
+      return; // Static first frame only — no pin, no scrub
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to(state, {
+      frame: FRAME_COUNT - 1,
+      snap: 'frame',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: '+=180%',
+        pin: true,
+        pinSpacing: true,
+        scrub: 0.4,
+        invalidateOnRefresh: true
+      },
+      onUpdate: render
+    });
+  })();
 
   // --- FAQ accordion ---
   function toggleFaq(el) {
