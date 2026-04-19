@@ -1213,7 +1213,6 @@
     </div>
     <a class="item active" href="#services">Systems</a>
     <a class="item" href="#agents">Agents</a>
-    <a class="item" href="#commercials">Commercials</a>
     <a class="item" href="#results">Work</a>
     <a class="item" href="#pricing">Pricing</a>
     <a class="item" href="/blog/">Blog</a>
@@ -1408,62 +1407,6 @@
           <div class="num">06 / N8N</div>
           <h3>N8N Workflow Creation</h3>
           <p>Powerful n8n automation workflows that connect your apps and put repetitive tasks on autopilot — YouTube pipelines, CRM triggers, social scheduling, and more.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMMERCIALS -->
-<section id="commercials" class="section">
-  <div class="section-inner">
-    <div class="section-label">04 — Reels</div>
-    <div class="section-head">
-      <h2>Your brand. <span class="signal">Cinematic AI commercials.</span></h2>
-      <p>Traditional production costs $10k–$100k+. We deliver broadcast-ready AI commercials in days — for corporations, law firms, restaurants, and any brand ready to stand out.</p>
-    </div>
-    <div class="section-body">
-      <div class="comm-layout">
-        <div class="comm-visual">
-          <span class="comm-label">◉ AI-GENERATED COMMERCIAL</span>
-          <div class="comm-play">▶</div>
-          <div class="comm-corner">4K · AI</div>
-        </div>
-        <div>
-          <ul class="comm-features">
-            <li class="comm-feat">
-              <div class="comm-check">✓</div>
-              <div>
-                <div class="comm-feat-title">AI-Generated Visuals &amp; Cinematics</div>
-                <div class="comm-feat-desc">Studio-quality video frames — no camera crew required.</div>
-              </div>
-            </li>
-            <li class="comm-feat">
-              <div class="comm-check">✓</div>
-              <div>
-                <div class="comm-feat-title">Professional AI Voiceovers</div>
-                <div class="comm-feat-desc">Natural-sounding AI voices or custom voice cloning for your brand.</div>
-              </div>
-            </li>
-            <li class="comm-feat">
-              <div class="comm-check">✓</div>
-              <div>
-                <div class="comm-feat-title">Scriptwriting &amp; Creative Direction</div>
-                <div class="comm-feat-desc">Compelling ad scripts tailored to your brand and audience.</div>
-              </div>
-            </li>
-            <li class="comm-feat">
-              <div class="comm-check">✓</div>
-              <div>
-                <div class="comm-feat-title">TV, Digital &amp; Social Ready</div>
-                <div class="comm-feat-desc">All formats — broadcast, YouTube, Instagram, TikTok, LinkedIn.</div>
-              </div>
-            </li>
-          </ul>
-          <div class="comm-cta-row">
-            <a href="#contact" class="btn-primary">Get your AI commercial <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-            <a href="#contact" class="btn-ghost">Request a quote</a>
-          </div>
         </div>
       </div>
     </div>
@@ -1761,7 +1704,7 @@
         <li><a href="#services">Custom AI Software</a></li>
         <li><a href="#agents">AI Agents</a></li>
         <li><a href="#services">N8N Workflows</a></li>
-        <li><a href="#commercials">AI Commercials</a></li>
+        <li><a href="#services">AI Commercials</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1911,7 +1854,7 @@
 
   // --- Active nav link on scroll ---
   const navItems = document.querySelectorAll('.nav a.item');
-  const sections = ['services', 'agents', 'commercials', 'results', 'pricing'].map(id => document.getElementById(id)).filter(Boolean);
+  const sections = ['services', 'agents', 'results', 'pricing'].map(id => document.getElementById(id)).filter(Boolean);
   const navObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
