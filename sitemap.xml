@@ -67,30 +67,6 @@
 
   <!-- Blog posts will be auto-appended below by the N8N blog generator workflow -->
 
-  <!-- Blog post: Why Your Website Needs an AI Layer in 2026 -->
-  <url>
-    <loc>https://jaybirdautomations.com/blog/posts/website-ai-layer-2026.html</loc>
-    <lastmod>2026-04-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Blog post: Custom AI Dashboards: What They Are and Why They Win -->
-  <url>
-    <loc>https://jaybirdautomations.com/blog/posts/custom-ai-dashboards-what-they-are-why-they-win.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Blog post: How to Hire a Digital Employee: AI Agents Explained -->
-  <url>
-    <loc>https://jaybirdautomations.com/blog/posts/hire-digital-employee-ai-agents.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
   <!-- Blog post: How Auto Repair Shops Use AI to Follow Up With Customers -->
   <url>
     <loc>https://jaybirdautomations.com/blog/posts/auto-repair-ai-customer-followup.html</loc>
