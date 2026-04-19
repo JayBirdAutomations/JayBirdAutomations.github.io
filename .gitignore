@@ -13,3 +13,17 @@ __pycache__/
 
 # Hero source video — keep local, commit frames only
 assets/video/source/
+
+# Client credentials — pointer files in clients/**/02-credentials.md ARE committed
+# (they should only contain vault references, never real values).
+# Block anything that looks like real secrets:
+clients/**/credentials/
+clients/**/*.env
+clients/**/secrets.*
+clients/**/*.key
+clients/**/*.pem
+clients/_scratch/
+
+# Business private — not for git
+ops/private/
+sales/signed-contracts/

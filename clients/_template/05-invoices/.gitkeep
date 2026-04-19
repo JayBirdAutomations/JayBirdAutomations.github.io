@@ -1,0 +1,8 @@
+# Invoices
+
+- PDF copies of every invoice sent
+- Stripe receipt URLs
+- Payment confirmation emails
+
+Filename convention: `YYYY-MM-DD-invoice-<number>-<status>.pdf`
+Example: `2026-04-19-invoice-1001-deposit-paid.pdf`
