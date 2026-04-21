@@ -215,16 +215,38 @@
   .nav-cta {
     margin-left: 6px;
     padding: 9px 16px 9px 14px;
-    background: var(--signal);
-    color: #0a0c05;
+    background: linear-gradient(135deg, #d9ff6b 0%, #c6f24e 45%, #a8d62e 100%);
+    color: #0a1400;
     font-family: var(--display); font-weight: 600; font-size: 13px;
     border-radius: 999px;
     display: inline-flex; align-items: center; gap: 8px;
-    transition: transform 0.15s, box-shadow 0.25s;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.2s ease;
     letter-spacing: -0.005em;
     white-space: nowrap;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.22);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.45),
+      inset 0 -1px 0 rgba(0,0,0,0.22),
+      0 2px 0 rgba(0,0,0,0.14),
+      0 6px 22px rgba(198,242,78,0.28),
+      0 0 0 1px rgba(198,242,78,0.5);
   }
-  .nav-cta:hover { box-shadow: 0 0 30px rgba(198,242,78,0.4); transform: translateY(-1px); }
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.55),
+      inset 0 -1px 0 rgba(0,0,0,0.22),
+      0 4px 0 rgba(0,0,0,0.16),
+      0 10px 30px rgba(198,242,78,0.45),
+      0 0 0 1px rgba(198,242,78,0.7);
+  }
+  .nav-cta:active {
+    transform: translateY(0);
+    box-shadow:
+      inset 0 2px 4px rgba(0,0,0,0.22),
+      0 2px 8px rgba(198,242,78,0.2);
+  }
   .nav-cta .arrow { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; }
 
   /* Mobile nav */
@@ -399,38 +421,72 @@
   .btn-primary {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 14px 20px 14px 22px;
-    background: var(--signal);
-    color: #0a0c05;
+    background: linear-gradient(135deg, #d9ff6b 0%, #c6f24e 45%, #a8d62e 100%);
+    color: #0a1400;
     font-family: var(--display); font-weight: 600; font-size: 14px;
     border-radius: 999px;
     letter-spacing: -0.005em;
-    transition: transform 0.15s, box-shadow 0.25s;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.2s ease;
     position: relative;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.45),
+      inset 0 -1px 0 rgba(0,0,0,0.25),
+      0 2px 0 rgba(0,0,0,0.15),
+      0 8px 28px rgba(198,242,78,0.30),
+      0 0 0 1px rgba(198,242,78,0.5);
   }
   .btn-primary::before {
     content: ''; position: absolute; inset: -2px;
     border-radius: 999px;
     background: var(--signal);
-    filter: blur(16px);
-    opacity: 0.35;
+    filter: blur(18px);
+    opacity: 0.40;
     z-index: -1;
     transition: opacity 0.3s;
   }
-  .btn-primary:hover::before { opacity: 0.6; }
-  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-primary:hover::before { opacity: 0.7; }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.55),
+      inset 0 -1px 0 rgba(0,0,0,0.25),
+      0 4px 0 rgba(0,0,0,0.18),
+      0 12px 36px rgba(198,242,78,0.45),
+      0 0 0 1px rgba(198,242,78,0.7);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow:
+      inset 0 2px 4px rgba(0,0,0,0.25),
+      0 2px 8px rgba(198,242,78,0.2);
+  }
   .btn-primary .arrow { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.25; fill: none; }
 
   .btn-ghost {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 14px 20px;
-    border: 1px solid var(--rule-strong);
-    background: transparent;
+    border: 1px solid rgba(198,242,78,0.35);
+    background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: var(--ink);
     font-family: var(--display); font-weight: 500; font-size: 14px;
     border-radius: 999px;
-    transition: background 0.2s, border-color 0.2s;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      0 4px 18px rgba(0,0,0,0.35);
   }
-  .btn-ghost:hover { background: rgba(255,255,255,0.04); border-color: var(--ink-dim); }
+  .btn-ghost:hover {
+    background: linear-gradient(135deg, rgba(198,242,78,0.10), rgba(255,179,71,0.04));
+    border-color: rgba(198,242,78,0.6);
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.12),
+      0 8px 24px rgba(198,242,78,0.15);
+  }
   .btn-ghost .play {
     width: 20px; height: 20px; border-radius: 50%;
     border: 1px solid var(--ink-dim);
@@ -562,6 +618,113 @@
   .reveal.d6 { animation-delay: 0.85s; }
   @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
 
+  /* Phase 4B — scroll-triggered section entrance + staggered grid reveal */
+  body.js-motion .reveal-section {
+    opacity: 0;
+    transform: translateY(44px) scale(0.985);
+    transition: opacity 0.95s cubic-bezier(0.2,0.7,0.1,1), transform 0.95s cubic-bezier(0.2,0.7,0.1,1);
+    will-change: opacity, transform;
+  }
+  body.js-motion .reveal-section.in-view {
+    opacity: 1;
+    transform: none;
+  }
+  body.js-motion .stagger-in > * {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.75s cubic-bezier(0.2,0.7,0.1,1), transform 0.75s cubic-bezier(0.2,0.7,0.1,1);
+    will-change: opacity, transform;
+  }
+  body.js-motion .stagger-in.in-view > *:nth-child(1) { transition-delay: 0.05s; }
+  body.js-motion .stagger-in.in-view > *:nth-child(2) { transition-delay: 0.15s; }
+  body.js-motion .stagger-in.in-view > *:nth-child(3) { transition-delay: 0.25s; }
+  body.js-motion .stagger-in.in-view > *:nth-child(4) { transition-delay: 0.35s; }
+  body.js-motion .stagger-in.in-view > *:nth-child(5) { transition-delay: 0.45s; }
+  body.js-motion .stagger-in.in-view > *:nth-child(6) { transition-delay: 0.55s; }
+  body.js-motion .stagger-in.in-view > * { opacity: 1; transform: none; }
+
+  /* Phase 4B — card tilt enablement (transforms added per-card via JS) */
+  .svc-full, .ind-card, .p-card {
+    transform-style: preserve-3d;
+  }
+  .svc-full { transition: background 0.25s ease, transform 0.35s cubic-bezier(0.2,0.7,0.1,1), box-shadow 0.35s ease; }
+  .ind-card { transition: background 0.25s ease, transform 0.35s cubic-bezier(0.2,0.7,0.1,1), box-shadow 0.35s ease; }
+  .p-card { transition: transform 0.35s cubic-bezier(0.2,0.7,0.1,1), box-shadow 0.35s ease; }
+  .svc-full.tilting, .ind-card.tilting, .p-card.tilting {
+    box-shadow:
+      0 12px 40px rgba(0,0,0,0.4),
+      0 0 0 1px rgba(198,242,78,0.18);
+    z-index: 2;
+  }
+
+  /* Phase 4C — photo backdrops + parallax + clip-reveal */
+  .photo-bg {
+    position: absolute; inset: 0;
+    overflow: hidden; pointer-events: none;
+    z-index: 0;
+  }
+  .photo-bg img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.6s ease, transform 1.2s ease, opacity 0.6s ease;
+    will-change: transform;
+  }
+
+  /* Hero backdrop — subtle, behind the canvas */
+  .hero .photo-bg { z-index: 0; }
+  .hero .photo-bg img {
+    opacity: 0.26;
+    mix-blend-mode: screen;
+    filter: saturate(1.15) contrast(1.06);
+  }
+
+  /* Industries card backgrounds */
+  .ind-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .ind-card .photo-bg img {
+    opacity: 0.16;
+    filter: grayscale(0.65) brightness(0.55) saturate(1.1);
+    transition: opacity 0.5s ease, filter 0.5s ease, transform 0.7s ease;
+  }
+  .ind-card:hover .photo-bg img {
+    opacity: 0.32;
+    filter: grayscale(0.12) brightness(0.68) saturate(1.2);
+    transform: scale(1.06);
+  }
+  .ind-card > *:not(.photo-bg) { position: relative; z-index: 1; }
+
+  /* Results tablet photo — sits behind rc-screen inside rc-tablet */
+  .rc-tablet .photo-bg { border-radius: 8px; margin: 32px; inset: auto; width: calc(100% - 64px); height: calc(100% - 64px); }
+  .rc-tablet .photo-bg img {
+    opacity: 0.30;
+    filter: brightness(0.55) saturate(1.15) hue-rotate(-6deg);
+  }
+  .rc-tablet > .rc-screen { position: relative; z-index: 1; background: transparent; }
+
+  /* Contact section accent photo (right-side fade) */
+  #contact .photo-bg {
+    mask-image: linear-gradient(90deg, transparent 0%, #000 60%, #000 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 60%, #000 100%);
+  }
+  #contact .photo-bg img {
+    opacity: 0.26;
+    filter: brightness(0.52) saturate(1.2);
+    object-position: center 45%;
+  }
+
+  /* Clip-path reveal — left-to-right wipe */
+  .clip-reveal .photo-bg img {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.3s cubic-bezier(0.77,0,0.18,1), filter 0.6s ease, transform 1.2s ease, opacity 0.6s ease;
+  }
+  .clip-reveal.in-view .photo-bg img {
+    clip-path: inset(0 0 0 0);
+  }
+
   /* --- SHARED SECTION LAYOUT --- */
   .section {
     position: relative;
@@ -587,6 +750,38 @@
       radial-gradient(ellipse 60% 50% at 10% 85%, rgba(140,200,255,0.07), transparent 60%),
       radial-gradient(ellipse 100% 80% at 50% 50%, rgba(30,70,100,0.10), transparent 75%);
   }
+
+  /* Per-section atmospheric tints — Phase 4A: warm up the black */
+  #services::before {
+    background:
+      radial-gradient(ellipse 80% 50% at 85% 20%, rgba(198,242,78,0.11), transparent 65%),
+      radial-gradient(ellipse 70% 50% at 15% 80%, rgba(255,179,71,0.09), transparent 70%),
+      radial-gradient(ellipse 100% 80% at 50% 50%, rgba(20,60,90,0.08), transparent 80%);
+  }
+  #results::before {
+    background:
+      radial-gradient(ellipse 70% 45% at 20% 30%, rgba(90,180,220,0.13), transparent 65%),
+      radial-gradient(ellipse 60% 50% at 80% 75%, rgba(198,242,78,0.07), transparent 70%),
+      radial-gradient(ellipse 100% 80% at 50% 50%, rgba(40,100,140,0.10), transparent 80%);
+  }
+  #pricing::before {
+    background:
+      radial-gradient(ellipse 75% 50% at 50% 10%, rgba(180,120,220,0.08), transparent 65%),
+      radial-gradient(ellipse 65% 45% at 50% 90%, rgba(255,179,71,0.07), transparent 70%),
+      radial-gradient(ellipse 100% 80% at 50% 50%, rgba(60,40,90,0.08), transparent 80%);
+  }
+  #industries::before {
+    background:
+      radial-gradient(ellipse 70% 45% at 15% 15%, rgba(255,179,71,0.08), transparent 65%),
+      radial-gradient(ellipse 60% 50% at 85% 85%, rgba(90,180,220,0.10), transparent 70%),
+      radial-gradient(ellipse 100% 80% at 50% 50%, rgba(30,70,100,0.08), transparent 80%);
+  }
+  #contact::before {
+    background:
+      radial-gradient(ellipse 80% 55% at 50% 50%, rgba(255,179,71,0.09), transparent 65%),
+      radial-gradient(ellipse 60% 45% at 20% 20%, rgba(198,242,78,0.06), transparent 70%);
+  }
+
   .section-inner { position: relative; z-index: 1; }
 
   /* --- Animated flowing lines (Case Files bg) --- */
@@ -945,20 +1140,58 @@
   .p-cta {
     display: inline-flex; align-items: center; gap: 8px; justify-content: center;
     padding: 12px 20px;
-    border: 1px solid var(--rule-strong);
+    border: 1px solid rgba(198,242,78,0.35);
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: var(--ink);
     font-family: var(--display); font-weight: 500; font-size: 13px;
     border-radius: 999px;
-    transition: all 0.2s;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.3s ease, transform 0.2s ease, filter 0.2s ease;
     text-align: center;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.06),
+      0 3px 14px rgba(0,0,0,0.3);
   }
-  .p-cta:hover { border-color: var(--signal); color: var(--signal); }
+  .p-cta:hover {
+    border-color: rgba(198,242,78,0.7);
+    color: var(--signal);
+    background: linear-gradient(135deg, rgba(198,242,78,0.10), rgba(255,179,71,0.04));
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.10),
+      0 6px 20px rgba(198,242,78,0.15);
+  }
   .p-cta.primary {
-    background: var(--signal);
-    color: #0a0c05;
-    border-color: var(--signal);
+    background: linear-gradient(135deg, #d9ff6b 0%, #c6f24e 45%, #a8d62e 100%);
+    color: #0a1400;
+    border-color: rgba(198,242,78,0.6);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.22);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.45),
+      inset 0 -1px 0 rgba(0,0,0,0.22),
+      0 2px 0 rgba(0,0,0,0.14),
+      0 6px 22px rgba(198,242,78,0.28),
+      0 0 0 1px rgba(198,242,78,0.5);
   }
-  .p-cta.primary:hover { box-shadow: 0 0 24px rgba(198,242,78,0.4); color: #0a0c05; }
+  .p-cta.primary:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    color: #0a1400;
+    background: linear-gradient(135deg, #d9ff6b 0%, #c6f24e 45%, #a8d62e 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.55),
+      inset 0 -1px 0 rgba(0,0,0,0.22),
+      0 4px 0 rgba(0,0,0,0.16),
+      0 10px 30px rgba(198,242,78,0.45),
+      0 0 0 1px rgba(198,242,78,0.7);
+  }
+  .p-cta.primary:active {
+    transform: translateY(0);
+    box-shadow:
+      inset 0 2px 4px rgba(0,0,0,0.22),
+      0 2px 8px rgba(198,242,78,0.2);
+  }
 
   /* --- INDUSTRIES --- */
   .ind-grid {
@@ -1194,6 +1427,11 @@
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     .scanline, .ticker-track, .scroll-hint { display: none !important; }
     .reveal { opacity: 1 !important; transform: none !important; }
+    body.js-motion .reveal-section,
+    body.js-motion .stagger-in > * { opacity: 1 !important; transform: none !important; }
+    .svc-full, .ind-card, .p-card { transform: none !important; }
+    .photo-bg img { transform: none !important; }
+    .clip-reveal .photo-bg img { clip-path: none !important; }
   }
 </style>
 </head>
@@ -1226,6 +1464,9 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
+    <picture class="photo-bg" aria-hidden="true">
+      <img src="/assets/img/photo/hero-lv-skyline.webp" alt="" loading="eager" decoding="async" width="1400" height="933">
+    </picture>
     <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
     <div class="hero-vignette"></div>
     <div class="hero-skyline" style="display:none">
@@ -1423,7 +1664,8 @@
     </div>
     <div class="section-body">
       <div class="rc-stage">
-        <div class="rc-tablet">
+        <div class="rc-tablet clip-reveal">
+          <picture class="photo-bg" aria-hidden="true"><img src="/assets/img/photo/results-dashboard.webp" alt="" loading="lazy" decoding="async" width="1600" height="1067"></picture>
           <div class="rc-screen" id="rcScreen">
             <div class="rc-icon">💬</div>
             <div class="rc-screen-title">Jaybird AI Chatbot</div>
@@ -1533,31 +1775,37 @@
     <div class="section-body">
       <div class="ind-grid">
         <div class="ind-card">
+          <picture class="photo-bg" aria-hidden="true"><img src="/assets/img/photo/ind-law.webp" alt="" loading="lazy" decoding="async" width="1400" height="933"></picture>
           <div class="ind-icon">01 / LAW</div>
           <h3>Law Firms</h3>
           <p>AI intake chatbots that qualify leads 24/7, automated follow-up sequences, and client onboarding workflows. Las Vegas firms using our systems stop missing after-hours inquiries.</p>
         </div>
         <div class="ind-card">
+          <picture class="photo-bg" aria-hidden="true"><img src="/assets/img/photo/ind-medspa.webp" alt="" loading="lazy" decoding="async" width="1400" height="933"></picture>
           <div class="ind-icon">02 / HEALTH</div>
           <h3>Dental &amp; Medical</h3>
           <p>AI receptionists that handle appointment scheduling, insurance questions, and patient follow-ups — so your front desk focuses on patients, not the phone.</p>
         </div>
         <div class="ind-card">
+          <picture class="photo-bg" aria-hidden="true"><img src="/assets/img/photo/ind-build.webp" alt="" loading="lazy" decoding="async" width="1100" height="733"></picture>
           <div class="ind-icon">03 / BUILD</div>
           <h3>Contractors &amp; Construction</h3>
           <p>Automated estimate follow-ups, job status updates, subcontractor coordination, and lead scoring from Google searches. Save 10+ hours per week.</p>
         </div>
         <div class="ind-card">
+          <picture class="photo-bg" aria-hidden="true"><img src="/assets/img/photo/ind-hosp.webp" alt="" loading="lazy" decoding="async" width="1100" height="733"></picture>
           <div class="ind-icon">04 / HOSP</div>
           <h3>Restaurants &amp; Hospitality</h3>
           <p>In a city that runs 24/7, your business can't go offline. AI handles reservations, loyalty follow-ups, review requests, and catering inquiries around the clock.</p>
         </div>
         <div class="ind-card">
+          <picture class="photo-bg" aria-hidden="true"><img src="/assets/img/photo/ind-auto.webp" alt="" loading="lazy" decoding="async" width="1100" height="733"></picture>
           <div class="ind-icon">05 / AUTO</div>
           <h3>Auto Repair &amp; Dealers</h3>
           <p>Service reminder automations, AI-powered quote responses, parts inventory tracking, and customer review follow-up campaigns — all without manual effort.</p>
         </div>
         <div class="ind-card">
+          <picture class="photo-bg" aria-hidden="true"><img src="/assets/img/photo/ind-pro.webp" alt="" loading="lazy" decoding="async" width="1400" height="933"></picture>
           <div class="ind-icon">06 / PRO</div>
           <h3>Professional Services</h3>
           <p>Accountants, insurance agents, financial advisors, and consultants across Las Vegas use our AI agents to handle lead qualification and client comms at scale.</p>
@@ -1606,7 +1854,8 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section">
+<section id="contact" class="section clip-reveal">
+  <picture class="photo-bg" aria-hidden="true"><img src="/assets/img/photo/contact-lv.webp" alt="" loading="lazy" decoding="async" width="1800" height="1200"></picture>
   <div class="section-inner">
     <div class="section-label">09 — Contact</div>
     <div class="section-head">
@@ -2085,6 +2334,139 @@
       };
       tick();
     }
+  })();
+
+  /* Phase 4B — section entrance + staggered grid + card tilt */
+  (function initPhase4BMotion() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return;
+
+    document.body.classList.add('js-motion');
+
+    // 1. Section entrance on scroll (skip hero which is above the fold)
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(s => s.classList.add('reveal-section'));
+    const secObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          secObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+    sections.forEach(s => secObs.observe(s));
+
+    // 2. Staggered grid children (services / industries / pricing)
+    const grids = document.querySelectorAll('.svc-full-grid, .ind-grid, .p-grid');
+    grids.forEach(g => g.classList.add('stagger-in'));
+    const stagObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          stagObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    grids.forEach(g => stagObs.observe(g));
+
+    // 3. Card tilt on hover — skip touch devices
+    if (!window.matchMedia('(hover: none)').matches) {
+      const tiltCards = document.querySelectorAll('.svc-full, .ind-card, .p-card');
+      tiltCards.forEach(card => {
+        let raf = null;
+        card.addEventListener('mousemove', (ev) => {
+          if (raf) cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(() => {
+            const r = card.getBoundingClientRect();
+            const x = (ev.clientX - r.left) / r.width - 0.5;
+            const y = (ev.clientY - r.top) / r.height - 0.5;
+            card.style.transform = `perspective(900px) rotateY(${(x * 5).toFixed(2)}deg) rotateX(${(-y * 5).toFixed(2)}deg) translateZ(0)`;
+            card.classList.add('tilting');
+          });
+        });
+        card.addEventListener('mouseleave', () => {
+          if (raf) cancelAnimationFrame(raf);
+          card.style.transform = '';
+          card.classList.remove('tilting');
+        });
+      });
+    }
+  })();
+
+  /* Phase 4C — parallax on .photo-bg + clip-reveal trigger */
+  (function initPhase4CParallax() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Clip-reveal observer (runs even with reduced motion — just snaps on)
+    const clipTargets = document.querySelectorAll('.clip-reveal');
+    if (clipTargets.length) {
+      const clipObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in-view');
+            clipObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      clipTargets.forEach(t => clipObs.observe(t));
+    }
+
+    if (reducedMotion) return;
+
+    // Parallax scroll — skip on touch to save battery
+    if (window.matchMedia('(hover: none)').matches) return;
+
+    const photoImgs = document.querySelectorAll('.photo-bg img');
+    if (!photoImgs.length) return;
+
+    let ticking = false;
+    function updateParallax() {
+      photoImgs.forEach(img => {
+        const wrapper = img.closest('.photo-bg');
+        if (!wrapper) return;
+        const rect = wrapper.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+        const midOffset = (rect.top + rect.height / 2) - window.innerHeight / 2;
+        const shift = (midOffset * -0.10).toFixed(1);
+        img.style.transform = `translate3d(0, ${shift}px, 0) scale(1.08)`;
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; }
+    }, { passive: true });
+    window.addEventListener('resize', () => {
+      if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; }
+    }, { passive: true });
+    updateParallax();
+  })();
+
+  /* Phase 4D — magnetic CTAs (primary buttons lean toward cursor) */
+  (function initMagneticCTAs() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(hover: none)').matches) return;
+
+    const magnets = document.querySelectorAll('.btn-primary, .nav-cta, .p-cta.primary');
+    magnets.forEach(btn => {
+      let raf = null;
+      let baseTransform = '';
+      btn.addEventListener('mouseenter', () => {
+        baseTransform = getComputedStyle(btn).transform === 'none' ? '' : '';
+      });
+      btn.addEventListener('mousemove', (ev) => {
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const r = btn.getBoundingClientRect();
+          const x = ((ev.clientX - r.left) / r.width - 0.5) * 14;
+          const y = ((ev.clientY - r.top) / r.height - 0.5) * 10;
+          btn.style.transform = `translate(${x.toFixed(1)}px, ${(y - 2).toFixed(1)}px)`;
+        });
+      });
+      btn.addEventListener('mouseleave', () => {
+        if (raf) cancelAnimationFrame(raf);
+        btn.style.transform = '';
+      });
+    });
   })();
 </script>
 
