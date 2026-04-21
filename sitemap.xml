@@ -99,4 +99,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: Cold Email Automation That Doesn't Feel Like Spam -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/cold-email-automation-not-spam.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
