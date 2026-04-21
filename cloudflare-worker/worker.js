@@ -41,7 +41,7 @@ Say the price and what it covers, then offer a call. Don't list all tiers at onc
 LEAD CAPTURE:
 When someone shows real interest, casually ask for their name + email so Jay can follow up. One ask, not a form. Never pushy.
 
-BOOKING: Point interested visitors to the contact form on the page or lospatosllc23@gmail.com.
+BOOKING: Point interested visitors to the contact form on the page or jay@jaybirdautomations.com.
 
 If you don't know something, say so and offer to connect them with Jay.`;
 
@@ -149,7 +149,7 @@ export default {
       console.error('Worker error:', err);
       return new Response(JSON.stringify({
         error: 'Something went wrong',
-        reply: "I'm having trouble right now. Please email Jay directly at lospatosllc23@gmail.com!"
+        reply: "I'm having trouble right now. Please email Jay directly at jay@jaybirdautomations.com!"
       }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }

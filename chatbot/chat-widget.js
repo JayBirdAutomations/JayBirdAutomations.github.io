@@ -314,7 +314,7 @@
       }
     } catch (err) {
       typingEl.remove();
-      addMessage('bot', "Sorry, I'm having trouble connecting right now. You can reach Jay directly at lospatosllc23@gmail.com!");
+      addMessage('bot', "Sorry, I'm having trouble connecting right now. You can reach Jay directly at jay@jaybirdautomations.com!");
     }
 
     isWaiting = false;
