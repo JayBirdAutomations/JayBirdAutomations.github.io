@@ -205,8 +205,29 @@
     margin-bottom: 22px;
     background: var(--ivory-2);
   }
-  .listing-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s cubic-bezier(0.2,0.7,0.1,1); }
-  .listing:hover .listing-img img { transform: scale(1.05); }
+  /* slide stack */
+  .slides { position: absolute; inset: 0; }
+  .slides img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.45s ease, transform 1.1s cubic-bezier(0.2,0.7,0.1,1);
+  }
+  .slides img.active { opacity: 1; }
+  .listing:hover .slides img.active { transform: scale(1.04); }
+  /* slide dots */
+  .slide-dots {
+    position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 6px; z-index: 3;
+    opacity: 0; transition: opacity 0.35s ease;
+  }
+  .listing:hover .slide-dots { opacity: 1; }
+  .slide-dots i {
+    width: 22px; height: 2px; background: rgba(246,241,230,0.45);
+    transition: background 0.3s;
+  }
+  .slide-dots i.on { background: var(--ivory); }
   .listing-tag {
     position: absolute; top: 18px; left: 18px; z-index: 2;
     padding: 7px 14px;
@@ -373,7 +394,13 @@
     <div class="listing reveal">
       <div class="listing-img">
         <span class="listing-tag new">New</span>
-        <img src="img/h1.webp" alt="Summerlin estate" loading="lazy">
+        <div class="slides">
+          <img src="img/h1.webp" alt="Summerlin estate exterior" class="active" loading="lazy">
+          <img src="img/L1-b.webp" alt="Kitchen" loading="lazy">
+          <img src="img/L1-c.webp" alt="Primary bedroom" loading="lazy">
+          <img src="img/L1-d.webp" alt="Spa bath" loading="lazy">
+        </div>
+        <div class="slide-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
       </div>
       <div class="listing-price">$4,850,000</div>
       <div class="listing-addr">The Ridges, Summerlin</div>
@@ -382,7 +409,13 @@
     <div class="listing reveal">
       <div class="listing-img">
         <span class="listing-tag">Pre-Market</span>
-        <img src="img/h2.webp" alt="Henderson modern" loading="lazy">
+        <div class="slides">
+          <img src="img/h2.webp" alt="Henderson modern exterior" class="active" loading="lazy">
+          <img src="img/L2-b.webp" alt="Living room" loading="lazy">
+          <img src="img/L2-c.webp" alt="Open kitchen" loading="lazy">
+          <img src="img/L2-d.webp" alt="Bedroom" loading="lazy">
+        </div>
+        <div class="slide-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
       </div>
       <div class="listing-price">$2,395,000</div>
       <div class="listing-addr">MacDonald Highlands, Henderson</div>
@@ -390,7 +423,13 @@
     </div>
     <div class="listing reveal">
       <div class="listing-img">
-        <img src="img/h3.webp" alt="Strip penthouse" loading="lazy">
+        <div class="slides">
+          <img src="img/h3.webp" alt="Penthouse exterior" class="active" loading="lazy">
+          <img src="img/L3-b.webp" alt="Living with view" loading="lazy">
+          <img src="img/L3-c.webp" alt="Bathroom" loading="lazy">
+          <img src="img/L3-d.webp" alt="Bedroom view" loading="lazy">
+        </div>
+        <div class="slide-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
       </div>
       <div class="listing-price">$6,200,000</div>
       <div class="listing-addr">Waldorf Astoria Residences</div>
@@ -465,8 +504,8 @@
 
   // ---- IMAGE TRAIL effect ----
   var TRAIL_IMAGES = [
-    'img/h1.webp','img/h2.webp','img/h3.webp','img/h4.webp',
-    'img/h5.webp','img/h6.webp','img/h7.webp','img/h8.webp'
+    'img/h1.webp','img/h2.webp','img/h3.webp','img/h4.webp','img/h5.webp',
+    'img/h6.webp','img/h7.webp','img/h8.webp','img/h9.webp','img/h10.webp'
   ];
   // preload
   TRAIL_IMAGES.forEach(function(src){ var i = new Image(); i.src = src; });
@@ -520,6 +559,34 @@
   // stagger listings
   document.querySelectorAll('.listings-grid .listing').forEach(function(el, i){
     el.style.transitionDelay = (i * 0.12) + 's';
+  });
+
+  // ---- LISTING CAROUSEL (cycle photos on hover) ----
+  document.querySelectorAll('.listing').forEach(function(listing){
+    var slides = listing.querySelectorAll('.slides img');
+    var dots   = listing.querySelectorAll('.slide-dots i');
+    if (slides.length < 2) return;
+    var idx = 0, timer = null;
+    function go(next){
+      slides[idx].classList.remove('active');
+      if (dots[idx]) dots[idx].classList.remove('on');
+      idx = (next + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+      if (dots[idx]) dots[idx].classList.add('on');
+    }
+    function start(){
+      if (timer) return;
+      timer = setInterval(function(){ go(idx + 1); }, 900);
+    }
+    function stop(){
+      if (timer) { clearInterval(timer); timer = null; }
+      // smooth fade back to first slide
+      setTimeout(function(){ if (!timer) go(0); }, 50);
+    }
+    listing.addEventListener('mouseenter', start);
+    listing.addEventListener('mouseleave', stop);
+    // touch: tap to advance
+    listing.addEventListener('touchstart', function(){ go(idx + 1); }, { passive: true });
   });
 })();
 </script>
