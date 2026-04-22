@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Web Examples — Jaybird Automations</title>
+<meta name="description" content="Niche-specific demo sites — each one pairs a high-end animation with a specific industry. Real estate, contractors, landscapers, roofers, law firms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg: #05060a;
+    --ink: #f4f5f7;
+    --ink-dim: #9ca3af;
+    --ink-faint: #6b7280;
+    --signal: #c6f24e;
+    --ember: #ffb347;
+    --rule: rgba(255,255,255,0.08);
+    --rule-strong: rgba(255,255,255,0.15);
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav.top {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(5,6,10,0.72);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600;
+    font-size: 18px; letter-spacing: -0.015em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .brand-dot { width: 10px; height: 10px; background: var(--signal); border-radius: 50%; box-shadow: 0 0 12px rgba(198,242,78,0.6); }
+  .nav-cta {
+    padding: 10px 22px;
+    background: linear-gradient(135deg, #d9ff6b 0%, #c6f24e 45%, #a8d62e 100%);
+    color: #0a1400;
+    border-radius: 999px;
+    font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 8px 24px rgba(198,242,78,0.25);
+    transition: transform 0.2s, box-shadow 0.3s;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), 0 14px 36px rgba(198,242,78,0.45); }
+
+  /* HERO */
+  .hero {
+    padding: 200px 40px 120px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 60% 50% at 15% 20%, rgba(198,242,78,0.14), transparent 65%),
+      radial-gradient(ellipse 55% 45% at 85% 70%, rgba(255,179,71,0.10), transparent 65%),
+      linear-gradient(180deg, #07090f 0%, #0a0d16 100%);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(198,242,78,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(198,242,78,0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 35%, transparent 90%);
+            mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 35%, transparent 90%);
+  }
+  .hero-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--signal); letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .eyebrow::before { content: ""; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(48px, 7vw, 104px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    max-width: 1100px;
+    margin-bottom: 32px;
+  }
+  .hero h1 em { font-style: normal; color: var(--signal); }
+  .hero-sub {
+    font-size: 19px; line-height: 1.55;
+    color: var(--ink-dim);
+    max-width: 640px;
+    font-weight: 300;
+  }
+  .hero-meta {
+    margin-top: 56px;
+    display: flex; gap: 50px;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .hero-meta .k { color: var(--ember); }
+
+  /* GRID */
+  .examples {
+    padding: 120px 40px 160px;
+    position: relative;
+  }
+  .examples-inner { max-width: 1400px; margin: 0 auto; }
+  .grid-label {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-faint); letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: end;
+  }
+  .grid-label h2 {
+    font-family: var(--display); font-size: 34px; font-weight: 400;
+    color: var(--ink); letter-spacing: -0.02em; text-transform: none;
+  }
+  .ex-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px;
+  }
+  .ex-card {
+    position: relative;
+    background: #0a0d16;
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.2,0.7,0.1,1), border-color 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .ex-card.live:hover { transform: translateY(-6px); border-color: rgba(198,242,78,0.35); }
+  .ex-thumb {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #0f1628, #05060a);
+  }
+  .ex-thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.2,0.7,0.1,1);
+  }
+  .ex-card.live:hover .ex-thumb img { transform: scale(1.05); }
+  .ex-thumb-placeholder {
+    width: 100%; height: 100%;
+    display: grid; place-items: center;
+    background:
+      radial-gradient(ellipse 50% 50% at 30% 30%, rgba(198,242,78,0.12), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 70% 70%, rgba(255,179,71,0.08), transparent 60%),
+      linear-gradient(135deg, #0f1628, #05060a);
+    font-family: var(--mono); font-size: 10px;
+    color: var(--ink-faint); letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .ex-badge {
+    position: absolute; top: 18px; left: 18px; z-index: 2;
+    padding: 6px 12px;
+    background: rgba(5,6,10,0.8);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--rule-strong);
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .ex-badge.live { border-color: rgba(198,242,78,0.4); color: var(--signal); }
+  .ex-badge.live::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--signal); box-shadow: 0 0 8px rgba(198,242,78,0.8);
+    animation: livePulse 2s ease-in-out infinite;
+  }
+  @keyframes livePulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .ex-badge.soon { color: var(--ember); border-color: rgba(255,179,71,0.35); }
+  .ex-body { padding: 32px 30px 34px; flex: 1; display: flex; flex-direction: column; }
+  .ex-niche {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-faint); letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .ex-title {
+    font-family: var(--display); font-size: 30px; font-weight: 500;
+    letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .ex-effect {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--signal); letter-spacing: 0.04em;
+    margin-bottom: 18px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .ex-effect::before { content: "◉"; font-size: 10px; }
+  .ex-card.soon .ex-effect { color: var(--ember); }
+  .ex-card.soon .ex-effect::before { content: "○"; }
+  .ex-desc {
+    font-size: 14px; line-height: 1.6;
+    color: var(--ink-dim); font-weight: 300;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+  .ex-view {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--ink); letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 12px 20px;
+    border: 1px solid var(--rule-strong);
+    align-self: flex-start;
+    transition: background 0.25s, color 0.25s, border-color 0.25s, gap 0.25s;
+  }
+  .ex-card.live .ex-view:hover { background: var(--signal); color: #0a1400; border-color: var(--signal); gap: 16px; }
+  .ex-card.soon .ex-view { opacity: 0.5; cursor: not-allowed; }
+
+  /* CTA */
+  .cta {
+    padding: 120px 40px;
+    border-top: 1px solid var(--rule);
+    background:
+      radial-gradient(ellipse 50% 80% at 50% 50%, rgba(255,179,71,0.10), transparent 65%),
+      #05060a;
+    text-align: center;
+  }
+  .cta h2 {
+    font-family: var(--display);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400; letter-spacing: -0.025em;
+    max-width: 900px; margin: 0 auto 24px;
+    line-height: 1.05;
+  }
+  .cta h2 em { font-style: normal; color: var(--ember); }
+  .cta p {
+    font-size: 17px; line-height: 1.55;
+    color: var(--ink-dim); max-width: 560px; margin: 0 auto 40px;
+    font-weight: 300;
+  }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 18px 36px;
+    background: linear-gradient(135deg, #d9ff6b 0%, #c6f24e 45%, #a8d62e 100%);
+    color: #0a1400;
+    font-family: var(--mono); font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+    border-radius: 999px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 14px 36px rgba(198,242,78,0.30);
+    transition: transform 0.25s, box-shadow 0.3s;
+  }
+  .cta-btn:hover { transform: translateY(-3px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), 0 22px 50px rgba(198,242,78,0.50); }
+
+  footer {
+    padding: 28px 40px; border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 11px; color: var(--ink-faint);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    nav.top { padding: 16px 20px; }
+    .hero { padding: 140px 20px 80px; }
+    .examples { padding: 80px 20px 100px; }
+    .cta { padding: 80px 20px; }
+    .ex-grid { grid-template-columns: 1fr; gap: 28px; }
+    .hero-meta { flex-direction: column; gap: 12px; }
+    footer { flex-direction: column; gap: 10px; padding: 20px; text-align: center; }
+    .grid-label { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a href="/" class="brand"><span class="brand-dot"></span>Jaybird Automations</a>
+  <a href="/#contact" class="nav-cta">Book a call</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Portfolio · Web Examples</div>
+    <h1>Niche demo sites<br>built with <em>real motion.</em></h1>
+    <p class="hero-sub">
+      Every site here is paired with a signature animation and tailored to a specific industry.
+      Pick your niche, move your cursor, see what's possible — then book a call to get yours built in under a week.
+    </p>
+    <div class="hero-meta">
+      <div><span class="k">01</span> &nbsp; 5 niches</div>
+      <div><span class="k">02</span> &nbsp; 1 animation each</div>
+      <div><span class="k">03</span> &nbsp; 48-hour turnaround</div>
+    </div>
+  </div>
+</section>
+
+<section class="examples">
+  <div class="examples-inner">
+    <div class="grid-label">
+      <h2>The portfolio.</h2>
+      <span>Updated · April 2026</span>
+    </div>
+
+    <div class="ex-grid">
+
+      <!-- REAL ESTATE — LIVE -->
+      <a href="/demos/realestate/" class="ex-card live" target="_blank">
+        <div class="ex-thumb">
+          <span class="ex-badge live">Live</span>
+          <img src="/demos/realestate/img/vegas-hero.webp" alt="Ridge & Palm Realty demo">
+        </div>
+        <div class="ex-body">
+          <div class="ex-niche">01 / Real Estate</div>
+          <h3 class="ex-title">Ridge &amp; Palm Realty</h3>
+          <div class="ex-effect">Image Trail</div>
+          <p class="ex-desc">
+            Cursor-following property photos in the hero. Hover-carousel listings that cycle
+            through kitchen, bedroom, bathroom. Interactive Leaflet map of every home sold.
+          </p>
+          <span class="ex-view">View demo →</span>
+        </div>
+      </a>
+
+      <!-- CONTRACTOR — COMING SOON -->
+      <div class="ex-card soon">
+        <div class="ex-thumb">
+          <span class="ex-badge soon">Coming soon</span>
+          <div class="ex-thumb-placeholder">Contractor · In build</div>
+        </div>
+        <div class="ex-body">
+          <div class="ex-niche">02 / Contractor</div>
+          <h3 class="ex-title">Stone &amp; Steel Construction</h3>
+          <div class="ex-effect">Image Morph</div>
+          <p class="ex-desc">
+            Scroll-triggered morphs from empty lot → framed structure → finished build.
+            Shows clients the whole transformation narrative without reading a word.
+          </p>
+          <span class="ex-view">In production</span>
+        </div>
+      </div>
+
+      <!-- LANDSCAPERS — COMING SOON -->
+      <div class="ex-card soon">
+        <div class="ex-thumb">
+          <span class="ex-badge soon">Coming soon</span>
+          <div class="ex-thumb-placeholder">Landscapers · Planned</div>
+        </div>
+        <div class="ex-body">
+          <div class="ex-niche">03 / Landscapers</div>
+          <h3 class="ex-title">Desert &amp; Bloom</h3>
+          <div class="ex-effect">Sponge Mask Reveal</div>
+          <p class="ex-desc">
+            Cursor becomes a sponge that wipes the &ldquo;before&rdquo; photo away to reveal the
+            &ldquo;after.&rdquo; Perfect for showing yard transformations.
+          </p>
+          <span class="ex-view">Planned</span>
+        </div>
+      </div>
+
+      <!-- ROOFERS — COMING SOON -->
+      <div class="ex-card soon">
+        <div class="ex-thumb">
+          <span class="ex-badge soon">Coming soon</span>
+          <div class="ex-thumb-placeholder">Roofers · Planned</div>
+        </div>
+        <div class="ex-body">
+          <div class="ex-niche">04 / Roofers</div>
+          <h3 class="ex-title">Peak &amp; Pitch Roofing</h3>
+          <div class="ex-effect">Sponge Mask Reveal v2</div>
+          <p class="ex-desc">
+            Same engine as the landscaper demo, tuned for rooftop before/after.
+            Wipe away storm damage, reveal the new install.
+          </p>
+          <span class="ex-view">Planned</span>
+        </div>
+      </div>
+
+      <!-- LAW FIRMS — COMING SOON -->
+      <div class="ex-card soon" style="grid-column: 1 / -1;">
+        <div class="ex-thumb" style="aspect-ratio: 21/9;">
+          <span class="ex-badge soon">Coming soon</span>
+          <div class="ex-thumb-placeholder">Law Firms · Flagship build</div>
+        </div>
+        <div class="ex-body">
+          <div class="ex-niche">05 / Law Firms</div>
+          <h3 class="ex-title">Arbor &amp; Vale LLP</h3>
+          <div class="ex-effect">Live Body Tracking (MediaPipe)</div>
+          <p class="ex-desc">
+            The flagship. Lady Justice responds to the visitor&rsquo;s presence via the webcam — a live
+            body-tracking effect powered by Google&rsquo;s MediaPipe running directly in the browser.
+            Attention-grabbing authority signal for high-stakes practice areas.
+          </p>
+          <span class="ex-view">Flagship build · Q3</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>See your industry? <em>Yours can be next.</em></h2>
+  <p>Every demo here is fully customizable — we swap in your logo, listings, photos, and copy. Live in under a week.</p>
+  <a href="/#contact" class="cta-btn">Start your build →</a>
+</section>
+
+<footer>
+  <div>© 2026 Jaybird Automations · Las Vegas</div>
+  <div><a href="/">← Back to main</a></div>
+</footer>
+
+</body>
+</html>

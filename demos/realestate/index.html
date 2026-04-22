@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   :root {
@@ -272,6 +273,124 @@
   .agent-stats .stat strong { display: block; font-family: var(--display); font-size: 38px; font-weight: 400; letter-spacing: -0.02em; color: var(--gold-soft); margin-bottom: 6px; }
   .agent-stats .stat span { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(246,241,230,0.6); }
 
+  /* ===== SOLD MAP ===== */
+  #sold {
+    background: var(--navy);
+    color: var(--ivory);
+    padding: 140px 40px 160px;
+  }
+  #sold .sec-label { color: var(--gold-soft); }
+  #sold .sec-head h2 em { color: var(--gold-soft); }
+  #sold .sec-head p { color: rgba(246,241,230,0.7); }
+  .map-wrap {
+    max-width: 1400px; margin: 0 auto;
+    position: relative;
+    border: 1px solid rgba(246,241,230,0.12);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #0a1220;
+  }
+  #sold-map {
+    height: 580px;
+    width: 100%;
+    background: #0a1220;
+  }
+  .map-overlay {
+    position: absolute; top: 26px; left: 26px; z-index: 500;
+    background: rgba(12,23,38,0.78);
+    backdrop-filter: blur(10px);
+    padding: 18px 24px;
+    border: 1px solid rgba(212,172,107,0.35);
+    pointer-events: none;
+    max-width: 280px;
+  }
+  .map-overlay-label {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold-soft); font-weight: 500; margin-bottom: 6px;
+  }
+  .map-overlay-title {
+    font-family: var(--display); font-size: 22px; font-weight: 400;
+    line-height: 1.15; letter-spacing: -0.015em;
+  }
+  .map-legend {
+    position: absolute; bottom: 20px; left: 20px; z-index: 500;
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(12,23,38,0.78);
+    backdrop-filter: blur(10px);
+    padding: 9px 14px;
+    border: 1px solid rgba(246,241,230,0.1);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(246,241,230,0.75);
+  }
+  .map-legend .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 2px rgba(246,241,230,0.25);
+  }
+  .map-summary {
+    max-width: 1400px; margin: 40px auto 0;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(246,241,230,0.12);
+  }
+  .map-summary .stat strong {
+    display: block; font-family: var(--display);
+    font-size: 44px; font-weight: 400; letter-spacing: -0.02em;
+    color: var(--gold-soft); margin-bottom: 6px;
+  }
+  .map-summary .stat span {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(246,241,230,0.6);
+  }
+  /* leaflet overrides — invert branding colors */
+  .leaflet-container { background: #0a1220 !important; }
+  .leaflet-control-attribution {
+    background: rgba(12,23,38,0.7) !important;
+    color: rgba(246,241,230,0.5) !important;
+    font-size: 10px !important;
+  }
+  .leaflet-control-attribution a { color: var(--gold-soft) !important; }
+  .leaflet-control-zoom a {
+    background: rgba(12,23,38,0.9) !important;
+    color: var(--ivory) !important;
+    border-color: rgba(246,241,230,0.15) !important;
+  }
+  .leaflet-control-zoom a:hover { background: var(--gold) !important; color: var(--ink) !important; }
+  .leaflet-tooltip {
+    background: var(--ink) !important;
+    color: var(--ivory) !important;
+    border: 1px solid var(--gold) !important;
+    border-radius: 2px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+    font-family: var(--body) !important;
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+  }
+  .leaflet-tooltip-top:before { border-top-color: var(--gold) !important; }
+  .pin-pulse {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(246,241,230,0.35), 0 0 20px rgba(212,172,107,0.7);
+    position: relative;
+  }
+  .pin-pulse::after {
+    content: ''; position: absolute; inset: -4px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold-soft);
+    animation: pinRipple 2.6s ease-out infinite;
+    opacity: 0;
+  }
+  @keyframes pinRipple {
+    0%   { transform: scale(0.6); opacity: 0.9; }
+    100% { transform: scale(2.6); opacity: 0; }
+  }
+
+  @media (max-width: 900px) {
+    #sold { padding: 90px 20px; }
+    #sold-map { height: 420px; }
+    .map-summary { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  }
+
   /* ===== CONTACT ===== */
   #contact { background: var(--ivory-2); padding-bottom: 120px; }
   .contact-wrap {
@@ -349,6 +468,7 @@
   <div class="nav-links">
     <a href="#listings">Listings</a>
     <a href="#about">Agent</a>
+    <a href="#sold">Sold Map</a>
     <a href="#contact">Contact</a>
   </div>
   <a href="#contact" class="nav-cta">Book a Tour</a>
@@ -464,6 +584,38 @@
   </div>
 </section>
 
+<!-- SOLD MAP -->
+<section id="sold">
+  <div class="sec-head reveal">
+    <div>
+      <div class="sec-label">03 — Proof of work</div>
+    </div>
+    <div>
+      <h2>340 closings. <em>7 states.</em></h2>
+      <p>Every gold pin is a home we've sold since 2012 — from Summerlin estates to ski homes in Park City. Zoom out to see where trust travels.</p>
+    </div>
+  </div>
+
+  <div class="map-wrap reveal">
+    <div id="sold-map"></div>
+    <div class="map-overlay">
+      <div class="map-overlay-label">Where trust takes us</div>
+      <div class="map-overlay-title">A map of every home Sarah's sold.</div>
+    </div>
+    <div class="map-legend" aria-hidden="true">
+      <span class="dot"></span>
+      <span>Home sold</span>
+    </div>
+  </div>
+
+  <div class="map-summary reveal">
+    <div class="stat"><strong>340</strong><span>Homes sold</span></div>
+    <div class="stat"><strong>7</strong><span>States</span></div>
+    <div class="stat"><strong>$1.2B</strong><span>Volume</span></div>
+    <div class="stat"><strong>12 yrs</strong><span>Since 2012</span></div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-wrap reveal">
@@ -484,6 +636,7 @@
   <div class="built-by">Demo site built by <a href="https://jaybirdautomations.com" target="_blank">Jaybird Automations</a></div>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 <script>
 (function(){
   // ---- Custom cursor ----
@@ -560,6 +713,94 @@
   document.querySelectorAll('.listings-grid .listing').forEach(function(el, i){
     el.style.transitionDelay = (i * 0.12) + 's';
   });
+
+  // ---- SOLD MAP (Leaflet + CARTO dark tiles) ----
+  // Defer map init until Leaflet script loads
+  function initSoldMap(){
+    if (typeof L === 'undefined') { setTimeout(initSoldMap, 150); return; }
+    var mapEl = document.getElementById('sold-map');
+    if (!mapEl) return;
+    var map = L.map('sold-map', {
+      scrollWheelZoom: false,
+      zoomControl: true,
+      attributionControl: true
+    }).setView([36.15, -115.2], 10);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 18
+    }).addTo(map);
+
+    // add a thin labels layer so city names are readable but subtle
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
+      subdomains: 'abcd',
+      maxZoom: 18,
+      opacity: 0.55,
+      pane: 'shadowPane'
+    }).addTo(map);
+
+    // fake sold properties — dense in Vegas metro, scattered across Western US
+    var pins = [
+      // Vegas metro
+      {ll:[36.1710,-115.3400], p:'$4,850,000', loc:'The Ridges, Summerlin'},
+      {ll:[36.1550,-115.3300], p:'$3,200,000', loc:'Summerlin West'},
+      {ll:[36.0280,-115.0540], p:'$2,395,000', loc:'MacDonald Highlands'},
+      {ll:[36.0347,-115.0320], p:'$1,150,000', loc:'Green Valley Ranch'},
+      {ll:[35.9900,-115.0700], p:'$1,850,000', loc:'Seven Hills'},
+      {ll:[35.9800,-115.0900], p:'$980,000',   loc:'Anthem Country Club'},
+      {ll:[36.0220,-115.2990], p:'$720,000',   loc:"Mountain's Edge"},
+      {ll:[36.1300,-115.2630], p:'$2,750,000', loc:'Spanish Hills'},
+      {ll:[36.1700,-115.2820], p:'$3,950,000', loc:'Queensridge'},
+      {ll:[36.1720,-115.2770], p:'$4,200,000', loc:'One Queensridge Place'},
+      {ll:[36.1550,-115.3050], p:'$2,100,000', loc:'Tournament Hills'},
+      {ll:[36.1022,-114.9390], p:'$3,800,000', loc:'Lake Las Vegas'},
+      {ll:[36.1085,-115.1727], p:'$6,200,000', loc:'Waldorf Astoria Residences'},
+      {ll:[36.1421,-115.1595], p:'$1,450,000', loc:'Sky Las Vegas'},
+      {ll:[36.1180,-115.1720], p:'$2,900,000', loc:'Veer Towers'},
+      {ll:[36.1695,-115.1395], p:'$1,680,000', loc:'Turnberry Place'},
+      // Boulder City / outlying
+      {ll:[35.9786,-114.8319], p:'$890,000',   loc:'Boulder City'},
+      // Reno / Tahoe
+      {ll:[39.5296,-119.8138], p:'$1,350,000', loc:'Reno, NV'},
+      {ll:[39.2500,-119.9400], p:'$4,500,000', loc:'Incline Village, Lake Tahoe'},
+      // Out of state (luxury corridors)
+      {ll:[32.7157,-117.1611], p:'$3,100,000', loc:'La Jolla, CA'},
+      {ll:[33.4942,-111.9261], p:'$2,250,000', loc:'Scottsdale, AZ'},
+      {ll:[40.6461,-111.4980], p:'$5,800,000', loc:'Park City, UT'},
+      {ll:[39.1911,-106.8175], p:'$8,200,000', loc:'Aspen, CO'},
+      {ll:[43.4799,-110.7624], p:'$6,400,000', loc:'Jackson Hole, WY'}
+    ];
+
+    var pulseIcon = L.divIcon({
+      className: 'sold-pin-wrap',
+      html: '<div class="pin-pulse"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+
+    pins.forEach(function(p){
+      L.marker(p.ll, { icon: pulseIcon })
+        .addTo(map)
+        .bindTooltip('Closed · ' + p.p + '<br><small style="opacity:.7">' + p.loc + '</small>', {
+          direction: 'top',
+          offset: [0, -10],
+          opacity: 1
+        });
+    });
+
+    // Re-render on section enter so tiles load correctly (fixes grey-map bug)
+    var soldSection = document.getElementById('sold');
+    var mapIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { setTimeout(function(){ map.invalidateSize(); }, 150); mapIO.disconnect(); }
+      });
+    }, { threshold: 0.1 });
+    if (soldSection) mapIO.observe(soldSection);
+  }
+  // kick off after script tag loads
+  if (document.readyState === 'complete') initSoldMap();
+  else window.addEventListener('load', initSoldMap);
 
   // ---- LISTING CAROUSEL (cycle photos on hover) ----
   document.querySelectorAll('.listing').forEach(function(listing){
