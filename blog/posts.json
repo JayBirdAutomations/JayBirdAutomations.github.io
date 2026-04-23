@@ -1,6 +1,18 @@
 {
   "posts": [
     {
+      "title": "How to Automate Google Reviews With N8N",
+      "slug": "automate-google-reviews-n8n",
+      "excerpt": "Monitoring Google Reviews manually drains time you don't have. We'll show you how to use N8N to automatically collect, organize, and act on customer feedback from your Google Business Profile.",
+      "tags": [
+        "automation",
+        "google-reviews",
+        "n8n",
+        "small-business"
+      ],
+      "date": "2026-04-23T19:01:03.365Z"
+    },
+    {
       "title": "AI Chatbots vs Hiring: What Vegas Businesses Should Know",
       "slug": "ai-chatbots-vs-hiring-vegas",
       "excerpt": "Vegas business owners face a real question: should you hire another team member or invest in an AI chatbot? The answer depends on your workflow, budget, and what actually drives revenue in your business.",
