@@ -115,4 +115,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: AI Chatbots vs Hiring: What Vegas Businesses Should Know -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/ai-chatbots-vs-hiring-vegas.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
