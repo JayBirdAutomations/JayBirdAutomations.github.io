@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stone &amp; Steel Construction — Las Vegas General Contractors</title>
+<meta name="description" content="Commercial and residential construction in Las Vegas. Ground-up builds, renovations, design-build. See how we transform spaces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:     #0b0c0d;
+    --bg-2:   #111316;
+    --bg-3:   #181b1f;
+    --ink:    #f0f1f2;
+    --ink-dim:#9aa0ab;
+    --ink-faint:#5c6370;
+    --orange: #f06020;
+    --orange-2:#e04010;
+    --amber:  #ffa820;
+    --rule:   rgba(240,241,242,0.08);
+    --rule-s: rgba(240,241,242,0.15);
+    --display:'Barlow Condensed', system-ui, sans-serif;
+    --body:   'Inter', system-ui, sans-serif;
+    --mono:   'JetBrains Mono', monospace;
+  }
+  html,body { background:var(--bg); color:var(--ink); font-family:var(--body); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a { color:inherit; text-decoration:none; }
+
+  /* ── NAV ── */
+  nav.top {
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    padding:18px 40px;
+    display:flex; align-items:center; justify-content:space-between;
+    background:rgba(11,12,13,0.82); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--rule);
+  }
+  .brand { display:flex; align-items:center; gap:14px; }
+  .brand-icon {
+    width:36px; height:36px;
+    background:var(--orange);
+    clip-path:polygon(0 100%, 50% 0, 100% 100%);
+    flex-shrink:0;
+  }
+  .brand-name {
+    font-family:var(--display); font-size:20px; font-weight:700;
+    letter-spacing:0.04em; text-transform:uppercase; line-height:1.1;
+  }
+  .brand-name small { display:block; font-size:10px; font-weight:400; letter-spacing:0.2em; color:var(--ink-dim); margin-top:1px; }
+  .nav-links { display:flex; gap:32px; font-size:13px; letter-spacing:0.05em; text-transform:uppercase; font-weight:500; color:var(--ink-dim); }
+  .nav-links a:hover { color:var(--orange); }
+  .nav-cta {
+    padding:10px 24px;
+    background:var(--orange);
+    color:#fff;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
+    clip-path:polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition:background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background:var(--orange-2); transform:translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    position:relative; min-height:100vh;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding:0 40px 80px;
+    overflow:hidden;
+  }
+  .hero-bg {
+    position:absolute; inset:0;
+    background:url('img/hero.webp') center/cover no-repeat;
+  }
+  .hero-bg::after {
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(11,12,13,0.3) 0%, rgba(11,12,13,0.0) 30%, rgba(11,12,13,0.7) 70%, rgba(11,12,13,0.97) 100%);
+  }
+  .hero-inner { position:relative; z-index:2; max-width:1400px; width:100%; }
+  .hero-eyebrow {
+    font-family:var(--mono); font-size:11px;
+    color:var(--orange); letter-spacing:0.22em; text-transform:uppercase;
+    margin-bottom:20px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .hero-eyebrow::before { content:""; width:36px; height:2px; background:var(--orange); }
+  .hero h1 {
+    font-family:var(--display);
+    font-size:clamp(72px, 12vw, 180px);
+    font-weight:800; text-transform:uppercase;
+    line-height:0.9; letter-spacing:-0.01em;
+  }
+  .hero h1 em { font-style:italic; color:var(--orange); }
+  .hero-sub {
+    margin-top:28px; max-width:600px;
+    font-size:18px; line-height:1.55; color:var(--ink-dim); font-weight:300;
+  }
+  .hero-ctas { margin-top:40px; display:flex; gap:18px; align-items:center; }
+  .btn-primary {
+    padding:16px 36px;
+    background:var(--orange);
+    color:#fff;
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600;
+    clip-path:polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition:background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow:0 8px 28px rgba(240,96,32,0.35);
+  }
+  .btn-primary:hover { background:var(--orange-2); transform:translateY(-2px); box-shadow:0 14px 40px rgba(240,96,32,0.55); }
+  .btn-ghost {
+    padding:16px 28px;
+    border:1px solid var(--rule-s);
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:border-color 0.2s, color 0.2s, gap 0.2s;
+  }
+  .btn-ghost:hover { border-color:var(--orange); color:var(--orange); gap:16px; }
+  .hero-stats {
+    position:absolute; right:40px; bottom:80px; z-index:2;
+    display:flex; flex-direction:column; gap:24px; align-items:flex-end;
+  }
+  .hero-stats .hs { text-align:right; }
+  .hero-stats .hs strong { display:block; font-family:var(--display); font-size:52px; font-weight:700; line-height:1; color:var(--orange); }
+  .hero-stats .hs span { font-family:var(--mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-dim); }
+
+  /* ── TICKER STRIP ── */
+  .ticker-strip {
+    border-top:1px solid var(--rule-s); border-bottom:1px solid var(--rule-s);
+    background:var(--bg-2); height:42px;
+    display:flex; align-items:center; overflow:hidden;
+    position:relative; z-index:10;
+  }
+  .ticker-strip::before {
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(90deg, transparent 0 16px, rgba(240,96,32,0.05) 16px 17px);
+    pointer-events:none;
+  }
+  .ts-label {
+    padding:0 20px; height:100%; display:flex; align-items:center;
+    flex-shrink:0; border-right:1px solid var(--rule-s);
+    font-family:var(--mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--orange);
+    background:var(--bg-2);
+    z-index:2;
+  }
+  .ts-track {
+    display:flex; gap:48px; white-space:nowrap;
+    animation:tsScroll 50s linear infinite;
+    padding-left:48px;
+  }
+  .ts-item { font-family:var(--mono); font-size:11px; color:var(--ink-dim); letter-spacing:0.05em; display:inline-flex; align-items:center; gap:12px; }
+  .ts-item .tag { color:var(--ink); font-weight:500; }
+  .ts-item .val { color:var(--orange); }
+  @keyframes tsScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+  /* ── SHARED SECTION ── */
+  section { padding:120px 40px; }
+  .sec-inner { max-width:1400px; margin:0 auto; }
+  .sec-label {
+    font-family:var(--mono); font-size:10px;
+    letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--orange); margin-bottom:20px;
+  }
+  h2.display {
+    font-family:var(--display);
+    font-size:clamp(48px, 7vw, 100px);
+    font-weight:700; text-transform:uppercase;
+    line-height:0.92; letter-spacing:-0.01em; margin-bottom:24px;
+  }
+  h2.display em { font-style:italic; color:var(--orange); }
+  .sub-copy { font-size:17px; line-height:1.55; color:var(--ink-dim); font-weight:300; max-width:600px; }
+
+  /* ── PROCESS TIMELINE (the IMAGE MORPH effect) ── */
+  #process {
+    background:var(--bg-2);
+    padding:0;
+    border-top:1px solid var(--rule);
+  }
+  .process-sticky {
+    position:sticky; top:0; height:100vh;
+    overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .process-scroll { height:600vh; } /* scroll distance = 6× viewport */
+  .process-stage {
+    position:absolute; inset:0;
+    display:flex;
+    opacity:0;
+    transition:opacity 0.6s ease;
+    pointer-events:none;
+  }
+  .process-stage.active { opacity:1; pointer-events:auto; }
+  .stage-img {
+    position:absolute; inset:0;
+    background-size:cover; background-position:center;
+    transition:transform 8s ease-out;
+  }
+  .process-stage.active .stage-img { transform:scale(1.04); }
+  .stage-img::after {
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(90deg, rgba(11,12,13,0.92) 0%, rgba(11,12,13,0.7) 42%, rgba(11,12,13,0.2) 100%);
+  }
+  .stage-content {
+    position:relative; z-index:2;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:80px 64px;
+    max-width:620px;
+    height:100%;
+  }
+  .stage-num {
+    font-family:var(--display); font-size:220px; font-weight:800;
+    color:rgba(240,96,32,0.10); line-height:1;
+    position:absolute; top:50%; transform:translateY(-50%);
+    left:-20px; user-select:none; pointer-events:none;
+    letter-spacing:-0.05em;
+  }
+  .stage-tag {
+    font-family:var(--mono); font-size:10px;
+    color:var(--orange); letter-spacing:0.22em; text-transform:uppercase;
+    margin-bottom:16px;
+    display:inline-flex; align-items:center; gap:12px;
+  }
+  .stage-tag::before {
+    content:attr(data-n);
+    background:var(--orange); color:#fff;
+    padding:2px 8px;
+    font-weight:700;
+  }
+  .stage-title {
+    font-family:var(--display); font-size:clamp(44px,6vw,80px);
+    font-weight:800; text-transform:uppercase; line-height:0.95;
+    letter-spacing:-0.01em; margin-bottom:24px;
+  }
+  .stage-desc { font-size:16px; line-height:1.65; color:var(--ink-dim); font-weight:300; max-width:480px; }
+  /* progress bar */
+  .process-progress {
+    position:absolute; bottom:0; left:0; right:0; height:3px;
+    background:rgba(240,96,32,0.2); z-index:10;
+  }
+  .process-progress-fill {
+    height:100%; background:var(--orange);
+    width:0; transition:width 0.2s linear;
+    box-shadow:0 0 14px rgba(240,96,32,0.8);
+  }
+  /* stage dots */
+  .stage-nav {
+    position:absolute; right:40px; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; gap:12px; z-index:10;
+  }
+  .sn-dot {
+    width:8px; height:8px; border-radius:50%;
+    border:1.5px solid var(--rule-s);
+    background:transparent;
+    transition:background 0.3s, border-color 0.3s, transform 0.3s;
+  }
+  .sn-dot.on { background:var(--orange); border-color:var(--orange); transform:scale(1.4); }
+  .sn-label {
+    position:absolute; right:22px;
+    font-family:var(--mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-faint); white-space:nowrap; transform:translateY(-50%);
+    opacity:0; transition:opacity 0.2s;
+  }
+  .sn-dot.on + .sn-label { opacity:1; }
+  /* process header row */
+  .process-head-bar {
+    position:absolute; top:0; left:0; right:0; z-index:10;
+    padding:28px 64px;
+    display:flex; align-items:center; justify-content:space-between;
+    background:linear-gradient(180deg, rgba(11,12,13,0.9), transparent);
+  }
+  .phb-label { font-family:var(--mono); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--orange); }
+  .phb-title { font-family:var(--display); font-size:20px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; }
+  .phb-stage { font-family:var(--mono); font-size:12px; color:var(--ink-dim); letter-spacing:0.08em; }
+
+  /* ── BEFORE / AFTER SLIDER ── */
+  #compare { background:var(--bg); border-top:1px solid var(--rule); }
+  .compare-wrap { max-width:1400px; margin:0 auto; }
+  .compare-head { display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-bottom:60px; align-items:end; }
+  .ba-stage {
+    position:relative; user-select:none;
+    border:1px solid var(--rule);
+    overflow:hidden;
+    cursor:ew-resize;
+  }
+  .ba-img {
+    width:100%; display:block;
+    aspect-ratio:16/9; object-fit:cover;
+  }
+  .ba-after-wrap {
+    position:absolute; inset:0; overflow:hidden;
+    width:50%;
+    transition:none;
+  }
+  .ba-after-wrap img {
+    position:absolute; top:0; left:0;
+    width:100%; height:100%; object-fit:cover;
+    /* mirror: image stays full, only the clip moves */
+    min-width:var(--ba-full-w, 100%);
+  }
+  .ba-handle {
+    position:absolute; top:0; bottom:0;
+    left:50%; transform:translateX(-50%);
+    width:3px; background:var(--orange);
+    z-index:10; cursor:ew-resize;
+    box-shadow:0 0 18px rgba(240,96,32,0.8);
+  }
+  .ba-handle::before {
+    content:""; position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    width:40px; height:40px; border-radius:50%;
+    background:var(--orange);
+    box-shadow:0 0 0 4px rgba(240,96,32,0.3);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ba-handle::after {
+    content:"◀ ▶";
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    font-size:11px; color:#fff; white-space:nowrap;
+    z-index:1;
+  }
+  .ba-labels {
+    position:absolute; inset:0; pointer-events:none; z-index:5;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    padding:18px;
+  }
+  .ba-tag {
+    font-family:var(--mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase;
+    padding:7px 14px;
+    background:rgba(11,12,13,0.7); backdrop-filter:blur(6px);
+    border:1px solid var(--rule-s);
+  }
+  .ba-tag.after { background:rgba(240,96,32,0.85); color:#fff; border-color:var(--orange); }
+
+  /* ── PROJECTS ── */
+  #projects { background:var(--bg-2); border-top:1px solid var(--rule); }
+  .proj-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:28px; margin-top:60px; }
+  .proj-card {
+    position:relative; overflow:hidden;
+    border:1px solid var(--rule);
+    transition:transform 0.5s cubic-bezier(.2,.7,.1,1), border-color 0.3s;
+  }
+  .proj-card:hover { transform:translateY(-6px); border-color:rgba(240,96,32,0.4); }
+  .proj-card img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; transition:transform 1.1s cubic-bezier(.2,.7,.1,1); }
+  .proj-card:hover img { transform:scale(1.05); }
+  .proj-info { padding:28px; background:var(--bg-3); }
+  .proj-type { font-family:var(--mono); font-size:10px; color:var(--orange); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+  .proj-title { font-family:var(--display); font-size:28px; font-weight:700; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:8px; }
+  .proj-meta { font-size:13px; color:var(--ink-dim); }
+
+  /* ── TRUST SECTION ── */
+  #trust { background:var(--bg); border-top:1px solid var(--rule); }
+  .trust-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:60px; border:1px solid var(--rule); }
+  .trust-item { padding:44px 36px; border-right:1px solid var(--rule); }
+  .trust-item:last-child { border-right:none; }
+  .trust-item strong { display:block; font-family:var(--display); font-size:60px; font-weight:800; color:var(--orange); line-height:1; margin-bottom:10px; text-transform:uppercase; letter-spacing:-0.02em; }
+  .trust-item span { font-family:var(--mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-dim); }
+
+  /* ── CONTACT ── */
+  #contact { background:var(--bg-2); border-top:1px solid var(--rule); }
+  .contact-inner { max-width:1000px; margin:0 auto; }
+  .contact-split { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; margin-top:60px; }
+  .contact-info h3 { font-family:var(--display); font-size:28px; font-weight:700; text-transform:uppercase; margin-bottom:12px; }
+  .contact-info p { font-size:15px; line-height:1.6; color:var(--ink-dim); margin-bottom:24px; }
+  .contact-info .ci-row { display:flex; gap:14px; align-items:center; font-size:14px; color:var(--ink-dim); margin-bottom:12px; font-family:var(--mono); letter-spacing:0.04em; }
+  .contact-info .ci-row::before { content:"◉"; color:var(--orange); font-size:10px; }
+  .contact-form { display:flex; flex-direction:column; gap:14px; }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    padding:16px 20px;
+    background:#0a0c0e;
+    border:1px solid var(--rule-s);
+    color:var(--ink);
+    font-family:var(--body); font-size:14px;
+    transition:border-color 0.25s;
+  }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline:none; border-color:var(--orange); }
+  .contact-form select option { background:var(--bg); }
+  .contact-form textarea { min-height:100px; resize:vertical; font-family:var(--body); }
+
+  footer {
+    padding:30px 40px; border-top:1px solid var(--rule);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--mono); font-size:11px; color:var(--ink-faint); letter-spacing:0.08em;
+  }
+  footer a { color:var(--orange); }
+
+  /* ── REVEAL ── */
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.9s ease, transform 0.9s cubic-bezier(.2,.7,.1,1); }
+  .reveal.in { opacity:1; transform:none; }
+
+  /* ── MOBILE ── */
+  @media (max-width:900px) {
+    nav.top { padding:14px 20px; }
+    .nav-links { display:none; }
+    .hero { padding:0 20px 60px; }
+    .hero-stats { display:none; }
+    section { padding:80px 20px; }
+    h2.display { font-size:clamp(44px,10vw,70px); }
+    .compare-head { grid-template-columns:1fr; gap:24px; }
+    .proj-grid { grid-template-columns:1fr; }
+    .trust-grid { grid-template-columns:repeat(2,1fr); }
+    .trust-item { border-bottom:1px solid var(--rule); }
+    .contact-split { grid-template-columns:1fr; gap:40px; }
+    .stage-content { padding:80px 24px 80px; }
+    .process-head-bar { padding:24px; }
+    footer { flex-direction:column; gap:10px; text-align:center; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    * { transition:none !important; animation:none !important; }
+    .reveal { opacity:1 !important; transform:none !important; }
+    .process-stage { opacity:1 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top">
+  <div class="brand">
+    <div class="brand-icon"></div>
+    <div class="brand-name">Stone &amp; Steel<small>Construction · Las Vegas</small></div>
+  </div>
+  <div class="nav-links">
+    <a href="#process">Our Process</a>
+    <a href="#compare">Before/After</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Get a bid</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Las Vegas · Est. 2009</div>
+    <h1>We build<br><em>Vegas</em><br>from the ground up.</h1>
+    <p class="hero-sub">Ground-up commercial builds, custom residential construction, and design-build renovation — all within Nevada's most demanding market.</p>
+    <div class="hero-ctas">
+      <a href="#process" class="btn-primary">See how we build</a>
+      <a href="#compare" class="btn-ghost">Before &amp; after →</a>
+    </div>
+  </div>
+  <div class="hero-stats" aria-hidden="true">
+    <div class="hs"><strong>240+</strong><span>Projects built</span></div>
+    <div class="hs"><strong>$380M</strong><span>In construction</span></div>
+    <div class="hs"><strong>15 yrs</strong><span>In Las Vegas</span></div>
+  </div>
+</section>
+
+<!-- TICKER STRIP -->
+<div class="ticker-strip" aria-hidden="true">
+  <div class="ts-label">◉ Active builds</div>
+  <div class="ts-track">
+    <span class="ts-item"><span class="tag">PROJ/047</span> Summerlin Office · Floor 3 frame complete <span class="val">+14d ahead</span></span>
+    <span class="ts-item"><span class="tag">PROJ/052</span> Henderson Retail · Concrete pour scheduled</span>
+    <span class="ts-item"><span class="tag">PROJ/039</span> Custom Res · Drywall phase · on budget</span>
+    <span class="ts-item"><span class="tag">INSP/NV</span> Certificate of Occupancy issued · PROJ/044 <span class="val">✓</span></span>
+    <span class="ts-item"><span class="tag">CREW/A</span> 18 crew · Flamingo corridor · day 42</span>
+    <span class="ts-item"><span class="tag">PROJ/047</span> Summerlin Office · Floor 3 frame complete <span class="val">+14d ahead</span></span>
+    <span class="ts-item"><span class="tag">PROJ/052</span> Henderson Retail · Concrete pour scheduled</span>
+    <span class="ts-item"><span class="tag">PROJ/039</span> Custom Res · Drywall phase · on budget</span>
+    <span class="ts-item"><span class="tag">INSP/NV</span> Certificate of Occupancy issued · PROJ/044 <span class="val">✓</span></span>
+    <span class="ts-item"><span class="tag">CREW/A</span> 18 crew · Flamingo corridor · day 42</span>
+  </div>
+</div>
+
+<!-- PROCESS — IMAGE MORPH TIMELINE (pinned scroll sequence) -->
+<div id="process">
+  <div class="process-scroll">
+    <div class="process-sticky">
+
+      <div class="process-head-bar">
+        <div class="phb-label">02 — How we build</div>
+        <div class="phb-title">Stone &amp; Steel Process</div>
+        <div class="phb-stage" id="phbStage">Stage 1 of 5</div>
+      </div>
+
+      <!-- Stage 1: Planning -->
+      <div class="process-stage active" data-stage="0">
+        <div class="stage-img" style="background-image:url('img/s1-lot.webp')"></div>
+        <div class="stage-num" aria-hidden="true">01</div>
+        <div class="stage-content">
+          <div class="stage-tag" data-n="01">Site &amp; Planning</div>
+          <h3 class="stage-title">Every great build starts with the right land.</h3>
+          <p class="stage-desc">We begin with a full site assessment — soil tests, grading surveys, utility locates, and zoning review. Most contractors skip this. We never do. An hour of planning saves weeks of rework.</p>
+        </div>
+      </div>
+
+      <!-- Stage 2: Foundation -->
+      <div class="process-stage" data-stage="1">
+        <div class="stage-img" style="background-image:url('img/s2-foundation.webp')"></div>
+        <div class="stage-num" aria-hidden="true">02</div>
+        <div class="stage-content">
+          <div class="stage-tag" data-n="02">Foundation</div>
+          <h3 class="stage-title">The base everything else depends on.</h3>
+          <p class="stage-desc">Reinforced concrete foundations engineered for Nevada's desert conditions — thermal expansion, seismic rating, and water table considered. We pour to Nevada state code plus 20%.</p>
+        </div>
+      </div>
+
+      <!-- Stage 3: Framing -->
+      <div class="process-stage" data-stage="2">
+        <div class="stage-img" style="background-image:url('img/s3-frame.webp')"></div>
+        <div class="stage-num" aria-hidden="true">03</div>
+        <div class="stage-content">
+          <div class="stage-tag" data-n="03">Framing &amp; Structure</div>
+          <h3 class="stage-title">The skeleton rises.</h3>
+          <p class="stage-desc">Steel framing, structural lumber, and engineered floor systems. Our framing crews are the fastest in the valley — we've beaten every project schedule for 11 consecutive years. No exceptions.</p>
+        </div>
+      </div>
+
+      <!-- Stage 4: Interior Systems -->
+      <div class="process-stage" data-stage="3">
+        <div class="stage-img" style="background-image:url('img/s4-interior.webp')"></div>
+        <div class="stage-num" aria-hidden="true">04</div>
+        <div class="stage-content">
+          <div class="stage-tag" data-n="04">MEP &amp; Interior</div>
+          <h3 class="stage-title">Systems that last 50 years.</h3>
+          <p class="stage-desc">Mechanical, electrical, and plumbing rough-in. HVAC systems sized for Las Vegas summers — not the national average. Every install is inspected twice before drywall closes it in forever.</p>
+        </div>
+      </div>
+
+      <!-- Stage 5: Finish -->
+      <div class="process-stage" data-stage="4">
+        <div class="stage-img" style="background-image:url('img/s5-finish.webp')"></div>
+        <div class="stage-num" aria-hidden="true">05</div>
+        <div class="stage-content">
+          <div class="stage-tag" data-n="05">Finish &amp; Handover</div>
+          <h3 class="stage-title">Keys in hand. On time.</h3>
+          <p class="stage-desc">Finish carpentry, tile, paint, fixtures, final inspections, and punch-list resolution — all coordinated by one dedicated project manager. You receive a fully documented build package at closeout.</p>
+        </div>
+      </div>
+
+      <!-- Progress bar + dots -->
+      <div class="process-progress"><div class="process-progress-fill" id="ppFill"></div></div>
+      <div class="stage-nav" id="stageNav">
+        <div class="sn-dot on" data-i="0"></div>
+        <div class="sn-dot" data-i="1"></div>
+        <div class="sn-dot" data-i="2"></div>
+        <div class="sn-dot" data-i="3"></div>
+        <div class="sn-dot" data-i="4"></div>
+      </div>
+
+    </div><!-- /process-sticky -->
+  </div><!-- /process-scroll -->
+</div><!-- /process -->
+
+<!-- BEFORE / AFTER SLIDER -->
+<section id="compare">
+  <div class="sec-inner compare-wrap">
+    <div class="compare-head reveal">
+      <div>
+        <div class="sec-label">03 — Proof</div>
+        <h2 class="display">Before.<br><em>After.</em></h2>
+      </div>
+      <p class="sub-copy">Drag the slider to reveal the transformation. Every before/after below is a real Stone &amp; Steel project — same address, same building, completely rebuilt.</p>
+    </div>
+
+    <div class="ba-stage reveal" id="baStage">
+      <img class="ba-img" src="img/before1.webp" alt="Before — renovation" loading="lazy">
+      <div class="ba-after-wrap" id="baAfter">
+        <img src="img/after1.webp" alt="After — finished build" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+      </div>
+      <div class="ba-handle" id="baHandle"></div>
+      <div class="ba-labels" aria-hidden="true">
+        <span class="ba-tag">Before</span>
+        <span class="ba-tag after">After</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-inner">
+    <div class="reveal">
+      <div class="sec-label">04 — Portfolio</div>
+      <h2 class="display">Recent <em>builds.</em></h2>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <img src="img/proj1.webp" alt="Summerlin custom residence" loading="lazy">
+        <div class="proj-info">
+          <div class="proj-type">Residential · Custom Build</div>
+          <div class="proj-title">Summerlin Estate — 7,400 sqft</div>
+          <div class="proj-meta">14-month build · $3.2M · delivered 18 days early</div>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <img src="img/proj2.webp" alt="Henderson commercial" loading="lazy">
+        <div class="proj-info">
+          <div class="proj-type">Commercial · Retail + Office</div>
+          <div class="proj-title">Henderson Crossing — 22,000 sqft</div>
+          <div class="proj-meta">9-month build · $8.8M · zero safety incidents</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STATS -->
+<section id="trust">
+  <div class="sec-inner">
+    <div class="reveal">
+      <div class="sec-label">05 — By the numbers</div>
+      <h2 class="display">Numbers<br>don't <em>lie.</em></h2>
+    </div>
+    <div class="trust-grid reveal">
+      <div class="trust-item"><strong>240+</strong><span>Projects completed</span></div>
+      <div class="trust-item"><strong>15 yrs</strong><span>In Las Vegas</span></div>
+      <div class="trust-item"><strong>$380M</strong><span>In construction</span></div>
+      <div class="trust-item"><strong>0</strong><span>Safety violations</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-inner contact-inner">
+    <div class="reveal">
+      <div class="sec-label">06 — Start your build</div>
+      <h2 class="display">Get a<br><em>bid.</em></h2>
+    </div>
+    <div class="contact-split">
+      <div class="contact-info reveal">
+        <h3>We respond within 24 hours.</h3>
+        <p>Tell us what you're building. We'll come out, assess the site, and give you a fixed-price bid — no ballparks, no surprises.</p>
+        <div class="ci-row">Las Vegas, NV 89101</div>
+        <div class="ci-row">(702) 555-0199</div>
+        <div class="ci-row">builds@stoneandsteellv.com</div>
+        <div class="ci-row">NV License #C-2 · Bonded · Insured</div>
+      </div>
+      <form class="contact-form reveal" onsubmit="event.preventDefault();this.innerHTML='<p style=\'font-family:var(--display);font-size:32px;font-weight:700;color:var(--orange);text-transform:uppercase;padding:40px 0\'>We\'ll be in touch within 24 hours.</p>';">
+        <input type="text" placeholder="Your name" required>
+        <input type="email" placeholder="Email address" required>
+        <input type="tel" placeholder="Phone number">
+        <select>
+          <option value="" disabled selected>Project type</option>
+          <option>Custom Residential</option>
+          <option>Commercial Ground-Up</option>
+          <option>Renovation / Remodel</option>
+          <option>Design-Build</option>
+          <option>Other</option>
+        </select>
+        <textarea placeholder="Describe your project — location, size, timeline, budget range..."></textarea>
+        <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;justify-content:center;">Request bid →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Stone &amp; Steel Construction · Las Vegas, NV · License #C-2</div>
+  <div>Demo by <a href="https://jaybirdautomations.com" target="_blank">Jaybird Automations</a></div>
+</footer>
+
+<script>
+(function(){
+  // ── PROCESS TIMELINE SCROLL (image morph effect) ──
+  var processSection = document.getElementById('process');
+  var stages         = document.querySelectorAll('.process-stage');
+  var dots           = document.querySelectorAll('.sn-dot');
+  var fill           = document.getElementById('ppFill');
+  var phbStage       = document.getElementById('phbStage');
+  var numStages      = stages.length;
+  var currentStage   = 0;
+
+  function setStage(n){
+    if (n === currentStage) return;
+    stages[currentStage].classList.remove('active');
+    dots[currentStage].classList.remove('on');
+    currentStage = n;
+    stages[currentStage].classList.add('active');
+    dots[currentStage].classList.add('on');
+    if (phbStage) phbStage.textContent = 'Stage ' + (n+1) + ' of ' + numStages;
+  }
+
+  function onScroll(){
+    if (!processSection) return;
+    var rect    = processSection.getBoundingClientRect();
+    var total   = processSection.offsetHeight - window.innerHeight;
+    var scrolled = -rect.top;
+    if (scrolled < 0) scrolled = 0;
+    if (scrolled > total) scrolled = total;
+    var pct  = scrolled / total;
+    // which stage (0–4)
+    var stageIdx = Math.min(numStages - 1, Math.floor(pct * numStages));
+    setStage(stageIdx);
+    // progress bar: fill across all stages
+    if (fill) fill.style.width = (pct * 100) + '%';
+  }
+
+  // dot click: jump scroll to that stage
+  dots.forEach(function(dot){
+    dot.addEventListener('click', function(){
+      var i    = parseInt(dot.dataset.i, 10);
+      var rect = processSection.getBoundingClientRect();
+      var total= processSection.offsetHeight - window.innerHeight;
+      var target = processSection.offsetTop + (i / numStages) * total + window.innerHeight * 0.1;
+      window.scrollTo({ top: target, behavior: 'smooth' });
+    });
+  });
+
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  // ── BEFORE / AFTER DRAG SLIDER ──
+  var baStage  = document.getElementById('baStage');
+  var baAfter  = document.getElementById('baAfter');
+  var baHandle = document.getElementById('baHandle');
+
+  function setPct(x){
+    var rect = baStage.getBoundingClientRect();
+    var pct  = Math.min(100, Math.max(0, ((x - rect.left) / rect.width) * 100));
+    baAfter.style.width  = pct + '%';
+    baHandle.style.left  = pct + '%';
+  }
+
+  if (baStage && baAfter && baHandle){
+    var dragging = false;
+    baStage.addEventListener('mousedown',  function(e){ dragging=true; setPct(e.clientX); });
+    window.addEventListener('mousemove',   function(e){ if(dragging) setPct(e.clientX); });
+    window.addEventListener('mouseup',     function(){ dragging=false; });
+    baStage.addEventListener('touchstart', function(e){ dragging=true; setPct(e.touches[0].clientX); }, {passive:true});
+    window.addEventListener('touchmove',   function(e){ if(dragging) setPct(e.touches[0].clientX); }, {passive:true});
+    window.addEventListener('touchend',    function(){ dragging=false; });
+  }
+
+  // ── REVEAL ON SCROLL ──
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.12, rootMargin:'0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // stagger proj cards + trust items
+  document.querySelectorAll('.proj-grid .proj-card').forEach(function(el,i){ el.style.transitionDelay=(i*0.15)+'s'; });
+  document.querySelectorAll('.trust-item').forEach(function(el,i){ el.style.transitionDelay=(i*0.1)+'s'; });
+})();
+</script>
+</body>
+</html>
