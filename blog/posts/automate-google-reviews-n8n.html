@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How to Automate Google Reviews With N8N | Jaybird Automations Blog</title>
+<meta name="description" content="Learn how to set up Google Reviews automation with N8N. Collect, manage, and respond to reviews efficiently without manual work." />
+<meta name="author" content="Jaybird Automations" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0a0a0f" />
+<meta name="keywords" content="automation, google-reviews, n8n, small-business" />
+<link rel="canonical" href="https://jaybirdautomations.com/blog/posts/automate-google-reviews-n8n.html" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaybirdautomations.com/blog/posts/automate-google-reviews-n8n.html" />
+<meta property="og:title" content="How to Automate Google Reviews With N8N" />
+<meta property="og:description" content="Learn how to set up Google Reviews automation with N8N. Collect, manage, and respond to reviews efficiently without manual work." />
+<meta property="og:image" content="https://jaybirdautomations.com/og-image.png" />
+<meta property="og:site_name" content="Jaybird Automations" />
+<meta property="article:published_time" content="2026-04-23T19:01:03.365Z" />
+<meta property="article:author" content="Jaybird Automations" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="How to Automate Google Reviews With N8N" />
+<meta name="twitter:description" content="Learn how to set up Google Reviews automation with N8N. Collect, manage, and respond to reviews efficiently without manual work." />
+<meta name="twitter:image" content="https://jaybirdautomations.com/og-image.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Automate Google Reviews With N8N",
+  "description": "Learn how to set up Google Reviews automation with N8N. Collect, manage, and respond to reviews efficiently without manual work.",
+  "image": "https://jaybirdautomations.com/og-image.png",
+  "datePublished": "2026-04-23T19:01:03.365Z",
+  "dateModified": "2026-04-23T19:01:03.365Z",
+  "author": { "@type": "Organization", "name": "Jaybird Automations", "url": "https://jaybirdautomations.com/" },
+  "publisher": { "@type": "Organization", "name": "Jaybird Automations", "logo": { "@type": "ImageObject", "url": "https://jaybirdautomations.com/og-image.png" } },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://jaybirdautomations.com/blog/posts/automate-google-reviews-n8n.html" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jaybirdautomations.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://jaybirdautomations.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "How to Automate Google Reviews With N8N" }
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2PLT037V1Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-2PLT037V1Q');</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0f;--bg-card:#11111a;--accent:#6c63ff;--accent2:#00d4ff;--text:#e8e8f0;--muted:#888899;--border:rgba(108,99,255,0.2);--radius:14px;--max-w:760px}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:all .25s;text-decoration:none}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;box-shadow:0 0 24px rgba(108,99,255,.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(108,99,255,.6)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 0;background:rgba(10,10,15,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1160px;margin:0 auto;padding:0 24px}
+.nav-logo{font-size:1.3rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.article-wrap{padding:140px 0 80px}
+.breadcrumbs{font-size:13px;color:var(--muted);margin-bottom:24px}
+.breadcrumbs a{color:var(--muted)}
+.breadcrumbs a:hover{color:var(--accent);text-decoration:none}
+.breadcrumbs span{margin:0 8px}
+article h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.2;margin-bottom:18px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.article-meta{color:var(--muted);font-size:14px;margin-bottom:40px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.article-meta .dot{width:4px;height:4px;background:var(--muted);border-radius:50%}
+.tag{display:inline-block;background:rgba(108,99,255,0.1);border:1px solid var(--border);color:var(--accent);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px}
+article .body h2{font-size:1.6rem;font-weight:700;color:var(--text);margin:40px 0 16px;line-height:1.3}
+article .body h3{font-size:1.25rem;font-weight:700;color:var(--text);margin:32px 0 12px}
+article .body p{color:#c8c8d4;margin-bottom:18px;font-size:17px}
+article .body ul,article .body ol{margin:18px 0 18px 24px;color:#c8c8d4}
+article .body li{margin-bottom:10px;font-size:17px}
+article .body a{color:var(--accent2)}
+article .body strong{color:var(--text)}
+.cta-box{margin-top:56px;padding:40px 32px;background:linear-gradient(135deg,rgba(108,99,255,0.12),rgba(0,212,255,0.06));border:1px solid var(--border);border-radius:var(--radius);text-align:center}
+.cta-box h3{font-size:1.4rem;margin-bottom:10px;color:var(--text)}
+.cta-box p{color:var(--muted);margin-bottom:22px}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--muted);font-size:13px;margin-top:60px}
+@media(max-width:640px){.nav-links a:not(.btn){display:none}article h1{font-size:1.7rem}}
+</style>
+</head>
+<body>
+<nav id="navbar">
+<div class="nav-inner">
+<a href="/" class="nav-logo">⚡ Jaybird Automations</a>
+<div class="nav-links">
+<a href="/#services">Services</a>
+<a href="/#results">Results</a>
+<a href="/blog/">Blog</a>
+<a href="/#pricing">Pricing</a>
+<a href="/#contact" class="btn btn-primary" style="padding:9px 20px;font-size:13px;">Book a Call</a>
+</div>
+</div>
+</nav>
+<div class="article-wrap">
+<div class="container">
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+<a href="/">Home</a><span>›</span><a href="/blog/">Blog</a><span>›</span>How to Automate Google Reviews With N8N
+</nav>
+<article>
+<h1>How to Automate Google Reviews With N8N</h1>
+<div class="article-meta">
+<span>By Jaybird Automations</span>
+<span class="dot"></span>
+<span>April 23, 2026</span>
+<span class="dot"></span>
+<span class="tag">automation</span>
+</div>
+<div class="body">
+<h2>Why Automating Google Reviews Matters for Your Business</h2>
+
+<p>Google Reviews are visibility gold. They influence search rankings, build trust with potential customers, and give you direct feedback on what's working. But here's the catch: keeping up with reviews across multiple locations—or even just one busy storefront—takes time you probably don't have.</p>
+
+<p>If you're running a service business in Las Vegas, you know how competitive things are. Whether you're a contractor, salon, restaurant, or medical practice, new reviews come in daily. Missing the chance to respond quickly or failing to notice a pattern in negative feedback costs you money and reputation.</p>
+
+<p>That's where N8N comes in. It's a low-code automation platform that lets you build workflows without writing much code. We'll walk through how to set up a system that automatically monitors your Google Reviews and takes actions without you lifting a finger.</p>
+
+<h2>What N8N Is and Why It's the Right Tool</h2>
+
+<p>N8N is an open-source workflow automation platform. Think of it as a bridge between your apps—it connects Google Business Profile data, email, Slack, your CRM, spreadsheets, and dozens of other tools. You build workflows visually by dragging nodes together. No deep coding required, though you can add code if you need to.</p>
+
+<p>Unlike some automation platforms that lock you into their pricing tiers, N8N lets you self-host it for free or use their cloud version. This means you control your data and won't get hit with surprise bills as your automation scales.</p>
+
+<h2>Setting Up Your Google Reviews Automation Workflow</h2>
+
+<h3>Step 1: Connect Your Google Business Profile</h3>
+
+<p>First, you'll need N8N to talk to your Google Business Profile. N8N has a native Google Business Profile connector, though access to review data is slightly limited compared to other features. Here's what you do:</p>
+
+<ol>
+<li>Set up an N8N instance (self-hosted or cloud)</li>
+<li>Create a new workflow and add a "Google Business Profile" node</li>
+<li>Authenticate with your Google account and authorize N8N to access your business profile</li>
+<li>Configure the node to pull review data at regular intervals (daily, hourly, or whenever a new review arrives)</li>
+<li>Test the connection to confirm it's pulling review data</li>
+</ol>
+
+<p>If you're self-hosting, make sure your instance runs on a stable server. Many Las Vegas businesses use Cloudflare to manage uptime for their automations—it's a solid choice if you want reliability without overthinking infrastructure.</p>
+
+<h3>Step 2: Filter and Organize Review Data</h3>
+
+<p>Once N8N is pulling reviews, you'll want to be selective about what you act on. A simple filter node can help:</p>
+
+<ul>
+<li>Flag reviews below a certain star rating (e.g., 1-3 stars need immediate attention)</li>
+<li>Identify reviews with specific keywords like "never again" or "excellent service"</li>
+<li>Sort by date to catch the newest reviews first</li>
+<li>Separate reviews by location if you have multiple sites</li>
+<li>Skip duplicate reviews or spam</li>
+</ul>
+
+<p>N8N's filter node uses simple conditional logic. You're essentially saying "if review rating is less than 4, then do X." This keeps your workflow focused on what matters.</p>
+
+<h3>Step 3: Store Reviews in a Database</h3>
+
+<p>You need a record of your reviews for future reference, analysis, and to avoid duplicate processing. A simple option is Supabase, which offers a free PostgreSQL database with a clean interface. You could also use Google Sheets if you prefer something simpler.</p>
+
+<p>Create a table with columns for:</p>
+
+<ul>
+<li>Review ID (unique identifier)</li>
+<li>Star rating</li>
+<li>Review text</li>
+<li>Reviewer name</li>
+<li>Date received</li>
+<li>Response status (responded, needs response, ignored)</li>
+<li>Internal notes</li>
+</ul>
+
+<p>In your N8N workflow, add a database node that writes each new review to this table. If you're using Supabase, N8N integrates directly. If it's Google Sheets, use the Sheets connector.</p>
+
+<h3>Step 4: Send Alerts for Important Reviews</h3>
+
+<p>You want to know about low-rated reviews fast. Add a Slack or email notification node to your workflow. When a review comes in with 3 stars or fewer, N8N sends you a message immediately with the key details: star rating, reviewer name, and the review text.</p>
+
+<p>If your team uses Slack, this is perfect—you get alerts in real-time without checking a dashboard. For email, N8N can use SMTP or connect directly to Gmail or Outlook.</p>
+
+<h2>Going Further: Automated Responses</h2>
+
+<h3>Using Claude for Smart Review Responses</h3>
+
+<p>Here's where it gets powerful. N8N integrates with Claude (or other AI models via API). You can generate thoughtful responses to reviews automatically.</p>
+
+<p>The flow works like this: when a new review arrives, N8N sends the review text to Claude with a prompt. Claude generates a professional, personalized response. That response then gets stored in your database or sent to you for approval before posting.</p>
+
+<p>For example, a prompt might be: "Write a short, friendly response to this 2-star review about slow service. Acknowledge the issue, explain briefly, and offer to make it right. Keep it under 150 words."</p>
+
+<p>Claude understands context and tone, so responses feel human, not robotic. This is a huge time-saver for busy owners in Las Vegas's hospitality and service sectors.</p>
+
+<h3>Conditional Workflows Based on Review Content</h3>
+
+<p>Different reviews need different actions. Set up conditional branches in your workflow:</p>
+
+<ul>
+<li><strong>5-star reviews:</strong> Send to marketing team for case studies or testimonials</li>
+<li><strong>4-star reviews:</strong> Archive and track trends</li>
+<li><strong>2-3 star reviews:</strong> Alert manager, generate draft response, flag for follow-up</li>
+<li><strong>1-star reviews:</strong> Immediate Slack alert to owner, potential customer service issue</li>
+<li><strong>Spam/gibberish:</strong> Log but don't action</li>
+</ul>
+
+<p>Each branch can trigger different actions—different people notified, different response templates, different follow-up tasks.</p>
+
+<h2>Handling the Manual Parts (Approval and Response)</h2>
+
+<p>Automation doesn't mean zero human involvement. You'll want to review AI-generated responses before posting them to Google. N8N can't directly post responses to Google reviews (Google's API limitations), but you can streamline the process:</p>
+
+<ol>
+<li>AI generates a draft response in N8N</li>
+<li>Draft gets sent to you via Slack with a link to your review</li>
+<li>You quickly review and edit the response</li>
+<li>You post manually to Google (2 seconds of work)</li>
+<li>Mark as "responded" in your database</li>
+</ol>
+
+<p>This is still way faster than writing responses from scratch or reviewing every review manually.</p>
+
+<h2>Measuring What Matters</h2>
+
+<p>Once you've automated review collection, create a simple dashboard to track:</p>
+
+<ul>
+<li>Average rating over time</li>
+<li>Number of new reviews per week</li>
+<li>Response time to negative reviews</li>
+<li>Common themes in feedback (keywords that appear in multiple reviews)</li>
+</ul>
+
+<p>Supabase and Google Sheets both integrate with visualization tools like Google Data Studio or Metabase. A 5-minute weekly check of these metrics tells you whether customer sentiment is improving or if there's a systemic issue to address.</p>
+
+<h2>Getting Started Without Overwhelming Yourself</h2>
+
+<p>Don't try to automate everything at once. Start with the basics:</p>
+
+<ol>
+<li>Get reviews flowing into N8N and a spreadsheet</li>
+<li>Set up alerts for low-rated reviews only</li>
+<li>Run for a week, get comfortable with the data</li>
+<li>Add AI response generation once you're confident in step 1-2</li>
+<li>Layer in more advanced routing and integrations later</li>
+</ol>
+
+<p>This phased approach lets you catch problems early and adjust the workflow as you learn what actually works for your business.</p>
+
+<h2>The Real Win</h2>
+
+<p>Automating Google Reviews doesn't replace thoughtful customer service—it amplifies it. You're spending less time on busywork and more time actually fixing problems and learning from feedback. For a Las Vegas business owner juggling multiple priorities, that's the real payoff.</p>
+
+<p>Ready to set this up but not sure where to start? We've built these workflows for dozens of businesses and can get you running in a few hours. <a href="/#contact">Reach out to talk through your specific needs</a>.</p>
+</div>
+<div class="cta-box">
+<h3>Want this running for your business?</h3>
+<p>Book a free discovery call — we'll map out exactly how AI can save you time and make you money.</p>
+<div class="cta-actions">
+<a href="/#contact" class="btn btn-primary">🚀 Book a Free Call</a>
+<a href="/blog/" class="btn btn-outline">← More Posts</a>
+</div>
+</div>
+</article>
+</div>
+</div>
+<footer><div class="container">© 2026 Jaybird Automations · Las Vegas, NV · <a href="mailto:jay@jaybirdautomations.com" style="color:var(--muted);">jay@jaybirdautomations.com</a></div></footer>
+</body>
+</html>
