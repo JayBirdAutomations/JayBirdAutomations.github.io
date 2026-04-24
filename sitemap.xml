@@ -131,4 +131,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: Why Your Website Needs an AI Layer in 2026 -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/website-ai-layer-2026.html</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
