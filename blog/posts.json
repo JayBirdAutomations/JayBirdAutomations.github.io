@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "Why Your Website Needs an AI Layer in 2026",
+      "slug": "website-ai-layer-2026",
+      "excerpt": "Your website is still running on 2020 technology. Here's why that matters now, and what an AI layer actually does for your bottom line.",
+      "tags": [
+        "ai-automation",
+        "website-optimization",
+        "lead-generation",
+        "small-business",
+        "2026-trends"
+      ],
+      "date": "2026-04-24T19:01:00.833Z"
+    },
+    {
       "title": "How to Automate Google Reviews With N8N",
       "slug": "automate-google-reviews-n8n",
       "excerpt": "Monitoring Google Reviews manually drains time you don't have. We'll show you how to use N8N to automatically collect, organize, and act on customer feedback from your Google Business Profile.",
