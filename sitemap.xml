@@ -155,4 +155,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: 5 N8N Workflows Every Small Business Should Run -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/5-n8n-workflows-small-business.html</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
