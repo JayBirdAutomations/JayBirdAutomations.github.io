@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "5 N8N Workflows Every Small Business Should Run",
+      "slug": "5-n8n-workflows-small-business",
+      "excerpt": "N8N is one of the most underrated automation tools for small businesses. Here are five workflows you can set up this week to reclaim your time.",
+      "tags": [
+        "n8n",
+        "workflow-automation",
+        "small-business",
+        "tools",
+        "efficiency"
+      ],
+      "date": "2026-04-26T07:01:01.006Z"
+    },
+    {
       "title": "How to Hire a Digital Employee: AI Agents Explained",
       "slug": "hire-digital-employee-ai-agents",
       "excerpt": "AI agents aren't science fiction—they're practical digital employees that handle real work for your business. Here's how to hire one that actually gets things done.",
