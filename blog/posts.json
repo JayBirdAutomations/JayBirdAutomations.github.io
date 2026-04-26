@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "AI Workflows That Save Contractors 10 Hours a Week",
+      "slug": "ai-workflows-save-contractors-10-hours",
+      "excerpt": "Contractors spend hours on admin work that doesn't build value. We've mapped out AI workflows that handle scheduling, follow-ups, and invoicing automatically—freeing up a full workday every week.",
+      "tags": [
+        "ai-automation",
+        "contractors",
+        "workflows",
+        "time-management",
+        "small-business"
+      ],
+      "date": "2026-04-26T19:00:59.817Z"
+    },
+    {
       "title": "5 N8N Workflows Every Small Business Should Run",
       "slug": "5-n8n-workflows-small-business",
       "excerpt": "N8N is one of the most underrated automation tools for small businesses. Here are five workflows you can set up this week to reclaim your time.",
