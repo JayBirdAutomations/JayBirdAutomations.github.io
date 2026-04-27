@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "How to Hire a Digital Employee: A Guide to AI Agents",
+      "slug": "how-to-hire-digital-employee-ai-agents",
+      "excerpt": "AI agents aren't sci-fi anymore—they're practical digital employees that handle routine work 24/7. Here's how to actually implement them in your business.",
+      "tags": [
+        "ai-agents",
+        "automation",
+        "small-business",
+        "digital-employees",
+        "workflow"
+      ],
+      "date": "2026-04-27T19:01:02.764Z"
+    },
+    {
       "title": "AI Workflows That Save Contractors 10 Hours a Week",
       "slug": "ai-workflows-save-contractors-10-hours",
       "excerpt": "Contractors spend hours on admin work that doesn't build value. We've mapped out AI workflows that handle scheduling, follow-ups, and invoicing automatically—freeing up a full workday every week.",
