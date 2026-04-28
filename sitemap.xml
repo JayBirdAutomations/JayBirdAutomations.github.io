@@ -179,4 +179,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: Custom AI Dashboards: What They Are and Why They Win -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/custom-ai-dashboards-why-they-win.html</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
