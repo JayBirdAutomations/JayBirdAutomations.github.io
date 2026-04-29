@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "Lead Scoring With AI: A Practical Guide for Local Businesses",
+      "slug": "lead-scoring-ai-local-businesses",
+      "excerpt": "Lead scoring separates tire-kickers from serious buyers, but doing it manually wastes hours every week. Here's how small business owners can use AI to automate the process.",
+      "tags": [
+        "lead-scoring",
+        "ai-automation",
+        "sales-process",
+        "local-business",
+        "crm"
+      ],
+      "date": "2026-04-29T07:01:08.009Z"
+    },
+    {
       "title": "How Auto Repair Shops Use AI to Follow Up With Customers",
       "slug": "ai-auto-repair-customer-followup",
       "excerpt": "Auto repair shops lose repeat business because follow-ups fall through the cracks. AI-powered workflows can handle customer outreach automatically, keeping shops top-of-mind without eating up your team's time.",
