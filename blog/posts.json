@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "How Auto Repair Shops Use AI to Follow Up With Customers",
+      "slug": "auto-repair-ai-follow-up",
+      "excerpt": "Auto repair shops lose business when follow-ups fall through the cracks. AI automation can handle appointment reminders, service recommendations, and payment confirmations at scale—freeing your team to focus on actual repairs.",
+      "tags": [
+        "auto-repair",
+        "ai-automation",
+        "customer-follow-up",
+        "workflow-automation",
+        "business-efficiency"
+      ],
+      "date": "2026-05-01T07:01:02.479Z"
+    },
+    {
       "title": "Lead Scoring With AI: A Practical Guide for Local Businesses",
       "slug": "lead-scoring-ai-local-businesses",
       "excerpt": "Lead scoring separates tire-kickers from serious buyers, but doing it manually wastes hours every week. Here's how small business owners can use AI to automate the process.",
