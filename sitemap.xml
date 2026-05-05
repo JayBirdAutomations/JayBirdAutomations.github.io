@@ -235,4 +235,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: How Vegas Restaurants Use AI for Better Reservations -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/vegas-restaurants-ai-reservations.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
