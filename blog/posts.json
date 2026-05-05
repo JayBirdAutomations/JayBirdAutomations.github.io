@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "Lead Scoring With AI: A Practical Guide for Local Businesses",
+      "slug": "lead-scoring-ai-guide-local-businesses",
+      "excerpt": "Lead scoring helps you focus on prospects most likely to buy—but most small businesses guess. We'll show you how to use AI to score leads accurately, what tools work best, and why it matters more than you think.",
+      "tags": [
+        "lead-scoring",
+        "ai-automation",
+        "sales-strategy",
+        "local-business",
+        "crm"
+      ],
+      "date": "2026-05-05T19:01:01.777Z"
+    },
+    {
       "title": "How Vegas Restaurants Use AI for Better Reservations",
       "slug": "vegas-restaurants-ai-reservations",
       "excerpt": "Las Vegas restaurants face unique challenges—unpredictable demand, high no-show rates, and staff turnover. AI-powered reservation systems are solving these problems by automating confirmations, predicting no-shows, and optimizing table management.",
