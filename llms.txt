@@ -116,5 +116,6 @@ Jaybird Automations builds AI systems specifically for Las Vegas and Southern Ne
 - [Industries Served](https://jaybirdautomations.com/#industries)
 - [Pricing](https://jaybirdautomations.com/#pricing)
 - [Results](https://jaybirdautomations.com/#results)
+- [Web Examples / Portfolio](https://jaybirdautomations.com/web-examples/)
 - [Blog](https://jaybirdautomations.com/blog/)
 - [Contact](https://jaybirdautomations.com/#contact)
