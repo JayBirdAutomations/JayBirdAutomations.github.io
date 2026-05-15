@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "Why Your Website Needs an AI Layer in 2026",
+      "slug": "website-needs-ai-layer-2026",
+      "excerpt": "An AI layer isn't a luxury feature anymore—it's the difference between websites that work and websites that get ignored. Here's why every small business needs one by 2026.",
+      "tags": [
+        "ai-strategy",
+        "web-development",
+        "small-business",
+        "automation",
+        "lead-generation"
+      ],
+      "date": "2026-05-15T19:00:40.652Z"
+    },
+    {
       "title": "Custom AI Dashboards: What They Are and Why They Win",
       "slug": "custom-ai-dashboards-what-why",
       "excerpt": "Custom AI dashboards give you real-time visibility into your business metrics with automation built in. Here's what they are, how they work, and why generic tools fall short.",
