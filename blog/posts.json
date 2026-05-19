@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "The 5 N8N Workflows Every Small Business Should Run",
+      "slug": "n8n-workflows-small-business",
+      "excerpt": "N8N workflows can handle the repetitive tasks draining your team's time and attention. Here are the five workflows that deliver the most immediate impact for small businesses.",
+      "tags": [
+        "n8n-automation",
+        "workflow-automation",
+        "small-business",
+        "process-automation",
+        "business-efficiency"
+      ],
+      "date": "2026-05-19T19:00:41.606Z"
+    },
+    {
       "title": "Why Your Website Needs an AI Layer in 2026",
       "slug": "website-needs-ai-layer-2026",
       "excerpt": "An AI layer isn't a luxury feature anymore—it's the difference between websites that work and websites that get ignored. Here's why every small business needs one by 2026.",
