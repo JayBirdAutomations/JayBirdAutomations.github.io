@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "5 N8N Workflows Every Small Business Should Run",
+      "slug": "five-n8n-workflows-small-business",
+      "excerpt": "N8N workflows can save your small business hours every week by automating repetitive tasks. Here are the five automation patterns every business owner should implement first.",
+      "tags": [
+        "n8n-automation",
+        "small-business-automation",
+        "workflow-automation",
+        "business-efficiency",
+        "no-code-tools"
+      ],
+      "date": "2026-05-23T19:00:40.645Z"
+    },
+    {
       "title": "The 5 N8N Workflows Every Small Business Should Run",
       "slug": "n8n-workflows-small-business",
       "excerpt": "N8N workflows can handle the repetitive tasks draining your team's time and attention. Here are the five workflows that deliver the most immediate impact for small businesses.",
