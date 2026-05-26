@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "AI Workflows That Save Contractors 10 Hours a Week",
+      "slug": "ai-workflows-save-contractors-hours",
+      "excerpt": "Contractors lose hours to admin work every week. We've mapped out specific AI workflows that automate estimates, scheduling, and client communication—giving you back time for actual work.",
+      "tags": [
+        "contractors",
+        "ai-workflows",
+        "time-saving",
+        "automation",
+        "small-business"
+      ],
+      "date": "2026-05-26T07:00:45.884Z"
+    },
+    {
       "title": "AI Customer Follow-Up Systems for Auto Repair Shops",
       "slug": "ai-follow-up-auto-repair-shops",
       "excerpt": "Auto repair shops lose repeat customers simply because follow-ups fall through the cracks. AI-powered systems handle this automatically, sending timely messages at the right moments without any manual effort.",
