@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "The 5 N8N Workflows Every Small Business Should Run",
+      "slug": "5-n8n-workflows-every-small-business",
+      "excerpt": "N8N makes it easy to automate repetitive tasks without writing code. We've identified 5 workflows that deliver immediate ROI for small business owners in any industry.",
+      "tags": [
+        "n8n",
+        "workflow-automation",
+        "small-business",
+        "automation-guide",
+        "productivity"
+      ],
+      "date": "2026-06-03T19:00:41.745Z"
+    },
+    {
       "title": "How Auto Repair Shops Use AI to Follow Up With Customers",
       "slug": "auto-repair-shops-ai-customer-follow-up",
       "excerpt": "Auto repair shops waste hours on manual follow-ups. AI can handle appointment reminders, service completion checks, and maintenance alerts automatically, freeing your team to focus on actual repairs.",
