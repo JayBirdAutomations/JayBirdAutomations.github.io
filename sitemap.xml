@@ -387,4 +387,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: AI Workflows Save Contractors 10 Hours Weekly -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/ai-workflows-contractors-save-10-hours.html</loc>
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
