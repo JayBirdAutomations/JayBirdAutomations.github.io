@@ -403,4 +403,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: How Auto Repair Shops Use AI for Better Customer Follow-Ups -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/auto-repair-ai-customer-follow-up.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
