@@ -411,4 +411,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: AI Receptionists for Vegas Dental Offices: Why You Need One -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/ai-receptionist-dental-offices-vegas.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
