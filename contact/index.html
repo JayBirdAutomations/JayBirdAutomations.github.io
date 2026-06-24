@@ -131,6 +131,13 @@
 
     footer { border-top: 1px solid var(--rule); padding: 32px; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.1em; }
     footer a:hover { color: var(--signal); }
+
+    .form-status { display: none; margin-top: 18px; padding: 16px 18px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+    .form-status.show { display: block; }
+    .form-status.success { background: rgba(198,242,78,0.08); border: 1px solid rgba(198,242,78,0.35); color: var(--ink); }
+    .form-status.error { background: rgba(255,90,90,0.08); border: 1px solid rgba(255,90,90,0.35); color: #ffd0d0; }
+    button[type="submit"]:disabled { opacity: 0.55; cursor: not-allowed; }
+    button[type="submit"]:disabled:hover { background: var(--signal); }
   </style>
 </head>
 <body>
@@ -156,7 +163,7 @@
   <p class="lead">Ready to automate your Las Vegas business? Tell us what's costing you the most time or money. We'll respond within one business day — and the consultation is always free.</p>
 
   <div class="grid">
-    <form action="https://formspree.io/f/your-form-id" method="POST">
+    <form id="contactForm" novalidate>
       <div class="field">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required autocomplete="name">
@@ -190,8 +197,60 @@
         <label for="message">Project Details</label>
         <textarea id="message" name="message" placeholder="What's costing you time or money right now? The more specific, the better we can scope it." required></textarea>
       </div>
-      <button type="submit">Send &amp; Book Free Consultation →</button>
+      <button type="submit" id="submitBtn">Send &amp; Book Free Consultation →</button>
+      <div class="form-status success" id="successMsg" role="status" aria-live="polite">
+        <strong>Got it.</strong> Your message is in. Jay will reply within one business day with a calendar link for your free 20-minute consultation. Check your inbox (and spam folder, just in case).
+      </div>
+      <div class="form-status error" id="errorMsg" role="alert">
+        <strong>Something went wrong.</strong> Please try again, or email <a href="mailto:jay@jaybirdautomations.com" style="color: var(--signal);">jay@jaybirdautomations.com</a> directly.
+      </div>
     </form>
+
+    <script>
+      (function () {
+        var WEBHOOK_URL = 'https://YOUR-N8N-INSTANCE/webhook/jaybird-contact'; // <-- swap this with your live N8N webhook URL
+
+        var form = document.getElementById('contactForm');
+        var btn = document.getElementById('submitBtn');
+        var ok = document.getElementById('successMsg');
+        var err = document.getElementById('errorMsg');
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          ok.classList.remove('show');
+          err.classList.remove('show');
+
+          if (!form.checkValidity()) { form.reportValidity(); return; }
+
+          var data = Object.fromEntries(new FormData(form).entries());
+          data.source = 'jaybirdautomations.com/contact/';
+          data.userAgent = navigator.userAgent;
+          data.submittedAt = new Date().toISOString();
+          data.referrer = document.referrer || 'direct';
+
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+
+          fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          })
+            .then(function (r) {
+              if (!r.ok) throw new Error('HTTP ' + r.status);
+              ok.classList.add('show');
+              form.reset();
+              btn.textContent = 'Sent ✓';
+              if (window.gtag) gtag('event', 'contact_form_submit', { event_category: 'Lead', event_label: data.service || 'unspecified' });
+            })
+            .catch(function () {
+              err.classList.add('show');
+              btn.disabled = false;
+              btn.textContent = 'Send & Book Free Consultation →';
+            });
+        });
+      })();
+    </script>
 
     <aside>
       <div class="info-card">
