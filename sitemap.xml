@@ -9,6 +9,30 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- About page -->
+  <url>
+    <loc>https://jaybirdautomations.com/about/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contact page -->
+  <url>
+    <loc>https://jaybirdautomations.com/contact/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Services page -->
+  <url>
+    <loc>https://jaybirdautomations.com/services/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Web Examples / Portfolio -->
   <url>
     <loc>https://jaybirdautomations.com/web-examples/</loc>
