@@ -451,4 +451,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog post: AI Commercial Production: Broadcast Quality in Days, Not Weeks -->
+  <url>
+    <loc>https://jaybirdautomations.com/blog/posts/ai-commercial-production-broadcast-quality-fast.html</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
