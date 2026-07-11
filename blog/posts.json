@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "title": "Lead Scoring With AI: A Practical Guide for Local Businesses",
+      "slug": "lead-scoring-ai-practical-guide-local-businesses",
+      "excerpt": "Lead scoring helps you focus on prospects most likely to buy, but manual scoring wastes time and misses patterns. Here's how AI can automate it for your business.",
+      "tags": [
+        "lead-scoring",
+        "ai-automation",
+        "sales-optimization",
+        "local-business",
+        "crm"
+      ],
+      "date": "2026-07-11T07:00:55.078Z"
+    },
+    {
       "title": "How Auto Repair Shops Use AI to Follow Up With Customers",
       "slug": "ai-auto-repair-shop-customer-followup",
       "excerpt": "Auto repair shops waste time on manual follow-ups that fall through the cracks. AI can handle routine check-ins, appointment reminders, and satisfaction surveys at scale—while your team focuses on the actual repairs.",
